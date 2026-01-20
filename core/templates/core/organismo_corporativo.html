@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="text-white py-5" style="background: url('{% static "core/img/organismo.png" %}') center/cover no-repeat; min-height: 300px;">
+  <div class="container py-5">
+    <h1 class="display-2 fw-bold">Gobierno Corporativo</h1>
+    <div class="d-flex justify-content-end">
+      <div class="text-end" style="max-width: 600px;">
+        <p class="lead mb-0">
+          Nuestro Gobierno corporativo, integrado por el Directorio y Administración, busca alcanzar los objetivos de la compañía de forma sostenible y en el marco de los Valores que rigen a la organización.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="text-center py-5">
+  <div class="container">
+    <h2 class="fw-bold text-danger mb-4">Administración</h2>
+    <div class="row justify-content-center">
+      {% for persona in administracion %}
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+        <div class="circle-img mb-2"> <img src="{% static persona.foto %}" alt="{{ persona.nombre }}" class="img-fluid border border-3 border-dark img-hover-bw">
+        </div>
+        <h6 class="fw-bold text-danger">{{ persona.nombre }}</h6>
+        <p class="small">{{ persona.cargo }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <h2 class="fw-bold text-danger my-5">Directorio</h2>
+    <div class="row justify-content-center">
+      {% for persona in directorio %}
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+        <div class="circle-img mb-2">
+          <img src="{{ persona.foto.url }}" alt="{{ persona.nombre }}" class="img-fluid border border-3 border-dark img-hover-bw">
+        </div>
+        <h6 class="fw-bold text-danger">{{ persona.nombre }}</h6>
+        <p class="small">{{ persona.cargo }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

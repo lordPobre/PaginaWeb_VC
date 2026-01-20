@@ -1,0 +1,52 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Banner superior -->
+<section class="contact-header d-flex align-items-center justify-content-center"
+         style="background: url('{% static 'core/img/contacto.png' %}') center/cover no-repeat; height: 40vh;">
+  <h1 class="text-white display-4 fw-bold text-shadow">Contáctanos</h1>
+</section>
+
+<!-- Sección de contacto -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row g-5">
+      <!-- Información de contacto -->
+      <div class="col-md-6">
+        <h3 class="fw-bold mb-3">VC Ingeniería y Construcción</h3>
+        <p><strong>Dirección:</strong> Teniente Merino #123, Las Ventanas, Puchuncaví</p>
+        <p><strong>Teléfono:</strong> +56 9 9382 4279 - +56 9 8185 4335</p>
+        <p><strong>Correo:</strong> gerencia@vcchile.cl</p>
+
+        <h5 class="mt-4 text-success fw-bold">Horario de atención</h5>
+        <p>Lunes a Viernes: 09:00 - 18:00 hrs</p>
+
+        <h5 class="mt-4 text-success fw-bold">Síguenos</h5>
+        <a href="#" class="btn btn-outline-success btn-sm me-2">Facebook</a>
+        <a href="#" class="btn btn-outline-success btn-sm">LinkedIn</a>
+      </div>
+
+      <!-- Formulario -->
+      <div class="col-md-6">
+        <form method="post" class="bg-white p-4 shadow rounded">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="nombre" class="form-label fw-bold">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label fw-bold">Correo electrónico</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="mensaje" class="form-label fw-bold">Mensaje</label>
+            <textarea class="form-control" id="mensaje" name="mensaje" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-success px-4">Enviar mensaje</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

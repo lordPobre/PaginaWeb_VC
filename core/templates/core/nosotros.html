@@ -1,0 +1,89 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<section class="py-5 text-center text-white banner-vc"
+         style="background-image: url('{% static 'core/img/banner_vc.png' %}'); background-repeat: no-repeat; background-position: center; background-size: cover;">
+  <div class="container">
+    <h1 class="display-4 fw-bold text-white">Ingeniería y Construcción VC Limitada</h1>
+    <p class="lead text-white">Soluciones constructivas seguras, innovadoras y sostenibles para el desarrollo industrial.</p>
+    <a href="{% url 'contacto' %}" class="btn btn-outline-light px-4 mt-3 fw-bold">Contáctanos</a>
+  </div>
+</section>
+
+<!-- Estadísticas -->
+<section class="py-5 text-center border-bottom">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <h2 class="fw-bold">1+</h2>
+        <p class="text-muted">Años de experiencia</p>
+      </div>
+      <div class="col-md-3">
+        <h2 class="fw-bold">50+</h2>
+        <p class="text-muted">Proyectos ejecutados</p>
+      </div>
+      <div class="col-md-3">
+        <h2 class="fw-bold">4</h2>
+        <p class="text-muted">Áreas operativas</p>
+      </div>
+      <div class="col-md-3">
+        <h2 class="fw-bold">100%</h2>
+        <p class="text-muted">Compromiso con calidad</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Imagen y texto -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <img src="{% static 'core/img/nosotros.jpg' %}" class="img-fluid rounded shadow" alt="Equipo VC">
+      </div>
+      <div class="col-md-6">
+        <h3 class="fw-bold">Nuestro propósito</h3>
+        <p>
+          En VC Chile, nuestro propósito es ser el socio estratégico que impulsa la transformación industrial mediante la excelencia en construcción y montaje. Cada proyecto refleja nuestro compromiso con la seguridad, la sustentabilidad y la confianza. Buscamos construir no solo infraestructuras, sino también relaciones basadas en valores fundamentales, contribuyendo así al desarrollo de un Chile más seguro y responsable, donde la innovación fomenta el crecimiento económico y el bienestar comunitario.
+        </p>
+        <h3 class="fw-bold mt-4">Nuestra misión</h3>
+        <p>
+          En VC Chile, nuestra misión es proporcionar servicios de construcción y montaje industrial de la más alta calidad, priorizando siempre la seguridad y la sustentabilidad. Nos dedicamos a crear soluciones que no solo cumplen con los estándares de la industria, sino que también promueven un futuro más seguro y sostenible para todos.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Diferenciadores -->
+<section class="py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-5">¿Por qué elegirnos?</h2>
+    <div class="row">
+      <div class="col-md-6 text-start">
+        <ul>
+          <li>+10 años de experiencia en proyectos industriales</li>
+          <li>Equipo multidisciplinario y comprometido</li>
+          <li>Compromiso con la seguridad y la sustentabilidad</li>
+          <li>Presencia en zonas estratégicas de Chile</li>
+        </ul>
+      </div>
+      <div class="col-md-6 text-start">
+        <ul>
+          <li>Modelo híbrido eficiente y económico</li>
+          <li>Respuesta rápida y adaptabilidad</li>
+          <li>Calidad técnica certificada</li>
+          <li>Gestión orientada al cliente</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-5 text-center">
+  <div class="container">
+    <h2 class="fw-bold">¿Listo para comenzar tu próximo proyecto?</h2>
+    <a href="{% url 'proyectos' %}" class="btn btn-primary mt-3 px-5">Explora nuestros proyectos</a>
+  </div>
+</section>
+{% endblock %}

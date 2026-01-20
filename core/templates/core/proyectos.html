@@ -1,0 +1,156 @@
+{% extends 'core/base.html' %}
+{% block content %}
+{% load static %}
+
+<!-- HERO -->
+<section class="py-5 text-white" 
+         style="background: url('{% static "core/img/banner_pro.jpg" %}') center/cover no-repeat; height: 300px;">
+  <div class="container h-100 d-flex align-items-center justify-content-end">
+    <div class="text-end">
+      <h1 class="display-5 fw-bold">Proyectos Civil</h1>
+      <p class="lead mb-0">Selección de obras y montajes ejecutados por VC Chile.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- GRID -->
+<section class="proyectos py-5">
+  <div class="container">
+    <h2 class="text-center mb-5 fw-bold">Nuestros Proyectos</h2>
+    <div class="row g-4">
+
+      <!-- Proyecto 1 -->
+      <div class="col-md-4">
+        <div class="card proyecto-card border-0 shadow-sm">
+          <img src="{% static 'core/img/puente.png' %}" class="card-img-top" alt="Proyecto 1">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Puente Industrial Río Claro</h5>
+            <p class="card-text">Construcción de puente de acero y hormigón para mejorar la conectividad regional.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proyecto 2 -->
+      <div class="col-md-4">
+        <div class="card proyecto-card border-0 shadow-sm">
+          <img src="{% static 'core/img/planta.png' %}" class="card-img-top" alt="Proyecto 2">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Planta Procesadora de Cobre</h5>
+            <p class="card-text">Infraestructura industrial para procesamiento y almacenamiento de minerales.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proyecto 3 -->
+      <div class="col-md-4">
+        <div class="card proyecto-card border-0 shadow-sm">
+          <img src="{% static 'core/img/edificio.png' %}" class="card-img-top" alt="Proyecto 3">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Edificio Corporativo VC</h5>
+            <p class="card-text">Diseño y construcción de edificio corporativo con certificación ambiental LEED.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MODALES DE DETALLE (ejemplos) -->
+<div class="modal fade" id="proy1" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <img src="{% static 'core/img/proyectos/mineria1.jpg' %}" class="w-100 object-fit-cover" style="max-height:420px" alt="">
+      <div class="modal-body">
+        <h5 class="mb-1">Chancador Primario – Cerro Verde</h5>
+        <div class="text-muted small mb-2">Arequipa, PE · 2024 · Minería / Montaje</div>
+        <p>Montaje de estructuras, tolvas y chute de traspaso. Pruebas en vacío y marcha blanca. 420 toneladas montadas en 14 semanas.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="proy2" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <img src="{% static 'core/img/proyectos/mineria2.jpg' %}" class="w-100 object-fit-cover" style="max-height:420px" alt="">
+      <div class="modal-body">
+        <h5 class="mb-1">Espesadores – Concentradora Norte</h5>
+        <div class="text-muted small mb-2">Antofagasta, CL · 2023 · Minería / EPC</div>
+        <p>Construcción civil y montaje mecánico de espesadores de gran diámetro, piping en HDPE y acero inoxidable, pruebas hidráulicas.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="proy3" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <img src="{% static 'core/img/proyectos/vialidad1.jpg' %}" class="w-100 object-fit-cover" style="max-height:420px" alt="">
+      <div class="modal-body">
+        <h5 class="mb-1">Bypass Ruta 5 – Tramo urbano</h5>
+        <div class="text-muted small mb-2">Curicó, CL · 2022 · Vialidad</div>
+        <p>Movimiento de tierras, saneamiento y pavimentación asfáltica. Señalización vertical/horizontal y seguridad vial.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="proy4" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <img src="{% static 'core/img/proyectos/hidraulica1.jpg' %}" class="w-100 object-fit-cover" style="max-height:420px" alt="">
+      <div class="modal-body">
+        <h5 class="mb-1">Planta de Tratamiento – Línea MBR</h5>
+        <div class="text-muted small mb-2">Rancagua, CL · 2023 · Obras Hidráulicas</div>
+        <p>Construcción de reactor, montaje de soplantes, skids, manifolds y sistema SCADA. Comisionamiento y puesta en marcha.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="proy5" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <img src="{% static 'core/img/proyectos/edificacion1.jpg' %}" class="w-100 object-fit-cover" style="max-height:420px" alt="">
+      <div class="modal-body">
+        <h5 class="mb-1">Centro de Operaciones Mineras</h5>
+        <div class="text-muted small mb-2">Iquique, CL · 2021 · Edificación</div>
+        <p>Edificación modular de alto desempeño energético con climatización VRF, BMS y control de acceso.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="proy6" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <img src="{% static 'core/img/proyectos/energia1.jpg' %}" class="w-100 object-fit-cover" style="max-height:420px" alt="">
+      <div class="modal-body">
+        <h5 class="mb-1">Parque Fotovoltaico “El Trigal” 48 MW</h5>
+        <div class="text-muted small mb-2">Copiapó, CL · 2024 · Energía</div>
+        <p>Hincado y montaje de trackers, cableado DC/AC, salas eléctricas modulares y subestación 66 kV. Pruebas SAT.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // Filtro simple por data-cat
+  document.querySelectorAll('#filtros [data-filter]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#filtros .btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.getAttribute('data-filter');
+      document.querySelectorAll('#grid-proyectos .proyecto-card').forEach(card => {
+        const show = cat === 'all' || card.getAttribute('data-cat') === cat;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+</script>
+{% endblock %}

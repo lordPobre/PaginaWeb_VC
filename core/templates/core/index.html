@@ -1,0 +1,119 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+{% load static %}
+<!-- index.html completamente corregido -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio | Ingeniería y Construcción VC Limitada</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .hero-skic {
+      background-image: url('{% static "core/img/banner_vc.jpg" %}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 90vh;
+      position: relative;
+    }
+    .hero-skic .overlay {
+      background: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 1;
+    }
+    .hero-skic .container {
+      position: relative;
+      z-index: 2;
+    }
+    .text-white h1, .text-white p {
+      color: white;
+    }
+    .img-rounded {
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO Section -->
+<!-- HERO Section con nueva imagen -->
+<section class="hero-skic d-flex align-items-center" style="background-image: url('{% static "core/img/banner_vc.png" %}'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 90vh; position: relative;">
+  <div class="overlay" style="background: rgba(0, 0, 0, 0.5); position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1;"></div>
+  <div class="container text-white text-center" style="position: relative; z-index: 2;">
+    <h1 class="display-3 fw-bold">Llevamos tu proyecto a otro nivel</h1>
+    <p class="lead">Más de 10 años construyendo infraestructura para el desarrollo de Chile</p>
+    <a href="{% url 'contacto' %}" class="btn btn-outline-light btn-lg mt-4">Contáctanos</a>
+  </div>
+</section>
+
+
+<!-- TRUST Section -->
+<section class="py-5 bg-white text-center">
+  <div class="container">
+    <h2 class="mb-4 fw-bold">Confía en nuestra experiencia</h2>
+    <div class="row">
+      <div class="col-md-3">
+        <h3 class="text-success fw-bold">+5</h3>
+        <p>Proyectos completados</p>
+      </div>
+      <div class="col-md-3">
+        <h3 class="text-success fw-bold">+1 años</h3>
+        <p>Experiencia en construcción</p>
+      </div>
+      <div class="col-md-3">
+        <h3 class="text-success fw-bold">24/7</h3>
+        <p>Respuesta operativa</p>
+      </div>
+      <div class="col-md-3">
+        <h3 class="text-success fw-bold">100%</h3>
+        <p>Clientes satisfechos</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES Section -->
+<section class="py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-5">Áreas de Especialización</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <img src="{% static 'core/img/servicio1.png' %}" alt="Servicio 1" class="img-fluid mb-3 img-rounded">
+        <h5 class="fw-bold">Montaje Industrial</h5>
+        <p>Soluciones integrales en plantas industriales y faenas productivas.</p>
+      </div>
+      <div class="col-md-4">
+        <img src="{% static 'core/img/servicio2.png' %}" alt="Servicio 2" class="img-fluid mb-3 img-rounded">
+        <h5 class="fw-bold">Obras Civiles</h5>
+        <p>Edificaciones, estructuras, y obras viales bajo normativas nacionales.</p>
+      </div>
+      <div class="col-md-4">
+        <img src="{% static 'core/img/servicio3.png' %}" alt="Servicio 3" class="img-fluid mb-3 img-rounded">
+        <h5 class="fw-bold">Mantención Programada</h5>
+        <p>Prevención de fallas y continuidad operacional para tus equipos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="py-5 bg-success text-white text-center">
+  <div class="container">
+    <h2 class="fw-bold mb-3">Estemos en contacto</h2>
+    <p class="lead">Cuéntanos sobre tu proyecto y trabajemos juntos para hacerlo realidad.</p>
+    <a href="{% url 'contacto' %}" class="btn btn-light btn-lg px-5">Solicitar propuesta</a>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+{% endblock %}

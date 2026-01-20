@@ -1,0 +1,194 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="py-5 text-white"
+         style="background: url('{% static "core/img/sostenibilidad.png" %}') center/cover no-repeat; min-height: 340px;">
+  <div class="container d-flex align-items-center justify-content-end" style="min-height: 340px;">
+    <div class="text-end" style="margin-top: 100px;">
+    <p class="lead mb-0">Compromiso ambiental, social y de gobernanza para un futuro responsable.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PILARES / COMPROMISOS -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <h2 class="fw-bold text-center mb-4">Nuestros pilares</h2>
+    <p class="text-center text-muted mb-5">Integramos la sostenibilidad en cada proyecto y operación de VC Chile.</p>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <img src="{% static 'core/img/icon-ambiente.png' %}" alt="" height="40" class="mb-3">
+            <h5 class="fw-bold">Ambiente</h5>
+            <p class="mb-0">Gestión de residuos, eficiencia energética y control de emisiones en obra.
+              Meta 2025: -20% huella de carbono por HH.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <img src="{% static 'core/img/icon-social.png' %}" alt="" height="40" class="mb-3">
+            <h5 class="fw-bold">Social</h5>
+            <p class="mb-0">Cero daño a las personas, capacitación continua, empleabilidad local y
+              relacionamiento comunitario transparente.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <img src="{% static 'core/img/icon-gobierno.png' %}" alt="" height="40" class="mb-3">
+            <h5 class="fw-bold">Gobernanza</h5>
+            <p class="mb-0">Cumplimiento normativo, ética, integridad y cadena de suministro responsable con
+              criterios ESG.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KPI / MÉTRICAS -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="fw-bold text-center mb-5">Indicadores 2024</h2>
+    <div class="row text-center g-4">
+      <div class="col-6 col-md-3">
+        <h2 class="fw-bold text-success">-18%</h2>
+        <div class="text-muted small">Emisiones CO₂e por HH</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <h2 class="fw-bold text-success">92%</h2>
+        <div class="text-muted small">Reciclaje de residuos no peligrosos</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <h2 class="fw-bold text-success">0</h2>
+        <div class="text-muted small">Accidentes FAT / LTI</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <h2 class="fw-bold text-success">36%</h2>
+        <div class="text-muted small">Proveedores locales</div>
+      </div>
+    </div>
+
+    <div class="row mt-4 g-4">
+      <div class="col-md-6">
+        <div class="mb-2 d-flex justify-content-between">
+          <span class="small">Consumo de agua vs 2023</span><span class="small">-12%</span>
+        </div>
+        <div class="progress" style="height:10px"><div class="progress-bar bg-success" style="width: 62%"></div></div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-2 d-flex justify-content-between">
+          <span class="small">Capacitaciones HSE cumplidas</span><span class="small">95%</span>
+        </div>
+        <div class="progress" style="height:10px"><div class="progress-bar bg-success" style="width: 95%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LÍNEA DE TIEMPO -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <h2 class="fw-bold text-center mb-4">Hoja de ruta</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot bg-success"></div>
+        <div class="timeline-content">
+          <h6 class="mb-1">2022 — Política ESG</h6>
+          <p class="mb-0 small text-muted">Publicamos nuestra política ESG y mapeamos riesgos ambientales y sociales por proyecto.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot bg-success"></div>
+        <div class="timeline-content">
+          <h6 class="mb-1">2023 — Huella de Carbono Alcance 1 y 2</h6>
+          <p class="mb-0 small text-muted">Inventario corporativo y plan de reducción con foco en combustibles y energía en obra.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot bg-success"></div>
+        <div class="timeline-content">
+          <h6 class="mb-1">2024 — Gestión de Residuos 4.0</h6>
+          <p class="mb-0 small text-muted">Trazabilidad en obra y valorización de residuos de construcción y demolición (RCD).</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot bg-success"></div>
+        <div class="timeline-content">
+          <h6 class="mb-1">2025 — Energía Renovable</h6>
+          <p class="mb-0 small text-muted">Contrato de suministro ERNC + pilotos fotovoltaicos en faena.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ODS / CERTIFICACIONES -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-6">
+        <h2 class="fw-bold mb-3">Alineación a ODS</h2>
+        <p class="text-muted">Priorizamos los Objetivos de Desarrollo Sostenible: <strong>6</strong> Agua limpia, <strong>8</strong> Trabajo decente, <strong>9</strong> Industria e innovación, <strong>12</strong> Producción responsable y <strong>13</strong> Acción por el clima.</p>
+        <div class="d-flex gap-2 flex-wrap">
+          <img src="{% static 'core/img/ods6.png' %}" alt="ODS6" height="44">
+          <img src="{% static 'core/img/ods8.png' %}" alt="ODS8" height="44">
+          <img src="{% static 'core/img/ods9.png' %}" alt="ODS9" height="44">
+          <img src="{% static 'core/img/ods12.png' %}" alt="ODS12" height="44">
+          <img src="{% static 'core/img/ods13.png' %}" alt="ODS13" height="44">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <h2 class="fw-bold mb-3">Certificaciones</h2>
+        <p class="text-muted">Estamos en proceso de recertificación de nuestros sistemas de gestión integrados.</p>
+        <div class="d-flex gap-3 flex-wrap align-items-center">
+          <img src="{% static 'core/img/iso9001.png' %}" alt="ISO 9001" height="36">
+          <img src="{% static 'core/img/iso14001.png' %}" alt="ISO 14001" height="36">
+          <img src="{% static 'core/img/iso45001.png' %}" alt="ISO 45001" height="36">
+          <img src="{% static 'core/img/bhcompliance.png' %}" alt="BH Compliance" height="30">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POLÍTICAS Y REPORTES -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <h2 class="fw-bold mb-3">Políticas y prácticas</h2>
+        <ul class="list-unstyled text-muted">
+          <li class="mb-2">• Política ESG y Código de Ética.</li>
+          <li class="mb-2">• Estándar HSE para contratistas y visitas.</li>
+          <li class="mb-2">• Protocolo de relaciones comunitarias y consulta temprana.</li>
+          <li class="mb-2">• Guía de gestión de residuos y economía circular (RCD).</li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h2 class="fw-bold mb-3">Descargas</h2>
+        <a class="btn btn-outline-success w-100 mb-2" href="#">Política ESG (PDF)</a>
+        <a class="btn btn-outline-success w-100 mb-2" href="#">Reporte de Sostenibilidad 2024 (PDF)</a>
+        <a class="btn btn-outline-success w-100" href="#">Código de Ética (PDF)</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-5 text-center text-white" style="background:#198754">
+  <div class="container">
+    <h2 class="fw-bold mb-2">Trabajemos juntos por un impacto positivo</h2>
+    <p class="mb-4">Cuéntanos tu proyecto. Integramos buenas prácticas ambientales y sociales desde el diseño.</p>
+    <a href="{% url 'contacto' %}" class="btn btn-light btn-lg px-5">Contáctanos</a>
+  </div>
+</section>
+
+{% endblock %}

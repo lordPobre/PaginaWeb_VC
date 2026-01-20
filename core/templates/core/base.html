@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ingeniería y Construcción VC Limitada</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+</head>
+<body>
+
+  <!-- Navbar -->
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+  <div class="container">
+
+    <!-- Logo -->
+    <a class="navbar-brand" href="{% url 'home' %}">
+    <img src="{% static 'core/img/logo6.png' %}" alt="VC Ingeniería y Construcción" height="100">
+    </a>
+
+    <!-- Botón móvil -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Enlaces -->
+    <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+      <ul class="navbar-nav mb-2 mb-lg-0 position-relative nav-underline">
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Inicio</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'nosotros' %}active{% endif %}" href="{% url 'nosotros' %}">Nosotros</a>
+        </li>
+        {% comment %}<li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'organismo_corporativo' %}active{% endif %}" href="{% url 'organismo_corporativo' %}">Organismo Corporativo</a>
+        </li>{%endcomment%}
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'proyectos' %}active{% endif %}" href="{% url 'proyectos' %}">Proyectos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'sostenibilidad' %}active{% endif %}" href="{% url 'sostenibilidad' %}">Sostenibilidad</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'contacto' %}active{% endif %}" href="{% url 'contacto' %}">Contacto</a>
+        </li>
+        
+      </ul>
+    </div>
+
+    <!-- Iconos Sociales -->
+    <div class="d-none d-lg-flex align-items-center gap-3">
+      <a href="#" class="text-dark"><i class="bi bi-facebook"></i></a>
+      <a href="#" class="text-dark"><i class="bi bi-google"></i></a>
+      <a href="#" class="text-dark"><i class="bi bi-linkedin"></i></a>
+    </div>
+
+  </div>
+</nav>
+
+  <!-- Contenido dinámico -->
+  <main class="py-4">
+    <div class="container">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <!-- Footer -->
+<footer class="footer-vc text-white pt-5 pb-3">
+  <div class="container">
+    <div class="row g-4 align-items-start">
+
+      <!-- Col: Logo + contacto -->
+      <div class="col-12 col-lg-5">
+        <div class="d-flex align-items-center mb-4">
+          <img src="{% static 'core/img/logo4.png' %}" alt="VC Ingeniería y Construcción"
+               height="64" class="me-3">
+          <div class="fw-semibold fs-5">INGENIERÍA Y CONSTRUCCIÓN<br> VC LIMITADA</div>
+        </div>
+
+        <ul class="list-unstyled small footer-contact">
+          <li><a href="mailto:contacto@vcchile.com" class="text-white text-decoration-none">contacto@vcchile.cl</a></li>
+          <li>(+56) 9 9382 4279 — (+56) 9 8185 4335</li>
+          <li>Código Postal: 2480000</li>
+          <li>Teniente Merino 123, Puchuncaví, Valparaíso, Chile</li>
+        </ul>
+
+        <hr class="border-secondary my-4">
+
+        <div class="d-flex align-items-center gap-3">
+          <span class="me-2 small">Síguenos</span>
+          <a class="text-white-50 hover-white" href="#" aria-label="LinkedIn"><i class="bi bi-linkedin fs-5"></i></a>
+          <a class="text-white-50 hover-white" href="#" aria-label="Facebook"><i class="bi bi-facebook fs-5"></i></a>
+          <a class="text-white-50 hover-white" href="#" aria-label="Instagram"><i class="bi bi-instagram fs-5"></i></a>
+          <a class="text-white-50 hover-white" href="#" aria-label="YouTube"><i class="bi bi-youtube fs-5"></i></a>
+        </div>
+      </div>
+
+      <!-- Col: enlaces 1 -->
+      <div class="col-6 col-lg-3">
+        <ul class="list-unstyled footer-links">
+          <li><a href="{% url 'nosotros' %}">Nosotros</a></li>
+          <li><a href="{% url 'proyectos' %}">Proyectos</a></li>
+          <li><a href="#">Sostenibilidad</a></li>
+        </ul>
+      </div>
+
+      <!-- Col: enlaces 2 -->
+      <div class="col-6 col-lg-2">
+        <ul class="list-unstyled footer-links">
+          <li><a href="#">Denuncias</a></li>
+          <li><a href="#">Trabaja con nosotros</a></li>
+          <li><a href="#">Política de calidad</a></li>
+          <li><a href="#">Prensa</a></li>
+        </ul>
+      </div>
+
+      <!-- Col: certificaciones -->
+      <div class="col-12 col-lg-2">
+        <div class="d-flex flex-wrap align-items-center gap-3 justify-content-lg-end">
+          <img src="{% static 'core/img/iso9001.png' %}" alt="ISO 9001" height="34">
+          <img src="{% static 'core/img/iso14001.png' %}" alt="ISO 14001" height="34">
+          <img src="{% static 'core/img/iso45001.png' %}" alt="ISO 45001" height="34">
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <hr class="border-secondary mt-4 mb-3">
+
+    <!-- Bottom bar -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center small text-white-50">
+      <div>© Ingenieria y Construccion VC Limitada {{ now|date:"Y" }} · Aviso Legal · Políticas de Privacidad</div>
+      <div>Desarrollado por Carlos Lopez</div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
