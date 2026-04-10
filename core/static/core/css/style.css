@@ -1,12 +1,54 @@
-body {
-  font-family: 'Segoe UI', sans-serif;
+/* ==========================================================================
+   1. VARIABLES GLOBALES (Consistencia de marca)
+   ========================================================================== */
+:root {
+  --primary-green: #198754;
+  --industrial-dark: #2f2f2f;
+  --soft-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  --heading-font: 'Montserrat', sans-serif;
+  --body-font: 'Inter', sans-serif;
 }
+
+/* ==========================================================================
+   2. TIPOGRAFÍA Y ESPACIADO GENERAL
+   ========================================================================== */
+body {
+  font-family: var(--body-font);
+  color: #333;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6, .proyectos h2 {
+  font-family: var(--heading-font);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+/* Tipografía fluida (se adapta al tamaño de la pantalla) */
+h1 { font-size: calc(1.5rem + 1.5vw); }
+h2 { font-size: calc(1.3rem + 1vw); }
+
+/* Padding responsivo para las secciones */
+section {
+  padding: 60px 0; /* Espaciado móvil */
+}
+
+@media (min-width: 992px) {
+  section {
+    padding: 100px 0; /* Espaciado escritorio */
+  }
+}
+
+/* ==========================================================================
+   3. HERO SECTIONS Y BANNERS
+   ========================================================================== */
 .banner-vc {
   background-image: url('../core/img/banner.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
+
 .parallax-section {
   position: relative;
   background-image: url('../img/banner_vc.jpg');
@@ -14,31 +56,49 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 80vh;  /* Ajustable según tu preferencia */
+  height: 60vh; /* Ajuste para móvil */
+  min-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.parallax-section .overlay {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);  /* Capa semitransparente oscura */
+@media (min-width: 992px) {
+  .parallax-section {
+    height: 80vh; /* Altura original en desktop */
+  }
 }
 
-.hero-content {
+.parallax-section .overlay,
+.hero-org .overlay {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content, .hero-org .container {
   position: relative;
   z-index: 2;
+}
+
+.hero-org {
+  position: relative;
+}
+
+/* ==========================================================================
+   4. NAVEGACIÓN (NAVBAR)
+   ========================================================================== */
+.navbar {
+  box-shadow: 0 2px 15px rgba(0,0,0,0.03) !important;
+  padding: 1rem 0;
 }
 
 .nav-underline .nav-link {
   position: relative;
   padding-bottom: 6px;
   margin: 0 12px;
-  color: #333;
+  color: var(--industrial-dark) !important;
+  font-weight: 500;
 }
 
 .nav-underline .nav-link::after {
@@ -46,9 +106,8 @@ body {
   position: absolute;
   width: 0%;
   height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: #28a745;
+  bottom: 0; left: 0;
+  background-color: var(--primary-green);
   transition: width 0.3s ease-in-out;
 }
 
@@ -57,36 +116,44 @@ body {
   width: 100%;
 }
 
-.footer-vc { background:#2f2f2f; }
-.footer-vc .footer-links li { margin-bottom:.6rem; }
-.footer-vc .footer-links a {
-  color:#e7e7e7; text-decoration:none;
+/* Ajustes menú móvil */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: var(--soft-shadow);
+    margin-top: 10px;
+  }
+  .nav-underline .nav-link::after {
+    display: none; /* Se oculta la línea animada en móvil para mayor limpieza */
+  }
 }
-.footer-vc .footer-links a:hover { color:#ffffff; text-decoration:underline; }
-.footer-vc .footer-contact li { margin-bottom:.35rem; }
-.hover-white:hover { color:#fff !important; }
 
-.object-fit-cover { object-fit: cover; }
-.ratio > img { border-top-left-radius: .5rem; border-top-right-radius: .5rem; }
-.nav-pills .btn.active { background:#198754; color:#fff; border-color:#198754; }
-
-.proyecto-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* ==========================================================================
+   5. TARJETAS DE PROYECTOS (Cards)
+   ========================================================================== */
+.proyecto-card, .card {
+  border: none !important;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--soft-shadow);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
 }
 
 .proyecto-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12); /* Sombra mejorada al pasar el mouse */
 }
 
 .proyecto-card img {
   height: 250px;
+  width: 100%;
   object-fit: cover;
 }
 
 .proyectos h2 {
-  font-size: 2.5rem;
-  color: #198754; /* Verde Bootstrap */
+  color: var(--primary-green);
   position: relative;
 }
 
@@ -94,30 +161,42 @@ body {
   content: '';
   width: 80px;
   height: 3px;
-  background-color: #198754;
+  background-color: var(--primary-green);
   display: block;
   margin: 10px auto 0;
 }
 
-.hero-org {
-  position: relative;
-}
-.hero-org .overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-}
-.hero-org .container {
-  position: relative;
-  z-index: 2;
-}
-.list-unstyled li {
-  margin-bottom: .5rem;
-}
 .card p {
   font-size: .9rem;
   color: #555;
 }
+
+/* ==========================================================================
+   6. COMPONENTES Y UTILIDADES (Botones, Imágenes, Footer)
+   ========================================================================== */
+/* Botón moderno */
+.btn-success {
+  background: linear-gradient(135deg, var(--primary-green) 0%, #146c43 100%);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* Footer */
+.footer-vc { background: var(--industrial-dark); }
+.footer-vc .footer-links li { margin-bottom: .6rem; }
+.footer-vc .footer-links a { color: #e7e7e7; text-decoration: none; }
+.footer-vc .footer-links a:hover { color: #ffffff; text-decoration: underline; }
+.footer-vc .footer-contact li { margin-bottom: .35rem; }
+.hover-white:hover { color: #fff !important; }
+
+/* Utilidades de imagen */
+.object-fit-cover { object-fit: cover; }
+.ratio > img { border-top-left-radius: .5rem; border-top-right-radius: .5rem; }
+.nav-pills .btn.active { background: var(--primary-green); color: #fff; border-color: var(--primary-green); }
+
+/* Gobierno corporativo - Imágenes circulares y efecto BN */
 .circle-img img {
   width: 100%;
   max-width: 120px;
@@ -127,11 +206,26 @@ body {
 }
 
 .img-hover-bw {
-  filter: grayscale(100%);       /* Inicia en blanco y negro */
-  transition: filter 0.3s ease;  /* Transición suave */
-  cursor: pointer;               /* Cambia el cursor para indicar interactividad */
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+  cursor: pointer;
 }
 
 .img-hover-bw:hover {
-  filter: grayscale(0%);         /* Vuelve al color original al pasar el mouse */
+  filter: grayscale(0%);
+}
+
+.list-unstyled li {
+  margin-bottom: .5rem;
+}
+
+/* Ajustes de imágenes y elementos para móviles */
+@media (max-width: 768px) {
+  .proyecto-card img, .img-rounded {
+    height: 200px !important;
+  }
+  .circle-img img {
+    max-width: 100px;
+    height: 100px;
+  }
 }
