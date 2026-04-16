@@ -6,7 +6,7 @@ SECRET_KEY = 'django-insecure-demo-key'
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['.vercel.app', 'vcchile.cl']
+ALLOWED_HOSTS = ['*']
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 INSTALLED_APPS = [
