@@ -38,11 +38,11 @@ def contacto(request):
     return render(request, 'core/contacto.html')
 
 def proyectos(request):
-    proyectos = Proyecto.objects.all()
+    try:
+        proyectos = Proyecto.objects.all()
+    except:
+        proyectos = [] 
     return render(request, 'core/proyectos.html', {'proyectos': proyectos})
-
-def noticias(request):
-    return render(request, 'core/noticias.html')
 
 def sostenibilidad(request):
     return render(request, 'core/sostenibilidad.html')
