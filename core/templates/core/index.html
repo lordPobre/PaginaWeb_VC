@@ -1,119 +1,143 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
 {% block content %}
-{% load static %}
-<!-- index.html completamente corregido -->
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio | Ingeniería y Construcción VC Limitada</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-    }
-    .hero-skic {
-      background-image: url('{% static "core/img/banner_vc.jpg" %}');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      height: 90vh;
-      position: relative;
-    }
-    .hero-skic .overlay {
-      background: rgba(0, 0, 0, 0.5);
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      z-index: 1;
-    }
-    .hero-skic .container {
-      position: relative;
-      z-index: 2;
-    }
-    .text-white h1, .text-white p {
-      color: white;
-    }
-    .img-rounded {
-      border-radius: 8px;
-    }
-  </style>
-</head>
-<body>
 
-<!-- HERO Section -->
-<!-- HERO Section con nueva imagen -->
-<section class="hero-skic d-flex align-items-center" style="background-image: url('{% static "core/img/banner_vc.png" %}'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 90vh; position: relative;">
-  <div class="overlay" style="background: rgba(0, 0, 0, 0.5); position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1;"></div>
-  <div class="container text-white text-center" style="position: relative; z-index: 2;">
-    <h1 class="display-3 fw-bold">Llevamos tu proyecto a otro nivel</h1>
-    <p class="lead">Más de 10 años construyendo infraestructura para el desarrollo de Chile</p>
-    <a href="{% url 'contacto' %}" class="btn btn-outline-light btn-lg mt-4">Contáctanos</a>
-  </div>
-</section>
-
-
-<!-- TRUST Section -->
-<section class="py-5 bg-white text-center">
-  <div class="container">
-    <h2 class="mb-4 fw-bold">Confía en nuestra experiencia</h2>
-    <div class="row">
-      <div class="col-md-3">
-        <h3 class="text-success fw-bold">+5</h3>
-        <p>Proyectos completados</p>
-      </div>
-      <div class="col-md-3">
-        <h3 class="text-success fw-bold">+1 años</h3>
-        <p>Experiencia en construcción</p>
-      </div>
-      <div class="col-md-3">
-        <h3 class="text-success fw-bold">24/7</h3>
-        <p>Respuesta operativa</p>
-      </div>
-      <div class="col-md-3">
-        <h3 class="text-success fw-bold">100%</h3>
-        <p>Clientes satisfechos</p>
+<section class="position-relative d-flex align-items-center overflow-hidden" 
+         style="background-image: url('{% static "core/img/banner_vc.png" %}'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 90vh;">
+  
+  <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%); z-index: 1;"></div>
+  
+  <div class="container position-relative z-3">
+    <div class="row align-items-center">
+      <div class="col-lg-8 text-white mt-5 mt-lg-0">
+        <div class="p-4 p-md-5" style="background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(8px); border-left: 4px solid #198754; border-radius: 0 20px 20px 0;">
+          <span class="fw-bold text-uppercase small d-block mb-2" style="color: #52c41a; letter-spacing: 0.2rem;">Innovación en Montaje Industrial</span>
+          <h1 class="display-2 fw-bolder mb-4 lh-1">
+            INGENIERÍA Y <span style="-webkit-text-stroke: 1px rgba(255,255,255,0.8); color: transparent;">CONSTRUCCIÓN</span><br>
+            <span class="text-success">VC LIMITADA</span>
+          </h1>
+          <p class="lead mb-5 opacity-75" style="max-width: 600px;">
+            Soluciones de infraestructura de alta complejidad con precisión técnica y compromiso sostenible en todo Chile.
+          </p>
+          <div class="d-flex gap-3 flex-wrap">
+            <a href="{% url 'proyectos' %}" class="btn btn-success btn-lg px-5 py-3 fw-bold shadow">EXPLORAR PROYECTOS</a>
+            <a href="{% url 'contacto' %}" class="btn btn-outline-light btn-lg px-5 py-3 fw-bold border-2">CONTÁCTANOS</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES Section -->
-<section class="py-5 bg-light">
-  <div class="container text-center">
-    <h2 class="fw-bold mb-5">Áreas de Especialización</h2>
-    <div class="row">
-      <div class="col-md-4">
-        <img src="{% static 'core/img/servicio1.png' %}" alt="Servicio 1" class="img-fluid mb-3 img-rounded">
-        <h5 class="fw-bold">Montaje Industrial</h5>
-        <p>Soluciones integrales en plantas industriales y faenas productivas.</p>
+<section class="py-5 bg-white">
+  <div class="container py-lg-5">
+    <div class="text-center mb-5">
+      <span class="text-success fw-bold text-uppercase small d-block mb-2" style="letter-spacing: 0.15rem;">Trayectoria</span>
+      <h2 class="fw-bold display-6 mb-3">Confía en nuestra experiencia</h2>
+      <div class="mx-auto" style="width: 60px; height: 4px; background: #198754; border-radius: 2px;"></div>
+    </div>
+    
+    <div class="row g-4 text-center mt-2">
+      <div class="col-6 col-lg-3">
+        <div class="card border-0 shadow-sm h-100 p-4" style="border-radius: 16px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div class="text-success mb-3 fs-1"><i class="bi bi-building-check"></i></div>
+          <h3 class="fw-bolder text-dark display-6 mb-1">+5</h3>
+          <p class="text-muted small fw-bold text-uppercase mb-0">Proyectos Ejecutados</p>
+        </div>
       </div>
-      <div class="col-md-4">
-        <img src="{% static 'core/img/servicio2.png' %}" alt="Servicio 2" class="img-fluid mb-3 img-rounded">
-        <h5 class="fw-bold">Obras Civiles</h5>
-        <p>Edificaciones, estructuras, y obras viales bajo normativas nacionales.</p>
+      <div class="col-6 col-lg-3">
+        <div class="card border-0 shadow-sm h-100 p-4" style="border-radius: 16px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div class="text-success mb-3 fs-1"><i class="bi bi-calendar-check"></i></div>
+          <h3 class="fw-bolder text-dark display-6 mb-1">+1</h3>
+          <p class="text-muted small fw-bold text-uppercase mb-0">Años de Excelencia</p>
+        </div>
       </div>
-      <div class="col-md-4">
-        <img src="{% static 'core/img/servicio3.png' %}" alt="Servicio 3" class="img-fluid mb-3 img-rounded">
-        <h5 class="fw-bold">Mantención Programada</h5>
-        <p>Prevención de fallas y continuidad operacional para tus equipos.</p>
+      <div class="col-6 col-lg-3">
+        <div class="card border-0 shadow-sm h-100 p-4" style="border-radius: 16px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div class="text-success mb-3 fs-1"><i class="bi bi-gear-wide-connected"></i></div>
+          <h3 class="fw-bolder text-dark display-6 mb-1">24/7</h3>
+          <p class="text-muted small fw-bold text-uppercase mb-0">Respuesta Operativa</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="card border-0 shadow-sm h-100 p-4" style="border-radius: 16px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div class="text-success mb-3 fs-1"><i class="bi bi-shield-check"></i></div>
+          <h3 class="fw-bolder text-dark display-6 mb-1">100%</h3>
+          <p class="text-muted small fw-bold text-uppercase mb-0">Compromiso en Seguridad</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA FINAL -->
-<section class="py-5 bg-success text-white text-center">
-  <div class="container">
-    <h2 class="fw-bold mb-3">Estemos en contacto</h2>
-    <p class="lead">Cuéntanos sobre tu proyecto y trabajemos juntos para hacerlo realidad.</p>
-    <a href="{% url 'contacto' %}" class="btn btn-light btn-lg px-5">Solicitar propuesta</a>
+<section class="py-5 bg-light border-top border-bottom">
+  <div class="container py-lg-5">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-5">
+      <div>
+        <span class="text-success fw-bold text-uppercase small d-block mb-2" style="letter-spacing: 0.15rem;">Capacidades Técnicas</span>
+        <h2 class="fw-bold display-6 mb-0">Áreas de Especialización</h2>
+      </div>
+      <div class="mt-3 mt-md-0">
+        <a href="#" class="btn btn-outline-success fw-bold rounded-pill px-4">Ver todos los servicios</a>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100 overflow-hidden" style="border-radius: 16px; transition: box-shadow 0.3s ease;" onmouseover="this.style.boxShadow='0 15px 35px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='0 4px 6px rgba(0,0,0,0.05)'">
+          <div class="position-relative overflow-hidden" style="height: 240px;">
+            <img src="{% static 'core/img/servicio1.png' %}" alt="Montaje Industrial" class="w-100 h-100 object-fit-cover" style="transition: transform 0.6s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+          </div>
+          <div class="card-body p-4 bg-white position-relative z-2">
+            <h5 class="fw-bold mb-2">Montaje Industrial</h5>
+            <p class="text-muted small mb-0">Soluciones integrales en plantas industriales y faenas productivas con alta exigencia mecánica y estructural.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100 overflow-hidden" style="border-radius: 16px; transition: box-shadow 0.3s ease;" onmouseover="this.style.boxShadow='0 15px 35px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='0 4px 6px rgba(0,0,0,0.05)'">
+          <div class="position-relative overflow-hidden" style="height: 240px;">
+            <img src="{% static 'core/img/servicio2.png' %}" alt="Obras Civiles" class="w-100 h-100 object-fit-cover" style="transition: transform 0.6s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+          </div>
+          <div class="card-body p-4 bg-white position-relative z-2">
+            <h5 class="fw-bold mb-2">Obras Civiles</h5>
+            <p class="text-muted small mb-0">Ejecución de edificaciones, estructuras complejas y obras viales bajo las más estrictas normativas nacionales.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100 overflow-hidden" style="border-radius: 16px; transition: box-shadow 0.3s ease;" onmouseover="this.style.boxShadow='0 15px 35px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='0 4px 6px rgba(0,0,0,0.05)'">
+          <div class="position-relative overflow-hidden" style="height: 240px;">
+            <img src="{% static 'core/img/servicio3.png' %}" alt="Mantención Programada" class="w-100 h-100 object-fit-cover" style="transition: transform 0.6s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+          </div>
+          <div class="card-body p-4 bg-white position-relative z-2">
+            <h5 class="fw-bold mb-2">Mantención Programada</h5>
+            <p class="text-muted small mb-0">Prevención integral de fallas y aseguramiento de la continuidad operacional para equipos críticos e infraestructura.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<section class="py-5 bg-white">
+  <div class="container py-lg-4">
+    <div class="p-5 text-center text-white rounded-4 shadow-lg overflow-hidden position-relative" style="background: linear-gradient(135deg, #0d4a2e 0%, #198754 100%);">
+      <div class="position-relative z-3">
+        <h2 class="fw-bold display-6 mb-3">Estemos en contacto</h2>
+        <p class="lead opacity-90 mb-4 mx-auto" style="max-width: 700px;">
+          Cuéntanos sobre tu próximo desafío de infraestructura industrial y trabajemos juntos para ejecutarlo con precisión.
+        </p>
+        <a href="{% url 'contacto' %}" class="btn btn-light btn-lg px-5 fw-bold text-success shadow-sm" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+          SOLICITAR PROPUESTA
+        </a>
+      </div>
+      
+      <div style="position: absolute; top: -50px; left: -50px; width: 250px; height: 250px; background: rgba(255,255,255,0.05); border-radius: 50%; z-index: 1;"></div>
+      <div style="position: absolute; bottom: -20px; right: 5%; width: 100px; height: 100px; background: rgba(255,255,255,0.08); border-radius: 50%; z-index: 1;"></div>
+    </div>
+  </div>
+</section>
+
 {% endblock %}

@@ -1,89 +1,130 @@
 {% extends 'core/base.html' %}
 {% load static %}
+
 {% block content %}
-<section class="py-5 text-center text-white banner-vc"
-         style="background-image: url('{% static 'core/img/banner_vc.png' %}'); background-repeat: no-repeat; background-position: center; background-size: cover;">
-  <div class="container">
-    <h1 class="display-4 fw-bold text-white">Ingeniería y Construcción VC Limitada</h1>
-    <p class="lead text-white">Soluciones constructivas seguras, innovadoras y sostenibles para el desarrollo industrial.</p>
-    <a href="{% url 'contacto' %}" class="btn btn-outline-light px-4 mt-3 fw-bold">Contáctanos</a>
-  </div>
-</section>
 
-<!-- Estadísticas -->
-<section class="py-5 text-center border-bottom">
-  <div class="container">
+<section class="position-relative d-flex align-items-center overflow-hidden" 
+         style="background-image: url('{% static "core/img/nosotros.png" %}'); background-size: cover; background-position: center; min-height: 55vh;">
+  
+  <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%); z-index: 1;"></div>
+  
+  <div class="container position-relative z-3">
     <div class="row">
-      <div class="col-md-3">
-        <h2 class="fw-bold">1+</h2>
-        <p class="text-muted">Años de experiencia</p>
-      </div>
-      <div class="col-md-3">
-        <h2 class="fw-bold">4+</h2>
-        <p class="text-muted">Proyectos ejecutados</p>
-      </div>
-      <div class="col-md-3">
-        <h2 class="fw-bold">4</h2>
-        <p class="text-muted">Áreas operativas</p>
-      </div>
-      <div class="col-md-3">
-        <h2 class="fw-bold">100%</h2>
-        <p class="text-muted">Compromiso con calidad</p>
+      <div class="col-lg-8 text-white py-5">
+        <div class="p-4 p-md-5" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-left: 4px solid #198754; border-radius: 0 20px 20px 0;">
+          <span class="fw-bold text-uppercase small d-block mb-2" style="color: #52c41a; letter-spacing: 0.2rem;">Nuestra Esencia</span>
+          <h1 class="display-3 fw-bold mb-3 lh-1">
+            <span style="-webkit-text-stroke: 1px rgba(255,255,255,0.8); color: transparent;">MÁS QUE INGENIERÍA,</span><br>
+            CONSTRUIMOS CONFIANZA
+          </h1>
+          <p class="lead opacity-90 mb-4" style="max-width: 650px;">
+            Conoce nuestra historia, nuestros valores y al equipo de profesionales comprometidos detrás de los montajes industriales más exigentes del país.
+          </p>
+          <a href="{% url 'organismo_corporativo' %}" class="btn btn-success btn-lg px-5 py-3 fw-bold shadow" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+            CONOCE AL EQUIPO
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Imagen y texto -->
+<section class="py-5 bg-white overflow-hidden">
+  <div class="container py-lg-5">
+    <div class="row align-items-stretch g-5">
+      <div class="col-lg-6 position-relative">
+        <div style="position: absolute; top: 20px; left: -20px; width: 100%; height: 100%; border: 2px solid #198754; border-radius: 8px; z-index: 1;"></div>
+        <div class="position-relative z-2 h-100 overflow-hidden rounded-3 shadow-lg">
+           <img src="{% static 'core/img/nosotros.jpg' %}" class="img-fluid object-fit-cover h-100 w-100" style="transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" alt="Equipo VC">
+        </div>
+      </div>
+      
+      <div class="col-lg-6 d-flex flex-column justify-content-center">
+        <div class="ps-lg-4">
+          <div class="d-flex align-items-center mb-3">
+            <div class="bg-success me-3" style="width: 40px; height: 3px;"></div>
+            <span class="text-success fw-bold text-uppercase small" style="letter-spacing: 0.15rem;">Sobre Nosotros</span>
+          </div>
+          <h2 class="display-5 fw-bold mb-4">Construyendo el Chile del mañana</h2>
+          
+          <div class="mb-4 p-4 rounded-3 border-start border-4 border-success shadow-sm" style="background-color: #fcfcfc;">
+            <h4 class="fw-bold text-dark h5 mb-3"><i class="bi bi-bullseye me-2 text-success"></i>Nuestro propósito</h4>
+            <p class="text-secondary mb-0" style="line-height: 1.8;">
+              En <span class="fw-bold text-dark">VC Chile</span>, impulsamos la transformación industrial mediante la excelencia en montaje. No solo construimos infraestructuras; forjamos relaciones de confianza.
+            </p>
+          </div>
+
+          <div class="ps-2">
+            <h4 class="fw-bold text-dark h5 mb-3">Nuestra misión</h4>
+            <p class="text-secondary mb-0" style="line-height: 1.6;">
+              Proporcionar servicios de ingeniería de la más alta calidad, priorizando la <span class="text-dark fw-medium">seguridad y sustentabilidad</span> en cada solución técnica que entregamos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-light border-top border-bottom">
+  <div class="container py-lg-4">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold h1">¿Por qué elegir nuestra ingeniería?</h2>
+      <div class="mx-auto mt-3" style="width: 60px; height: 4px; background: #198754; border-radius: 2px;"></div>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3">
+        <div class="card border-0 shadow-sm text-center p-4 h-100" style="border-radius: 12px; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div class="mb-3 mx-auto d-flex align-items-center justify-content-center text-success" style="width: 70px; height: 70px; background: rgba(25, 135, 84, 0.1); border-radius: 20px; font-size: 1.8rem;">
+            <i class="bi bi-shield-check"></i>
+          </div>
+          <h6 class="fw-bold">Seguridad Total</h6>
+          <p class="small text-muted mb-0">Cero daño a las personas y procesos en cada obra.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="card border-0 shadow-sm text-center p-4 h-100" style="border-radius: 12px; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div class="mb-3 mx-auto d-flex align-items-center justify-content-center text-success" style="width: 70px; height: 70px; background: rgba(25, 135, 84, 0.1); border-radius: 20px; font-size: 1.8rem;">
+            <i class="bi bi-gear-wide-connected"></i>
+          </div>
+          <h6 class="fw-bold">Calidad Técnica</h6>
+          <p class="small text-muted mb-0">Cumplimiento riguroso de normas internacionales.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="card border-0 shadow-sm text-center p-4 h-100" style="border-radius: 12px; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div class="mb-3 mx-auto d-flex align-items-center justify-content-center text-success" style="width: 70px; height: 70px; background: rgba(25, 135, 84, 0.1); border-radius: 20px; font-size: 1.8rem;">
+            <i class="bi bi-lightning-charge"></i>
+          </div>
+          <h6 class="fw-bold">Respuesta Ágil</h6>
+          <p class="small text-muted mb-0">Capacidad de movilización rápida en todo Chile.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="card border-0 shadow-sm text-center p-4 h-100" style="border-radius: 12px; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div class="mb-3 mx-auto d-flex align-items-center justify-content-center text-success" style="width: 70px; height: 70px; background: rgba(25, 135, 84, 0.1); border-radius: 20px; font-size: 1.8rem;">
+            <i class="bi bi-geo-alt"></i>
+          </div>
+          <h6 class="fw-bold">Presencia Nacional</h6>
+          <p class="small text-muted mb-0">Logística eficiente en zonas estratégicas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="py-5 bg-white">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-md-6">
-        <img src="{% static 'core/img/nosotros.jpg' %}" class="img-fluid rounded shadow" alt="Equipo VC">
+  <div class="container py-lg-4">
+    <div class="p-5 text-center text-white rounded-4 shadow-lg overflow-hidden position-relative" style="background: linear-gradient(135deg, #198754 0%, #0d4a2e 100%);">
+      <div class="position-relative z-3">
+        <h2 class="fw-bold display-6 mb-3">¿Listo para comenzar tu próximo proyecto?</h2>
+        <p class="lead opacity-75 mb-4 mx-auto" style="max-width: 700px;">Expertos en montaje industrial y soluciones de ingeniería civil a medida.</p>
+        <a href="{% url 'proyectos' %}" class="btn btn-light btn-lg px-5 fw-bold text-success shadow-sm">VER PORTAFOLIO</a>
       </div>
-      <div class="col-md-6">
-        <h3 class="fw-bold">Nuestro propósito</h3>
-        <p>
-        En VC Chile, nuestro propósito es ser el socio estratégico que impulsa la transformación industrial mediante la excelencia en construcción y montaje. Cada proyecto refleja nuestro compromiso con la seguridad, la sustentabilidad y la confianza. Buscamos construir no solo infraestructuras, sino también relaciones basadas en valores fundamentales, contribuyendo así al desarrollo de un Chile más seguro y responsable, donde la innovación fomenta el crecimiento económico y el bienestar comunitario.
-        </p>
-        <h3 class="fw-bold mt-4">Nuestra misión</h3>
-        <p>
-        En VC Chile, nuestra misión es proporcionar servicios de construcción y montaje industrial de la más alta calidad, priorizando siempre la seguridad y la sustentabilidad. Nos dedicamos a crear soluciones que no solo cumplen con los estándares de la industria, sino que también promueven un futuro más seguro y sostenible para todos.
-      </div>
+      <div style="position: absolute; top: -50px; right: -50px; width: 250px; height: 250px; background: rgba(255,255,255,0.05); border-radius: 50%; z-index: 1;"></div>
     </div>
   </div>
 </section>
 
-<!-- Diferenciadores -->
-<section class="py-5 bg-light">
-  <div class="container text-center">
-    <h2 class="fw-bold mb-5">¿Por qué elegirnos?</h2>
-    <div class="row">
-      <div class="col-md-6 text-start">
-        <ul>
-          <li>+1 años de experiencia en proyectos industriales</li>
-          <li>Equipo multidisciplinario y comprometido</li>
-          <li>Compromiso con la seguridad y la sustentabilidad</li>
-          <li>Presencia en zonas estratégicas de Chile</li>
-        </ul>
-      </div>
-      <div class="col-md-6 text-start">
-        <ul>
-          <li>Modelo híbrido eficiente y económico</li>
-          <li>Respuesta rápida y adaptabilidad</li>
-          <li>Calidad técnica certificada</li>
-          <li>Gestión orientada al cliente</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="py-5 text-center">
-  <div class="container">
-    <h2 class="fw-bold">¿Listo para comenzar tu próximo proyecto?</h2>
-    <a href="{% url 'proyectos' %}" class="btn btn-primary mt-3 px-5">Explora nuestros proyectos</a>
-  </div>
-</section>
 {% endblock %}

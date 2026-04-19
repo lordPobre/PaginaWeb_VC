@@ -2,46 +2,120 @@
 {% load static %}
 
 {% block content %}
-<section class="text-white py-5" style="background: url('{% static "core/img/organismo.png" %}') center/cover no-repeat; min-height: 300px;">
-  <div class="container py-5">
-    <h1 class="display-2 fw-bold">Gobierno Corporativo</h1>
-    <div class="d-flex justify-content-end">
-      <div class="text-end" style="max-width: 600px;">
-        <p class="lead mb-0">
-          Nuestro Gobierno corporativo, integrado por el Directorio y Administración, busca alcanzar los objetivos de la compañía de forma sostenible y en el marco de los Valores que rigen a la organización.
-        </p>
+
+<section class="position-relative d-flex align-items-center overflow-hidden" 
+         style="background-image: url('{% static "core/img/organismo-c.png" %}'); background-size: cover; background-position: center; min-height: 50vh;">
+  
+  <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%); z-index: 1;"></div>
+  
+  <div class="container position-relative z-3">
+    <div class="row">
+      <div class="col-lg-7 text-white py-5">
+        <div class="p-4 p-md-5" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-left: 4px solid #198754; border-radius: 0 20px 20px 0;">
+          <span class="fw-bold text-uppercase small d-block mb-2" style="color: #52c41a; letter-spacing: 0.2rem;">Estructura Corporativa</span>
+          <h1 class="display-3 fw-bold mb-3">
+            Nuestro <span style="-webkit-text-stroke: 1px rgba(255,255,255,0.8); color: transparent;">Equipo</span>
+          </h1>
+          <p class="lead opacity-90 mb-0">Conoce a los profesionales que lideran la visión estratégica, la seguridad y la excelencia operativa de VC Limitada.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-
-<section class="text-center py-5">
-  <div class="container">
-    <h2 class="fw-bold text-danger mb-4">Administración</h2>
-    <div class="row justify-content-center">
-      {% for persona in administracion %}
-      <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
-        <div class="circle-img mb-2"> <img src="{% static persona.foto %}" alt="{{ persona.nombre }}" class="img-fluid border border-3 border-dark img-hover-bw">
-        </div>
-        <h6 class="fw-bold text-danger">{{ persona.nombre }}</h6>
-        <p class="small">{{ persona.cargo }}</p>
-      </div>
-      {% endfor %}
+<section class="py-5 bg-light">
+  <div class="container py-lg-5">
+    
+    <div class="text-center mb-5">
+      <h2 class="fw-bold h1">Directorio y Gerencias</h2>
+      <div class="mx-auto mt-3" style="width: 60px; height: 4px; background: #198754; border-radius: 2px;"></div>
     </div>
 
-    <h2 class="fw-bold text-danger my-5">Directorio</h2>
-    <div class="row justify-content-center">
-      {% for persona in directorio %}
-      <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
-        <div class="circle-img mb-2">
-          <img src="{{ persona.foto.url }}" alt="{{ persona.nombre }}" class="img-fluid border border-3 border-dark img-hover-bw">
+    <div class="row justify-content-center mb-5 relative">
+      <div class="col-md-6 col-lg-4">
+        <div class="card border-0 shadow-sm text-center h-100 position-relative z-2" style="border-radius: 16px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div class="card-body p-5">
+            <div class="mx-auto mb-4 rounded-circle overflow-hidden shadow-sm" style="width: 130px; height: 130px; border: 4px solid #198754; padding: 4px; background: white;">
+              <img src="{% static 'core/img/sebastian.png' %}" alt="Gerente General" class="w-100 h-100 rounded-circle object-fit-cover" onerror="this.src='https://ui-avatars.com/api/?name=Gerencia+General&background=198754&color=fff'">
+            </div>
+            <h4 class="fw-bold mb-1">Sebastián Vega</h4> <span class="badge bg-success mb-3 px-3 py-2 rounded-pill shadow-sm">Gerencia General</span>
+            <p class="text-secondary small mb-0">Liderando la visión estratégica, el crecimiento corporativo y la relación con los mandantes clave.</p>
+          </div>
         </div>
-        <h6 class="fw-bold text-danger">{{ persona.nombre }}</h6>
-        <p class="small">{{ persona.cargo }}</p>
       </div>
-      {% endfor %}
+    </div>
+
+    <div class="row justify-content-center d-none d-lg-flex mb-4 position-relative" style="margin-top: -3rem;">
+      <div class="col-8 border-top border-2 border-success opacity-50" style="height: 40px; border-left: 2px solid #198754; border-right: 2px solid #198754; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+        <div class="mx-auto" style="width: 2px; height: 40px; background: #198754; margin-top: -40px;"></div>
+      </div>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+      
+      <div class="col-md-6 col-lg-4">
+        <div class="card border-0 shadow-sm text-center h-100" style="border-radius: 16px; border-top: 5px solid #198754 !important; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div class="card-body p-4 p-lg-5">
+            <div class="mx-auto mb-3 rounded-circle d-flex align-items-center justify-content-center text-success" style="width: 80px; height: 80px; background: rgba(25, 135, 84, 0.1); font-size: 2rem;">
+              <i class="bi bi-gear-wide-connected"></i>
+            </div>
+            <h5 class="fw-bold mb-1">Nombre Apellido</h5>
+            <p class="text-success small fw-bold mb-3">Gerencia de Operaciones</p>
+            <p class="text-secondary small mb-0">Supervisión directa de obras, control de programación y excelencia en ejecución técnica en terreno.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card border-0 shadow-sm text-center h-100" style="border-radius: 16px; border-top: 5px solid #198754 !important; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div class="card-body p-4 p-lg-5">
+            <div class="mx-auto mb-3 rounded-circle d-flex align-items-center justify-content-center text-success" style="width: 80px; height: 80px; background: rgba(25, 135, 84, 0.1); font-size: 2rem;">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <h5 class="fw-bold mb-1">Nombre Apellido</h5>
+            <p class="text-success small fw-bold mb-3">Gerencia HSEQ</p>
+            <p class="text-secondary small mb-0">Garantizando el cumplimiento de normativas de seguridad, salud ocupacional y gestión ambiental.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card border-0 shadow-sm text-center h-100" style="border-radius: 16px; border-top: 5px solid #198754 !important; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div class="card-body p-4 p-lg-5">
+            <div class="mx-auto mb-3 rounded-circle d-flex align-items-center justify-content-center text-success" style="width: 80px; height: 80px; background: rgba(25, 135, 84, 0.1); font-size: 2rem;">
+              <i class="bi bi-graph-up-arrow"></i>
+            </div>
+            <h5 class="fw-bold mb-1">Nombre Apellido</h5>
+            <p class="text-success small fw-bold mb-3">Administración y Finanzas</p>
+            <p class="text-secondary small mb-0">Gestión de recursos corporativos, abastecimiento, contabilidad y control financiero de proyectos.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
+
+<section class="py-5 bg-white border-top">
+  <div class="container py-lg-4">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <h2 class="fw-bold display-6 mb-4">Un equipo multidisciplinario en todo Chile</h2>
+        <p class="lead text-secondary mb-4">Nuestra fuerza radica en nuestros profesionales de terreno. Contamos con especialistas en montaje industrial, ingenieros civiles, prevencionistas de riesgos y técnicos altamente capacitados.</p>
+        <ul class="list-unstyled">
+          <li class="mb-3 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success fs-5 me-3"></i> <span>Capacitación y certificación continua.</span></li>
+          <li class="mb-3 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success fs-5 me-3"></i> <span>Cultura de cero accidentes.</span></li>
+          <li class="mb-3 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success fs-5 me-3"></i> <span>Compromiso con la calidad y los plazos.</span></li>
+        </ul>
+      </div>
+      <div class="col-lg-6 position-relative">
+        <div class="position-relative z-2 rounded-4 overflow-hidden shadow-lg border border-4 border-white">
+          <img src="{% static 'core/img/nosotros.jpg' %}" class="img-fluid w-100 object-fit-cover" style="height: 400px;" alt="Equipo en Terreno">
+        </div>
+        <div style="position: absolute; bottom: -20px; left: -20px; width: 100px; height: 100px; background: url('data:image/svg+xml;utf8,<svg width=\'20\' height=\'20\' xmlns=\'http://www.w3.org/2000/svg\'><circle cx=\'2\' cy=\'2\' r=\'2\' fill=\'%23198754\'/></svg>'); opacity: 0.5; z-index: 1;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 {% endblock %}
