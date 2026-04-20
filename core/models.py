@@ -55,3 +55,30 @@ class Proyecto(models.Model):
     def __str__(self):
         return self.titulo
 
+class Denuncia(models.Model):
+    CATEGORIAS = [
+        ('etica', 'Faltas a la Ética o Fraude'),
+        ('acoso', 'Acoso Laboral / Sexual'),
+        ('seguridad', 'Infracción HSEQ (Seguridad y Medio Ambiente)'),
+        ('otro', 'Otras irregularidades'),
+    ]
+    
+    RELACIONES = [
+        ('trabajador', 'Trabajador Directo'),
+        ('subcontratista', 'Subcontratista / Proveedor'),
+        ('comunidad', 'Comunidad / Tercero Externo'),
+        ('cliente', 'Cliente / Mandante'),
+    ]
+
+    nombre = models.CharField(max_length=200, blank=True, null=True, help_text="Dejar en blanco si es anónima")
+    contacto = models.CharField(max_length=200, blank=True, null=True)
+    categoria = models.CharField(max_length=50, choices=CATEGORIAS)
+    relacion = models.CharField(max_length=50, choices=RELACIONES, blank=True, null=True)
+    descripcion = models.TextField()
+    evidencia = models.FileField(upload_to='denuncias/', blank=True, null=True)
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        # En el panel de admin, dirá si es anónima o mostrará el nombre
+        remitente = "Anónima" if not self.nombre else self.nombre
+        return f"Denuncia: {self.get_categoria_display()} - {remitente}"

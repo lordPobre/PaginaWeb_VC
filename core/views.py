@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, redirect
-from .models import Proyecto, Contacto
+from .models import Proyecto, Contacto, Denuncia
 from django.contrib import messages
 
 def index(request):
@@ -48,4 +48,27 @@ def sostenibilidad(request):
     return render(request, 'core/sostenibilidad.html')
 
 def denuncias(request):
+    if request.method == 'POST':
+        # Capturamos los datos del formulario HTML
+        nombre = request.POST.get('nombre', '')
+        contacto = request.POST.get('contacto', '')
+        categoria = request.POST.get('categoria')
+        relacion = request.POST.get('relacion')
+        descripcion = request.POST.get('descripcion')
+        evidencia = request.FILES.get('evidencia') # Se usa FILES para archivos
+
+        # Creamos y guardamos el registro en la base de datos
+        Denuncia.objects.create(
+            nombre=nombre,
+            contacto=contacto,
+            categoria=categoria,
+            relacion=relacion,
+            descripcion=descripcion,
+            evidencia=evidencia
+        )
+        
+        # Le enviamos una variable 'exito' al HTML para mostrar un mensaje de agradecimiento
+        return render(request, 'core/denuncias.html', {'exito': True})
+        
+    # Si entra normal a la página (GET), solo mostramos el formulario vacío
     return render(request, 'core/denuncias.html')

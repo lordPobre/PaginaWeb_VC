@@ -1,17 +1,11 @@
 from django.contrib import admin
-from django.urls import path
-from core import views
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='home'),
-    path('nosotros/', views.nosotros, name='nosotros'),
-    path('organismo-corporativo/', views.organismo_corporativo_view, name='organismo_corporativo'),
-    path('contacto/', views.contacto, name='contacto'),
-    path('proyectos/', views.proyectos, name='proyectos'),
-    path('sostenibilidad/', views.sostenibilidad, name='sostenibilidad'),
+    path('', include('core.urls')),
 ]
 
 if settings.DEBUG:
