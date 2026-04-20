@@ -448,3 +448,22 @@ section {
     flex-direction: column;
     align-items: center;
 }
+
+.proyecto-item {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  
+  /* Permite que los botones se deslicen de lado a lado en el celular */
+  @media (max-width: 768px) {
+    .filter-scroll {
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      justify-content: flex-start !important;
+      padding-bottom: 5px; /* Espacio para que no se corte la sombra */
+    }
+    /* Oculta la barra de scroll nativa para que se vea más limpio */
+    .filter-scroll::-webkit-scrollbar {
+      display: none; 
+    }
+  }

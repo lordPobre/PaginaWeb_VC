@@ -25,12 +25,12 @@
   <div class="container">
     
     <div class="d-flex justify-content-center mb-5" id="filtros">
-      <div class="btn-group p-1 bg-light rounded-pill shadow-sm" role="group">
-        <button type="button" class="btn btn-filter active rounded-pill px-4" data-filter="all">Todos</button>
-        <button type="button" class="button-filter btn rounded-pill px-4" data-filter="mineria">Minería</button>
-        <button type="button" class="button-filter btn rounded-pill px-4" data-filter="energia">Energía</button>
-        <button type="button" class="button-filter btn rounded-pill px-4" data-filter="vialidad">Vialidad</button>
-        <button type="button" class="button-filter btn rounded-pill px-4" data-filter="obras">Obras Civiles</button>
+      <div class="d-flex gap-2 filter-scroll p-2 bg-light rounded-pill shadow-sm">
+        <button type="button" class="btn btn-success text-white rounded-pill px-4" data-filter="all">Todos</button>
+        <button type="button" class="btn btn-outline-success rounded-pill px-4" data-filter="mineria">Minería</button>
+        <button type="button" class="btn btn-outline-success rounded-pill px-4" data-filter="energia">Energía</button>
+        <button type="button" class="btn btn-outline-success rounded-pill px-4" data-filter="vialidad">Vialidad</button>
+        <button type="button" class="btn btn-outline-success rounded-pill px-4" data-filter="obras">Obras Civiles</button>
       </div>
     </div>
 
@@ -157,26 +157,44 @@
   </div>
 </div>
 
-{% endblock %}
-
-{% block extra_js %}
 <script>
-  // Filtro mejorado
-  document.querySelectorAll('#filtros button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('#filtros button').forEach(b => b.classList.remove('btn-success', 'text-white'));
-      btn.classList.add('btn-success', 'text-white');
-      
-      const filterValue = btn.getAttribute('data-filter');
-      document.querySelectorAll('.proyecto-item').forEach(item => {
-        if (filterValue === 'all' || item.getAttribute('data-cat') === filterValue) {
-          item.style.display = 'block';
-          item.classList.add('animate__animated', 'animate__fadeIn');
-        } else {
-          item.style.display = 'none';
-        }
+  document.addEventListener("DOMContentLoaded", function() {
+    const botones = document.querySelectorAll('#filtros button');
+    const proyectos = document.querySelectorAll('.proyecto-item');
+
+    botones.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // 1. Reiniciar los colores de todos los botones
+        botones.forEach(b => {
+          b.classList.remove('btn-success', 'text-white');
+          b.classList.add('btn-outline-success');
+        });
+        
+        // 2. Pintar solo el botón seleccionado
+        btn.classList.remove('btn-outline-success');
+        btn.classList.add('btn-success', 'text-white');
+        
+        // 3. Lógica de filtrado con transición suave
+        const filterValue = btn.getAttribute('data-filter');
+        
+        proyectos.forEach(item => {
+          if (filterValue === 'all' || item.getAttribute('data-cat') === filterValue) {
+            item.style.display = 'block';
+            setTimeout(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'scale(1)';
+            }, 50);
+          } else {
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+              item.style.display = 'none';
+            }, 400); 
+          }
+        });
       });
     });
   });
 </script>
+
 {% endblock %}
