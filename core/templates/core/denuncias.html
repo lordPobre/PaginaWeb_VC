@@ -1,0 +1,153 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="position-relative d-flex align-items-center overflow-hidden" 
+         style="background: linear-gradient(135deg, #1a1a1a 0%, #0d4a2e 100%); min-height: 45vh;">
+  
+  <div style="position: absolute; inset: 0; background: url('{% static "core/img/banner.png" %}') center/cover; opacity: 0.2; mix-blend-mode: overlay; z-index: 1;"></div>
+  
+  <div class="container position-relative z-3 py-5">
+    <div class="row">
+      <div class="col-lg-8 text-white">
+        <span class="fw-bold text-uppercase small d-block mb-2 text-success" style="letter-spacing: 0.2rem;">Línea Ética y Cumplimiento</span>
+        <h1 class="display-3 fw-bold mb-3">Canal de <span style="-webkit-text-stroke: 1px rgba(255,255,255,0.8); color: transparent;">Denuncias</span></h1>
+        <p class="lead opacity-90 mb-0" style="max-width: 650px;">
+          Un espacio seguro y confidencial para reportar conductas que vayan en contra de nuestros valores, políticas corporativas o la ley.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5" style="background-color: #f8f9fa;">
+  <div class="container py-lg-5">
+    <div class="row g-5">
+      
+      <div class="col-lg-4">
+        <div class="pe-lg-4">
+          <h3 class="fw-bold mb-4">Nuestro Compromiso</h3>
+          <p class="text-secondary mb-4">En VC Limitada fomentamos una cultura de transparencia. Este canal está diseñado para reportar de buena fe cualquier irregularidad, incluyendo:</p>
+          
+          <ul class="list-unstyled mb-5">
+            <li class="mb-3 d-flex align-items-start">
+              <i class="bi bi-shield-exclamation text-success fs-5 me-3 mt-1"></i>
+              <span class="text-secondary">Faltas a la ética o probidad corporativa.</span>
+            </li>
+            <li class="mb-3 d-flex align-items-start">
+              <i class="bi bi-shield-exclamation text-success fs-5 me-3 mt-1"></i>
+              <span class="text-secondary">Acoso laboral, sexual o discriminación.</span>
+            </li>
+            <li class="mb-3 d-flex align-items-start">
+              <i class="bi bi-shield-exclamation text-success fs-5 me-3 mt-1"></i>
+              <span class="text-secondary">Vulneraciones a la seguridad y salud ocupacional.</span>
+            </li>
+            <li class="mb-3 d-flex align-items-start">
+              <i class="bi bi-shield-exclamation text-success fs-5 me-3 mt-1"></i>
+              <span class="text-secondary">Malas prácticas ambientales.</span>
+            </li>
+          </ul>
+
+          <div class="p-4 bg-white rounded-3 shadow-sm border-start border-4 border-success">
+            <h6 class="fw-bold text-dark"><i class="bi bi-lock-fill text-success me-2"></i> Estricta Confidencialidad</h6>
+            <p class="small text-muted mb-0 mt-2">Garantizamos la confidencialidad de la información y la prohibición absoluta de represalias contra quienes denuncien de buena fe.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm border border-light">
+          <h4 class="fw-bold mb-1">Ingresar Reporte</h4>
+          <p class="text-muted small mb-4">Por favor, proporcione la mayor cantidad de detalles posible para facilitar la investigación.</p>
+          
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="mb-4 p-3 rounded-3" style="background-color: #f1f8f5; border: 1px solid #d1e7dd;">
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="anonimoSwitch" checked onchange="toggleDatosContacto()">
+                <label class="form-check-label fw-bold text-success ms-2" for="anonimoSwitch">Deseo realizar esta denuncia de forma anónima</label>
+              </div>
+            </div>
+
+            <div id="datosContacto" class="row g-3 mb-4" style="display: none;">
+              <div class="col-md-6">
+                <label class="form-label fw-bold small text-secondary">Nombre Completo</label>
+                <input type="text" class="form-control bg-light border-0" id="nombreDenunciante" name="nombre">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-bold small text-secondary">Correo Electrónico / Teléfono</label>
+                <input type="text" class="form-control bg-light border-0" id="contactoDenunciante" name="contacto">
+              </div>
+            </div>
+
+            <hr class="mb-4 opacity-25">
+
+            <div class="row g-3">
+              <div class="col-md-12">
+                <label class="form-label fw-bold small text-secondary">Categoría de la denuncia *</label>
+                <select class="form-select bg-light border-0" name="categoria" required>
+                  <option value="" selected disabled>Seleccione el tipo de irregularidad...</option>
+                  <option value="etica">Faltas a la Ética o Fraude</option>
+                  <option value="acoso">Acoso Laboral / Sexual</option>
+                  <option value="seguridad">Infracción HSEQ (Seguridad y Medio Ambiente)</option>
+                  <option value="otro">Otras irregularidades</option>
+                </select>
+              </div>
+
+              <div class="col-md-12">
+                <label class="form-label fw-bold small text-secondary">¿Cuál es su relación con VC Limitada?</label>
+                <select class="form-select bg-light border-0" name="relacion">
+                  <option value="" selected disabled>Seleccione una opción...</option>
+                  <option value="trabajador">Trabajador Directo</option>
+                  <option value="subcontratista">Subcontratista / Proveedor</option>
+                  <option value="comunidad">Comunidad / Tercero Externo</option>
+                  <option value="cliente">Cliente / Mandante</option>
+                </select>
+              </div>
+
+              <div class="col-12 mt-4">
+                <label class="form-label fw-bold small text-secondary">Descripción de los hechos *</label>
+                <textarea class="form-control bg-light border-0" name="descripcion" rows="6" placeholder="Indique qué sucedió, cuándo, dónde y quiénes están involucrados..." required style="resize: none;"></textarea>
+              </div>
+              
+              <div class="col-12 mt-3">
+                <label class="form-label fw-bold small text-secondary">Adjuntar Evidencia (Opcional)</label>
+                <input class="form-control bg-light border-0" type="file" name="evidencia">
+                <div class="form-text small">Formatos permitidos: JPG, PNG, PDF, DOCX. Max: 10MB.</div>
+              </div>
+
+              <div class="col-12 mt-5">
+                <button type="submit" class="btn btn-dark btn-lg px-5 py-3 fw-bold w-100 shadow-sm" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+                  ENVIAR REPORTE SEGURO <i class="bi bi-shield-lock ms-2"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function toggleDatosContacto() {
+    var isAnonimo = document.getElementById("anonimoSwitch").checked;
+    var datosContactoDiv = document.getElementById("datosContacto");
+    
+    if (isAnonimo) {
+      datosContactoDiv.style.display = "none";
+      // Limpiar campos si decide ser anónimo
+      document.getElementById("nombreDenunciante").value = "";
+      document.getElementById("contactoDenunciante").value = "";
+    } else {
+      // Mostrar con animación simple
+      datosContactoDiv.style.display = "flex";
+      datosContactoDiv.classList.add("animate__animated", "animate__fadeIn");
+    }
+  }
+</script>
+
+{% endblock %}

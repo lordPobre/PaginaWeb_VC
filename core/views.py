@@ -46,3 +46,6 @@ def proyectos(request):
 
 def sostenibilidad(request):
     return render(request, 'core/sostenibilidad.html')
+
+def denuncias(request):
+    return render(request, 'core/denuncias.html')
