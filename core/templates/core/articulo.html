@@ -1,0 +1,113 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="position-relative d-flex align-items-end overflow-hidden" 
+         style="background-image: url('{% static "core/img/Laja.jpg" %}'); background-size: cover; background-position: center; min-height: 60vh;">
+  
+  <div style="position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%); z-index: 1;"></div>
+  
+  <div class="container position-relative z-3 pb-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 text-white text-center">
+        <div class="badge bg-success mb-3 px-3 py-2 rounded-pill small fw-bold shadow-sm">Tips de Mantenimiento</div>
+        <h1 class="display-4 fw-bold mb-4">5 Claves para prolongar la vida útil de filtros de retrolavado en centrales hidroeléctricas</h1>
+        <div class="d-flex justify-content-center align-items-center opacity-75 small">
+          <span><i class="bi bi-calendar3 me-2"></i> 15 Abril, 2026</span>
+          <span class="mx-3">•</span>
+          <span><i class="bi bi-person-circle me-2"></i> Por Equipo Técnico VC Limitada</span>
+          <span class="mx-3">•</span>
+          <span><i class="bi bi-clock me-2"></i> 4 min de lectura</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="row justify-content-center">
+      
+      <div class="col-lg-8">
+        
+        <a href="{% url 'blog' %}" class="btn btn-link text-success text-decoration-none p-0 mb-4 fw-bold">
+          <i class="bi bi-arrow-left me-2"></i> Volver al Blog
+        </a>
+
+        <article class="fs-5 text-secondary" style="line-height: 1.8;">
+          <p class="lead text-dark fw-medium mb-4">
+            El mantenimiento de los sistemas de filtración en centrales de pasada o embalse es crítico para evitar detenciones no programadas. Basados en nuestra experiencia reciente en la Central Las Lajas, detallamos los procedimientos que marcan la diferencia.
+          </p>
+
+          <p>Las fallas en los sistemas de enfriamiento y sellos a menudo tienen su origen en una filtración deficiente. Los filtros de retrolavado automático son la primera línea de defensa, pero requieren ajustes mecánicos precisos y soldaduras de alta calidad en sus líneas de acero inoxidable para soportar la presión constante y la abrasión de los sedimentos del río.</p>
+
+          <h3 class="fw-bold text-dark mt-5 mb-3">1. Monitoreo del diferencial de presión</h3>
+          <p>El indicador más claro de que un filtro necesita atención es el aumento en la presión diferencial. No basta con esperar a que el sistema automático se active. Es vital establecer rutinas de inspección visual de los manómetros y calibrar los sensores. Un diferencial que se mantiene alto después de un ciclo de lavado indica un problema físico en la malla.</p>
+
+          <div class="p-4 my-5 bg-light border-start border-4 border-success rounded-end shadow-sm">
+            <h5 class="fw-bold text-dark"><i class="bi bi-lightbulb-fill text-success me-2"></i> Dato de Terreno</h5>
+            <p class="mb-0 fs-6">En líneas de acero inoxidable sujetas a vibración hidráulica constante, un mal montaje de la línea de purga reduce la vida útil del elemento filtrante en un 40% debido al "golpe de ariete" interno.</p>
+          </div>
+
+          <h3 class="fw-bold text-dark mt-5 mb-3">2. Calidad de la soldadura en líneas de purga</h3>
+          <p>Durante nuestra intervención en la Unidad 1 y 2 de Las Lajas, detectamos que la calidad del montaje de las cañerías anexas es tan importante como el equipo mismo. El uso de soldadura TIG con purga de argón asegura que el interior de la tubería quede libre de escoria, previniendo que partículas metálicas desprendidas dañen los sellos aguas abajo.</p>
+
+          <h3 class="fw-bold text-dark mt-5 mb-3">Conclusión</h3>
+          <p>Un montaje industrial bien ejecutado no solo instala un equipo; previene problemas a 10 años plazo. La elección correcta de los materiales y un equipo técnico certificado en terreno son la mejor inversión para la continuidad operativa.</p>
+        </article>
+
+        <div class="d-flex align-items-center mt-5 pt-4 border-top">
+          <span class="fw-bold text-dark me-3">Compartir artículo:</span>
+          <a href="#" class="btn btn-outline-secondary btn-sm rounded-circle me-2" style="width: 35px; height: 35px;"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="btn btn-outline-secondary btn-sm rounded-circle me-2" style="width: 35px; height: 35px;"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="btn btn-outline-secondary btn-sm rounded-circle" style="width: 35px; height: 35px;"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-light border-top">
+  <div class="container">
+    <h3 class="fw-bold mb-4 text-center">También te podría interesar</h3>
+    <div class="row g-4 justify-content-center">
+      
+      <div class="col-md-5 col-lg-4">
+        <div class="card border-0 shadow-sm h-100 cursor-pointer" onclick="window.location.href='#'" style="border-radius: 12px; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div class="row g-0 h-100">
+            <div class="col-4">
+              <img src="{% static 'core/img/quintero-energia.jpg' %}" class="w-100 h-100 object-fit-cover" style="border-radius: 12px 0 0 12px;" alt="...">
+            </div>
+            <div class="col-8">
+              <div class="card-body p-3">
+                <span class="text-success small fw-bold">Seguridad HSEQ</span>
+                <h6 class="fw-bold mt-1 mb-0" style="font-size: 0.95rem;">Protocolos de seguridad en Salas de Control</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-5 col-lg-4">
+        <div class="card border-0 shadow-sm h-100 cursor-pointer" onclick="window.location.href='#'" style="border-radius: 12px; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div class="row g-0 h-100">
+            <div class="col-4">
+              <img src="{% static 'core/img/alfalfal2.png' %}" class="w-100 h-100 object-fit-cover" style="border-radius: 12px 0 0 12px;" alt="...">
+            </div>
+            <div class="col-8">
+              <div class="card-body p-3">
+                <span class="text-success small fw-bold">Casos de Éxito</span>
+                <h6 class="fw-bold mt-1 mb-0" style="font-size: 0.95rem;">Desafíos de precisión: Soldadura en líneas de succión</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

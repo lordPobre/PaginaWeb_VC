@@ -1,0 +1,195 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+  .blog-item {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  
+  @media (max-width: 768px) {
+    .filter-scroll {
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      justify-content: flex-start !important;
+      padding-bottom: 5px;
+    }
+    .filter-scroll::-webkit-scrollbar {
+      display: none; 
+    }
+  }
+  
+  /* Efecto sutil para las tarjetas del blog */
+  .blog-card:hover h5 {
+      color: #198754;
+      transition: color 0.3s ease;
+  }
+</style>
+
+<section class="position-relative d-flex align-items-center overflow-hidden" 
+         style="background-image: url('{% static "core/img/blog.png" %}'); background-size: cover; background-position: center; min-height: 50vh;">
+  
+  <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%); z-index: 1;"></div>
+  
+  <div class="container position-relative z-3">
+    <div class="row">
+      <div class="col-lg-7 text-white">
+        <div class="p-4 p-md-5" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-left: 4px solid #198754; border-radius: 0 20px 20px 0;">
+          <span class="fw-bold text-uppercase small d-block mb-2" style="color: #52c41a; letter-spacing: 0.2rem;">Conocimiento Aplicado</span>
+          <h1 class="display-3 fw-bold mb-3">Blog <span style="-webkit-text-stroke: 1px rgba(255,255,255,0.8); color: transparent;">Técnico</span></h1>
+          <p class="lead opacity-75 mb-0">Tips de mantenimiento, mejores prácticas en montaje industrial y análisis de nuestros casos de éxito en terreno.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-light">
+  <div class="container py-lg-4">
+    
+    <div class="d-flex justify-content-center mb-5" id="filtros-blog">
+      <div class="d-flex gap-2 filter-scroll p-2 bg-white rounded-pill shadow-sm border">
+        <button type="button" class="btn btn-success text-white rounded-pill px-4" data-filter="all">Últimos Artículos</button>
+        <button type="button" class="btn btn-outline-success rounded-pill px-4" data-filter="tips">Tips de Mantenimiento</button>
+        <button type="button" class="btn btn-outline-success rounded-pill px-4" data-filter="seguridad">Seguridad HSEQ</button>
+        <button type="button" class="btn btn-outline-success rounded-pill px-4" data-filter="casos">Casos de Éxito</button>
+      </div>
+    </div>
+
+    <div class="row g-4" id="grid-blog">
+
+      <div class="col-md-6 col-lg-4 blog-item" data-cat="tips">
+        <div class="card blog-card border-0 shadow-sm h-100 overflow-hidden cursor-pointer" style="border-radius: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.05)'">
+          <div class="position-relative overflow-hidden" style="height: 220px;">
+            <div class="badge bg-success position-absolute top-0 end-0 m-3 z-3 shadow-sm">Tips de Mantenimiento</div>
+            <img src="{% static 'core/img/Laja.jpg' %}" class="w-100 h-100 object-fit-cover" style="transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" alt="Filtros Hidráulicos">
+          </div>
+          <div class="card-body p-4 bg-white">
+            <div class="d-flex align-items-center text-muted small mb-3">
+              <i class="bi bi-calendar3 me-2"></i> 15 Abril, 2026
+              <span class="mx-2">•</span>
+              <i class="bi bi-clock me-2"></i> 4 min lectura
+            </div>
+            <h5 class="fw-bold mb-3">5 Claves para prolongar la vida útil de filtros de retrolavado</h5>
+            <p class="card-text text-secondary small mb-4">Basados en nuestra experiencia en la Central Las Lajas, detallamos los procedimientos críticos para evitar obstrucciones y garantizar flujo continuo en líneas de acero inoxidable.</p>
+            <div class="mt-auto border-top pt-3 text-success fw-bold small text-uppercase">
+                <a href="{% url 'articulo' %}" class="text-success text-decoration-none stretched-link">
+                    Leer Artículo Completo <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 blog-item" data-cat="seguridad">
+        <div class="card blog-card border-0 shadow-sm h-100 overflow-hidden cursor-pointer" style="border-radius: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.05)'">
+          <div class="position-relative overflow-hidden" style="height: 220px;">
+            <div class="badge bg-dark position-absolute top-0 end-0 m-3 z-3 shadow-sm">Seguridad HSEQ</div>
+            <img src="{% static 'core/img/quintero-energia.jpg' %}" class="w-100 h-100 object-fit-cover" style="transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" alt="Seguridad Eléctrica">
+          </div>
+          <div class="card-body p-4 bg-white">
+            <div class="d-flex align-items-center text-muted small mb-3">
+              <i class="bi bi-calendar3 me-2"></i> 02 Abril, 2026
+              <span class="mx-2">•</span>
+              <i class="bi bi-clock me-2"></i> 3 min lectura
+            </div>
+            <h5 class="fw-bold mb-3">Protocolos de seguridad en Salas de Control (U-3)</h5>
+            <p class="card-text text-secondary small mb-4">El mejoramiento de mobiliario técnico requiere estándares especiales. Analizamos cómo gestionar riesgos eléctricos y asegurar la continuidad operacional durante las obras.</p>
+            <div class="mt-auto border-top pt-3 text-success fw-bold small text-uppercase">
+                <a href="{% url 'articulo_seguridad' %}" class="text-success text-decoration-none stretched-link">
+                    Leer Artículo Completo <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 blog-item" data-cat="casos">
+        <div class="card blog-card border-0 shadow-sm h-100 overflow-hidden cursor-pointer" style="border-radius: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.05)'">
+          <div class="position-relative overflow-hidden" style="height: 220px;">
+            <div class="badge bg-success position-absolute top-0 end-0 m-3 z-3 shadow-sm">Casos de Éxito</div>
+            <img src="{% static 'core/img/alfalfal2.png' %}" class="w-100 h-100 object-fit-cover" style="transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" alt="Montaje de Precisión">
+          </div>
+          <div class="card-body p-4 bg-white">
+            <div class="d-flex align-items-center text-muted small mb-3">
+              <i class="bi bi-calendar3 me-2"></i> 20 Marzo, 2026
+              <span class="mx-2">•</span>
+              <i class="bi bi-clock me-2"></i> 5 min lectura
+            </div>
+            <h5 class="fw-bold mb-3">Desafíos de precisión: Soldadura en líneas de succión</h5>
+            <p class="card-text text-secondary small mb-4">Un repaso técnico a los desafíos superados en el proyecto Alfalfal II. Cómo logramos ajustes mecánicos perfectos en bombas dragadoras de alta exigencia.</p>
+            <div class="mt-auto border-top pt-3 text-success fw-bold small text-uppercase">
+                <a href="{% url 'articulo_soldadura' %}" class="text-success text-decoration-none stretched-link">
+                    Leer Artículo Completo <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-white">
+  <div class="container py-lg-4">
+    <div class="p-5 text-center text-white rounded-4 shadow-lg overflow-hidden position-relative" style="background: linear-gradient(135deg, #0d4a2e 0%, #198754 100%);">
+      <div class="position-relative z-3">
+        <h2 class="fw-bold display-6 mb-3">¿Necesitas apoyo en tu próximo desafío técnico?</h2>
+        <p class="lead opacity-90 mb-4 mx-auto" style="max-width: 700px;">
+          Aplica este conocimiento en tus obras. Contáctanos y trabajemos juntos con el respaldo de nuestros especialistas.
+        </p>
+        <a href="{% url 'contacto' %}" class="btn btn-light btn-lg px-5 fw-bold text-success shadow-sm" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+          HABLEMOS DEL PROYECTO
+        </a>
+      </div>
+      
+      <div style="position: absolute; top: -50px; left: -50px; width: 250px; height: 250px; background: rgba(255,255,255,0.05); border-radius: 50%; z-index: 1;"></div>
+      <div style="position: absolute; bottom: -20px; right: 5%; width: 100px; height: 100px; background: rgba(255,255,255,0.08); border-radius: 50%; z-index: 1;"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const botonesBlog = document.querySelectorAll('#filtros-blog button');
+    const itemsBlog = document.querySelectorAll('.blog-item');
+
+    botonesBlog.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Reset botones
+        botonesBlog.forEach(b => {
+          b.classList.remove('btn-success', 'text-white');
+          b.classList.add('btn-outline-success');
+        });
+        
+        // Activar botón
+        btn.classList.remove('btn-outline-success');
+        btn.classList.add('btn-success', 'text-white');
+        
+        // Filtrar con transición
+        const filterValue = btn.getAttribute('data-filter');
+        
+        itemsBlog.forEach(item => {
+          if (filterValue === 'all' || item.getAttribute('data-cat') === filterValue) {
+            item.style.display = 'block';
+            setTimeout(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'scale(1)';
+            }, 50);
+          } else {
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+              item.style.display = 'none';
+            }, 400); 
+          }
+        });
+      });
+    });
+  });
+</script>
+
+{% endblock %}

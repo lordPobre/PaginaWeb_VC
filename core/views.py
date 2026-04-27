@@ -49,15 +49,13 @@ def sostenibilidad(request):
 
 def denuncias(request):
     if request.method == 'POST':
-        # Capturamos los datos del formulario HTML
         nombre = request.POST.get('nombre', '')
         contacto = request.POST.get('contacto', '')
         categoria = request.POST.get('categoria')
         relacion = request.POST.get('relacion')
         descripcion = request.POST.get('descripcion')
-        evidencia = request.FILES.get('evidencia') # Se usa FILES para archivos
+        evidencia = request.FILES.get('evidencia') 
 
-        # Creamos y guardamos el registro en la base de datos
         Denuncia.objects.create(
             nombre=nombre,
             contacto=contacto,
@@ -67,8 +65,17 @@ def denuncias(request):
             evidencia=evidencia
         )
         
-        # Le enviamos una variable 'exito' al HTML para mostrar un mensaje de agradecimiento
         return render(request, 'core/denuncias.html', {'exito': True})
-        
-    # Si entra normal a la página (GET), solo mostramos el formulario vacío
     return render(request, 'core/denuncias.html')
+
+def blog(request):
+    return render(request, 'core/blog.html')
+
+def articulo(request):
+    return render(request, 'core/articulo.html')
+
+def articulo_seguridad(request):
+    return render(request, 'core/articulo_seguridad.html')
+
+def articulo_soldadura(request):
+    return render(request, 'core/articulo_soldadura.html')

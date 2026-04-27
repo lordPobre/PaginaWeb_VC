@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="position-relative d-flex align-items-end overflow-hidden" 
+         style="background-image: url('{% static "core/img/alfalfal2.png" %}'); background-size: cover; background-position: center; min-height: 60vh;">
+  <div style="position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%); z-index: 1;"></div>
+  
+  <div class="container position-relative z-3 pb-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 text-white text-center">
+        <div class="badge bg-success mb-3 px-3 py-2 rounded-pill small fw-bold shadow-sm">Casos de Éxito</div>
+        <h1 class="display-4 fw-bold mb-4">Desafíos de precisión: Soldadura y montaje en líneas de succión</h1>
+        <div class="d-flex justify-content-center align-items-center opacity-75 small">
+          <span><i class="bi bi-calendar3 me-2"></i> 20 Marzo, 2026</span>
+          <span class="mx-3">•</span>
+          <span><i class="bi bi-person-circle me-2"></i> Ingeniería VC Limitada</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <a href="{% url 'blog' %}" class="btn btn-link text-success text-decoration-none p-0 mb-4 fw-bold">
+          <i class="bi bi-arrow-left me-2"></i> Volver al Blog
+        </a>
+
+        <article class="fs-5 text-secondary" style="line-height: 1.8;">
+          <p class="lead text-dark fw-medium mb-4">
+            Fabricar y montar una línea de succión para una bomba dragadora exige tolerancias milimétricas. En el proyecto Foreway (Alfalfal II), la precisión no era una opción, era una exigencia técnica.
+          </p>
+
+          <p>Las bombas dragadoras manejan fluidos con alta densidad de sólidos en suspensión. Cualquier desalineación en las bridas de succión genera turbulencia, lo que a su vez causa cavitación y un desgaste prematuro del rodete de la bomba. Nuestro equipo tuvo el desafío de prefabricar los spools en taller y realizar los remates de soldadura en terreno bajo condiciones climáticas adversas.</p>
+
+          <h3 class="fw-bold text-dark mt-5 mb-3">Técnicas de alineación láser</h3>
+          <p>Para asegurar la planitud de las bridas y la concéntrica de la tubería, sustituimos los métodos tradicionales por alineación láser durante el "tack welding" (punteo). Esto nos permitió garantizar un error menor a 0.5 mm en toda la longitud de la succión, mitigando las vibraciones mecánicas una vez que el equipo entró en carga.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

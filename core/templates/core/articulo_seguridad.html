@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="position-relative d-flex align-items-end overflow-hidden" 
+         style="background-image: url('{% static "core/img/quintero-energia.jpg" %}'); background-size: cover; background-position: center; min-height: 60vh;">
+  <div style="position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%); z-index: 1;"></div>
+  
+  <div class="container position-relative z-3 pb-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 text-white text-center">
+        <div class="badge bg-dark mb-3 px-3 py-2 rounded-pill small fw-bold shadow-sm">Seguridad HSEQ</div>
+        <h1 class="display-4 fw-bold mb-4">Protocolos de seguridad en Salas de Control de alta tensión (U-3)</h1>
+        <div class="d-flex justify-content-center align-items-center opacity-75 small">
+          <span><i class="bi bi-calendar3 me-2"></i> 02 Abril, 2026</span>
+          <span class="mx-3">•</span>
+          <span><i class="bi bi-person-circle me-2"></i> Prevención de Riesgos VC</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <a href="{% url 'blog' %}" class="btn btn-link text-success text-decoration-none p-0 mb-4 fw-bold">
+          <i class="bi bi-arrow-left me-2"></i> Volver al Blog
+        </a>
+
+        <article class="fs-5 text-secondary" style="line-height: 1.8;">
+          <p class="lead text-dark fw-medium mb-4">
+            El mejoramiento de mobiliario y espacios técnicos en salas de control eléctrico no es una obra civil común. Requiere una coordinación milimétrica para evitar la interrupción del suministro.
+          </p>
+
+          <p>En el reciente proyecto ejecutado en la Central Quintero Energía, nuestro equipo se enfrentó al desafío de optimizar el espacio físico de la Unidad 3 (U-3) operando a metros de tableros energizados. La regla número uno en estos entornos es la "Cero Alteración del Entorno Operativo".</p>
+
+          <h3 class="fw-bold text-dark mt-5 mb-3">Aislamiento de áreas de trabajo</h3>
+          <p>Se utilizaron biombos dieléctricos e ignífugos para separar el área de intervención del pasillo de tránsito de los operadores de la planta. Toda herramienta manual utilizada requirió certificación de aislamiento de hasta 1000V, y se prohibió estrictamente el uso de herramientas de corte que generaran material particulado (chispas o polvo metálico) que pudiera ingresar a los servidores.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
