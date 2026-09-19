@@ -7,6 +7,12 @@
   --soft-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
   --heading-font: 'Montserrat', sans-serif;
   --body-font: 'Inter', sans-serif;
+
+  /* Sobrescribe el "success" (verde) por defecto de Bootstrap para que
+     text-success, bg-success, border-success, badges, spinners, etc.
+     usen el cian de marca en vez del verde de fábrica de Bootstrap. */
+  --bs-success: #11b6a8;
+  --bs-success-rgb: 17, 182, 168;
 }
 
 /* ==========================================================================
@@ -176,11 +182,46 @@ section {
    ========================================================================== */
 /* Botón moderno */
 .btn-success {
+  /* Bootstrap calcula los estados hover/active/focus de .btn-success en
+     tonos de verde fijos en tiempo de compilación (no usan --bs-success),
+     así que se sobrescriben aquí para que no aparezca un "flash" verde. */
+  --bs-btn-bg: var(--primary-green);
+  --bs-btn-border-color: var(--primary-green);
+  --bs-btn-hover-bg: #0d8f84;
+  --bs-btn-hover-border-color: #0d8f84;
+  --bs-btn-active-bg: #0a746c;
+  --bs-btn-active-border-color: #0a746c;
+  --bs-btn-disabled-bg: var(--primary-green);
+  --bs-btn-disabled-border-color: var(--primary-green);
+  --bs-btn-focus-shadow-rgb: 17, 182, 168;
   background: linear-gradient(135deg, var(--primary-green) 0%, #11b6a8 100%);
   border: none;
   padding: 12px 30px;
   border-radius: 8px;
   font-weight: 600;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active {
+  background: linear-gradient(135deg, #0d8f84 0%, #11b6a8 100%) !important;
+}
+
+/* Botón outline (mismo problema que .btn-success: Bootstrap fija estos
+   colores en verde al compilar y no leen --bs-success). Usado en los
+   botones de filtro y en "Ver todos los servicios". */
+.btn-outline-success {
+  --bs-btn-color: #11b6a8;
+  --bs-btn-border-color: #11b6a8;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #11b6a8;
+  --bs-btn-hover-border-color: #11b6a8;
+  --bs-btn-focus-shadow-rgb: 17, 182, 168;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #0d8f84;
+  --bs-btn-active-border-color: #0d8f84;
+  --bs-btn-disabled-color: #11b6a8;
+  --bs-btn-disabled-border-color: #11b6a8;
 }
 
 /* Footer */
@@ -320,7 +361,7 @@ section {
 .icon-circle {
     width: 70px;
     height: 70px;
-    background: linear-gradient(135deg, rgba(25, 135, 84, 0.1) 0%, rgba(25, 135, 84, 0.2) 100%);
+    background: linear-gradient(135deg, rgba(17, 182, 168, 0.1) 0%, rgba(17, 182, 168, 0.2) 100%);
     color: var(--primary-green);
     display: flex;
     align-items: center;
@@ -357,11 +398,11 @@ section {
 .btn-filter.active {
     background-color: #11b6a8 !important;
     color: white !important;
-    box-shadow: 0 4px 10px rgba(25, 135, 84, 0.2);
+    box-shadow: 0 4px 10px rgba(17, 182, 168, 0.2);
 }
 
 .button-filter:hover {
-    background-color: rgba(25, 135, 84, 0.1);
+    background-color: rgba(17, 182, 168, 0.1);
     color: #11b6a8;
 }
 
