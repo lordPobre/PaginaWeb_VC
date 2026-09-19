@@ -2,7 +2,7 @@
    1. VARIABLES GLOBALES (Consistencia de marca)
    ========================================================================== */
 :root {
-  --primary-green: #198754;
+  --primary-green: #11b6a8;
   --industrial-dark: #2f2f2f;
   --soft-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
   --heading-font: 'Montserrat', sans-serif;
@@ -143,7 +143,7 @@ section {
 
 .proyecto-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12); /* Sombra mejorada al pasar el mouse */
+  box-shadow: 0 15px 35px rgba(102, 101, 101, 0.12); /* Sombra mejorada al pasar el mouse */
 }
 
 .proyecto-card img {
@@ -176,7 +176,7 @@ section {
    ========================================================================== */
 /* Botón moderno */
 .btn-success {
-  background: linear-gradient(135deg, var(--primary-green) 0%, #146c43 100%);
+  background: linear-gradient(135deg, var(--primary-green) 0%, #11b6a8 100%);
   border: none;
   padding: 12px 30px;
   border-radius: 8px;
@@ -239,7 +239,7 @@ section {
     left: -20px;
     width: 100%;
     height: 100%;
-    border: 2px solid #198754;
+    border: 2px solid #11b6a8;
     border-radius: 8px;
     z-index: 1;
 }
@@ -256,14 +256,14 @@ section {
 .feature-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    border-color: #198754;
+    border-color: #11b6a8;
 }
 
 /* Línea decorativa bajo títulos */
 .header-line {
     width: 60px;
     height: 4px;
-    background: #198754;
+    background: #11b6a8;
     margin-top: 15px;
     border-radius: 2px;
 }
@@ -355,14 +355,14 @@ section {
 
 /* Botones de Filtro */
 .btn-filter.active {
-    background-color: #198754 !important;
+    background-color: #11b6a8 !important;
     color: white !important;
     box-shadow: 0 4px 10px rgba(25, 135, 84, 0.2);
 }
 
 .button-filter:hover {
     background-color: rgba(25, 135, 84, 0.1);
-    color: #198754;
+    color: #11b6a8;
 }
 
 /* Efecto de Tarjetas en Proyectos */

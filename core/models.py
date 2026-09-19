@@ -10,13 +10,6 @@ class Cliente(models.Model):
     nombre = models.CharField(max_length=100)
     logo = models.ImageField(upload_to='clientes/')
 
-class Contacto(models.Model):
-    nombre = models.CharField(max_length=100)
-    email = models.EmailField()
-    mensaje = models.TextField()
-    fecha = models.DateTimeField(auto_now_add=True)
-
-
 class PersonaOrganismo(models.Model):
     SECCION_CHOICES = [
         ('administracion', 'Administración'),
