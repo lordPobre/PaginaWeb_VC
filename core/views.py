@@ -1,48 +1,69 @@
 
-from django.shortcuts import render, redirect
-from .models import Proyecto, Contacto, Denuncia
+from django.shortcuts import render, redirect, get_object_or_404
+from django.utils.http import url_has_allowed_host_and_scheme
+from .models import Proyecto, Contacto, Denuncia, SlideInicio
 from django.contrib import messages
 
 def index(request):
-    return render(request, 'core/index.html')
+    return render(request, 'core/index.html', {
+        'slides': SlideInicio.objects.filter(activo=True)[:5],
+        'destacados': Proyecto.objects.filter(publicado=True, destacado=True)[:6],
+    })
+
+# Equipo directivo mostrado en Nosotros (#equipo). Reemplaza la antigua página
+# "Organismo corporativo", que tenía nombres y fotos de ejemplo.
+EQUIPO = [
+    {'nombre': 'Sebastián Vega', 'iniciales': 'SV', 'cargo': 'Gerente General', 'cargo_key': 'roleGG', 'email': 'svega@vcchile.cl'},
+    {'nombre': 'Mauricio Campos', 'iniciales': 'MC', 'cargo': 'Gerente Técnico', 'cargo_key': 'roleGT', 'email': 'mcampos@vcchile.cl'},
+]
 
 def nosotros(request):
-    return render(request, 'core/nosotros.html')
+    return render(request, 'core/nosotros.html', {'equipo': EQUIPO})
 
 def organismo_corporativo_view(request):
-    administracion = [
-        {'nombre': 'Sebastian Vegas', 'cargo': 'Gerente General', 'foto': 'core/img/sebastian.png'},
-        {'nombre': 'Mauricio Campos', 'cargo': 'Gerente Técnico', 'foto': 'core/img/luis.jpg'},
-        {'nombre': 'Carlos Lopez', 'cargo': 'Jefe Supremo TI', 'foto': 'core/img/TI.png'},
-    ]
-
-    directorio = [
-        {'nombre': 'Juan Soto', 'cargo': 'Presidente', 'foto': 'core/img/juan.jpg'},
-        {'nombre': 'Marta Leiva', 'cargo': 'Directora', 'foto': 'core/img/marta.jpg'},
-    ]
-
-    return render(request, 'core/organismo_corporativo.html', {
-        'administracion': administracion,
-        'directorio': directorio
-    })
+    # Se mantiene la URL antigua para no romper enlaces externos.
+    return redirect('/nosotros/#equipo', permanent=True)
 
 
 def contacto(request):
     if request.method == 'POST':
-        nombre = request.POST.get('nombre')
-        email = request.POST.get('email')
-        mensaje = request.POST.get('mensaje')
+        nombre = request.POST.get('nombre', '').strip()
+        email = request.POST.get('email', '').strip()
+        mensaje = request.POST.get('mensaje', '').strip()
+        # Campos nuevos del formulario de inicio. Se anexan al mensaje para no
+        # requerir una migración del modelo Contacto.
+        empresa = request.POST.get('empresa', '').strip()
+        servicio = request.POST.get('servicio', '').strip()
+        extras = []
+        if empresa:
+            extras.append(f'Empresa: {empresa}')
+        if servicio:
+            extras.append(f'Servicio: {servicio}')
+        if extras:
+            mensaje = ' | '.join(extras) + '\n\n' + mensaje
+
         Contacto.objects.create(nombre=nombre, email=email, mensaje=mensaje)
-        messages.success(request, 'Tu mensaje ha sido enviado correctamente.')
+        messages.success(request, 'Tu mensaje ha sido enviado correctamente. Te contactaremos a la brevedad.')
+
+        destino = request.POST.get('next', '')
+        if destino and url_has_allowed_host_and_scheme(destino, allowed_hosts={request.get_host()}):
+            return redirect(destino)
         return redirect('contacto')
     return render(request, 'core/contacto.html')
 
 def proyectos(request):
-    try:
-        proyectos = Proyecto.objects.all()
-    except:
-        proyectos = [] 
-    return render(request, 'core/proyectos.html', {'proyectos': proyectos})
+    lista = Proyecto.objects.filter(publicado=True)
+    presentes = set(lista.values_list('categoria', flat=True))
+    categorias = [
+        {'valor': k, 'es': es, 'en': Proyecto.CATEGORIAS_EN.get(k, es)}
+        for k, es in Proyecto.CATEGORIAS if k in presentes
+    ]
+    return render(request, 'core/proyectos.html', {'proyectos': lista, 'categorias': categorias})
+
+def proyecto_detalle(request, slug):
+    proyecto = get_object_or_404(Proyecto, slug=slug, publicado=True)
+    otros = Proyecto.objects.filter(publicado=True).exclude(pk=proyecto.pk)[:3]
+    return render(request, 'core/proyecto_detalle.html', {'p': proyecto, 'otros': otros})
 
 def sostenibilidad(request):
     return render(request, 'core/sostenibilidad.html')

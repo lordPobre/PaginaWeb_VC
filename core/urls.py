@@ -6,6 +6,7 @@ urlpatterns = [
     path('nosotros/', views.nosotros, name='nosotros'),
     path('contacto/', views.contacto, name='contacto'),
     path('proyectos/', views.proyectos, name='proyectos'),
+    path('proyectos/<slug:slug>/', views.proyecto_detalle, name='proyecto_detalle'),
     path('sostenibilidad/', views.sostenibilidad, name='sostenibilidad'),
     path('organismo-corporativo/', views.organismo_corporativo_view, name='organismo_corporativo'),
     path('denuncias/', views.denuncias, name='denuncias'),
@@ -13,5 +14,4 @@ urlpatterns = [
     path('articulo/', views.articulo, name='articulo'),
     path('articulo-seguridad/', views.articulo_seguridad, name='articulo_seguridad'),
     path('articulo-soldadura/', views.articulo_soldadura, name='articulo_soldadura'),
-    
 ]

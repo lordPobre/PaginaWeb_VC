@@ -1,0 +1,510 @@
+/* ==========================================================================
+   1. VARIABLES GLOBALES (Consistencia de marca)
+   ========================================================================== */
+:root {
+  --primary-green: #11b6a8;
+  --industrial-dark: #2f2f2f;
+  --soft-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  --heading-font: 'Montserrat', sans-serif;
+  --body-font: 'Inter', sans-serif;
+
+  /* Sobrescribe el "success" (verde) por defecto de Bootstrap para que
+     text-success, bg-success, border-success, badges, spinners, etc.
+     usen el cian de marca en vez del verde de fábrica de Bootstrap. */
+  --bs-success: #11b6a8;
+  --bs-success-rgb: 17, 182, 168;
+}
+
+/* ==========================================================================
+   2. TIPOGRAFÍA Y ESPACIADO GENERAL
+   ========================================================================== */
+body {
+  font-family: var(--body-font);
+  color: #333;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6, .proyectos h2 {
+  font-family: var(--heading-font);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+/* Tipografía fluida (se adapta al tamaño de la pantalla) */
+h1 { font-size: calc(1.5rem + 1.5vw); }
+h2 { font-size: calc(1.3rem + 1vw); }
+
+/* Padding responsivo para las secciones */
+section {
+  padding: 60px 0; /* Espaciado móvil */
+}
+
+@media (min-width: 992px) {
+  section {
+    padding: 100px 0; /* Espaciado escritorio */
+  }
+}
+
+/* ==========================================================================
+   3. HERO SECTIONS Y BANNERS
+   ========================================================================== */
+.banner-vc {
+  background-image: url('../core/img/banner.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.parallax-section {
+  position: relative;
+  background-image: url('../img/banner_vc.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 60vh; /* Ajuste para móvil */
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 992px) {
+  .parallax-section {
+    height: 80vh; /* Altura original en desktop */
+  }
+}
+
+.parallax-section .overlay,
+.hero-org .overlay {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content, .hero-org .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-org {
+  position: relative;
+}
+
+/* ==========================================================================
+   4. NAVEGACIÓN (NAVBAR)
+   ========================================================================== */
+.navbar {
+  box-shadow: 0 2px 15px rgba(0,0,0,0.03) !important;
+  padding: 1rem 0;
+}
+
+.nav-underline .nav-link {
+  position: relative;
+  padding-bottom: 6px;
+  margin: 0 12px;
+  color: var(--industrial-dark) !important;
+  font-weight: 500;
+}
+
+.nav-underline .nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: 0; left: 0;
+  background-color: var(--primary-green);
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-underline .nav-link:hover::after,
+.nav-underline .nav-link.active::after {
+  width: 100%;
+}
+
+/* Ajustes menú móvil */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: var(--soft-shadow);
+    margin-top: 10px;
+  }
+  .nav-underline .nav-link::after {
+    display: none; /* Se oculta la línea animada en móvil para mayor limpieza */
+  }
+}
+
+/* ==========================================================================
+   5. TARJETAS DE PROYECTOS (Cards)
+   ========================================================================== */
+.proyecto-card, .card {
+  border: none !important;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--soft-shadow);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+}
+
+.proyecto-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(102, 101, 101, 0.12); /* Sombra mejorada al pasar el mouse */
+}
+
+.proyecto-card img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.proyectos h2 {
+  color: var(--primary-green);
+  position: relative;
+}
+
+.proyectos h2::after {
+  content: '';
+  width: 80px;
+  height: 3px;
+  background-color: var(--primary-green);
+  display: block;
+  margin: 10px auto 0;
+}
+
+.card p {
+  font-size: .9rem;
+  color: #555;
+}
+
+/* ==========================================================================
+   6. COMPONENTES Y UTILIDADES (Botones, Imágenes, Footer)
+   ========================================================================== */
+/* Botón moderno */
+.btn-success {
+  /* Bootstrap calcula los estados hover/active/focus de .btn-success en
+     tonos de verde fijos en tiempo de compilación (no usan --bs-success),
+     así que se sobrescriben aquí para que no aparezca un "flash" verde. */
+  --bs-btn-bg: var(--primary-green);
+  --bs-btn-border-color: var(--primary-green);
+  --bs-btn-hover-bg: #0d8f84;
+  --bs-btn-hover-border-color: #0d8f84;
+  --bs-btn-active-bg: #0a746c;
+  --bs-btn-active-border-color: #0a746c;
+  --bs-btn-disabled-bg: var(--primary-green);
+  --bs-btn-disabled-border-color: var(--primary-green);
+  --bs-btn-focus-shadow-rgb: 17, 182, 168;
+  background: linear-gradient(135deg, var(--primary-green) 0%, #11b6a8 100%);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active {
+  background: linear-gradient(135deg, #0d8f84 0%, #11b6a8 100%) !important;
+}
+
+/* Botón outline (mismo problema que .btn-success: Bootstrap fija estos
+   colores en verde al compilar y no leen --bs-success). Usado en los
+   botones de filtro y en "Ver todos los servicios". */
+.btn-outline-success {
+  --bs-btn-color: #11b6a8;
+  --bs-btn-border-color: #11b6a8;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #11b6a8;
+  --bs-btn-hover-border-color: #11b6a8;
+  --bs-btn-focus-shadow-rgb: 17, 182, 168;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #0d8f84;
+  --bs-btn-active-border-color: #0d8f84;
+  --bs-btn-disabled-color: #11b6a8;
+  --bs-btn-disabled-border-color: #11b6a8;
+}
+
+/* Footer */
+.footer-vc { background: var(--industrial-dark); }
+.footer-vc .footer-links li { margin-bottom: .6rem; }
+.footer-vc .footer-links a { color: #e7e7e7; text-decoration: none; }
+.footer-vc .footer-links a:hover { color: #ffffff; text-decoration: underline; }
+.footer-vc .footer-contact li { margin-bottom: .35rem; }
+.hover-white:hover { color: #fff !important; }
+
+/* Utilidades de imagen */
+.object-fit-cover { object-fit: cover; }
+.ratio > img { border-top-left-radius: .5rem; border-top-right-radius: .5rem; }
+.nav-pills .btn.active { background: var(--primary-green); color: #fff; border-color: var(--primary-green); }
+
+/* Gobierno corporativo - Imágenes circulares y efecto BN */
+.circle-img img {
+  width: 100%;
+  max-width: 120px;
+  height: 120px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.img-hover-bw {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+  cursor: pointer;
+}
+
+.img-hover-bw:hover {
+  filter: grayscale(0%);
+}
+
+.list-unstyled li {
+  margin-bottom: .5rem;
+}
+
+/* Ajustes de imágenes y elementos para móviles */
+@media (max-width: 768px) {
+  .proyecto-card img, .img-rounded {
+    height: 200px !important;
+  }
+  .circle-img img {
+    max-width: 100px;
+    height: 100px;
+  }
+}
+
+/* --- Mejoras de Definición Visual --- */
+
+/* Marco decorativo para la imagen */
+.image-accent-frame {
+    position: absolute;
+    top: 20px;
+    left: -20px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #11b6a8;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+/* Tarjetas de Diferenciadores */
+.feature-card {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: var(--soft-shadow);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    border-color: #11b6a8;
+}
+
+/* Línea decorativa bajo títulos */
+.header-line {
+    width: 60px;
+    height: 4px;
+    background: #11b6a8;
+    margin-top: 15px;
+    border-radius: 2px;
+}
+
+/* Tipografía */
+.tracking-wider {
+    letter-spacing: 0.15rem;
+}
+
+.lh-lg {
+    line-height: 1.8;
+}
+
+/* CTA Banner Moderno */
+.cta-banner {
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-banner::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+}
+
+/* --- Utilidades de Diseño --- */
+.max-w-600 { max-width: 600px; }
+.max-w-700 { max-width: 700px; }
+.bg-light-soft { background-color: #fcfcfc; }
+.line-short { width: 40px; height: 3px; }
+
+/* Efecto Zoom en Imagen Nosotros */
+.hover-zoom {
+    transition: transform 0.5s ease;
+}
+.hover-zoom:hover {
+    transform: scale(1.05);
+}
+
+/* Sombra Progresiva para las Tarjetas */
+.shadow-hover {
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.shadow-hover:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.05) !important;
+}
+
+/* Círculo de Icono Refinado */
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, rgba(17, 182, 168, 0.1) 0%, rgba(17, 182, 168, 0.2) 100%);
+    color: var(--primary-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px; /* Estilo 'Squircle' más moderno */
+    font-size: 1.8rem;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover .icon-circle {
+    transform: rotate(-10deg) scale(1.1);
+}
+
+/* Forma decorativa en el CTA */
+.cta-shape {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Ajustes de Texto Outline para el Hero */
+.text-outline {
+    -webkit-text-stroke: 1px rgba(255,255,255,0.7);
+    color: transparent;
+    font-weight: 900;
+}
+
+/* Botones de Filtro */
+.btn-filter.active {
+    background-color: #11b6a8 !important;
+    color: white !important;
+    box-shadow: 0 4px 10px rgba(17, 182, 168, 0.2);
+}
+
+.button-filter:hover {
+    background-color: rgba(17, 182, 168, 0.1);
+    color: #11b6a8;
+}
+
+/* Efecto de Tarjetas en Proyectos */
+.proyecto-card {
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
+}
+
+.proyecto-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+}
+
+.hover-zoom {
+    transition: transform 0.6s ease;
+}
+
+.proyecto-card:hover .hover-zoom {
+    transform: scale(1.1);
+}
+
+/* Modal split view */
+.modal-content {
+    border: none;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   PANTALLA DE CARGA (PRELOADER)
+   ========================================================================== */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff; /* Fondo blanco limpio */
+    z-index: 99999; /* Asegura que esté por encima de absolutamente todo (incluyendo modales y navbars) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0.6s ease;
+}
+
+/* Efecto sutil de pulsación en el contenido mientras carga */
+.loader-content {
+    animation: pulseLoader 2s infinite ease-in-out;
+}
+
+@keyframes pulseLoader {
+    0% { transform: scale(0.98); opacity: 0.8; }
+    50% { transform: scale(1.02); opacity: 1; }
+    100% { transform: scale(0.98); opacity: 0.8; }
+}
+
+/* Clase que inyecta JavaScript para desvanecer la pantalla */
+.preloader-hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/* Estilo para el logo en la pantalla de carga */
+.loader-logo img {
+    max-width: 120px; /* Ajusta este valor según el tamaño de tu logo */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    /* Efecto opcional: un ligero fundido de entrada para el logo */
+    animation: fadeInLogo 1.5s ease-out;
+}
+
+@keyframes fadeInLogo {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Ajuste adicional al contenedor para que el logo y el spinner se vean equilibrados */
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.proyecto-item {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  
+  /* Permite que los botones se deslicen de lado a lado en el celular */
+  @media (max-width: 768px) {
+    .filter-scroll {
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      justify-content: flex-start !important;
+      padding-bottom: 5px; /* Espacio para que no se corte la sombra */
+    }
+    /* Oculta la barra de scroll nativa para que se vea más limpio */
+    .filter-scroll::-webkit-scrollbar {
+      display: none; 
+    }
+  }

@@ -1,141 +1,241 @@
 {% extends 'core/base.html' %}
-{% load static %}
+{% load static vc_tags %}
 
 {% block content %}
 
-<section class="hero-modern-main position-relative d-flex align-items-center overflow-hidden" 
-         style="background-image: url('{% static "core/img/banner_vc.png" %}'); background-size: cover; background-position: center; min-height: 90vh;">
-  
-  <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%); z-index: 1;"></div>
-  
-  <div class="container position-relative z-3">
-    <div class="row align-items-center">
-      <div class="col-lg-8 text-white mt-5 mt-lg-0">
-        <div class="p-4 p-md-5" style="background: rgba(123, 121, 121, 0); backdrop-filter: blur(8px); border-left: 4px solid #11b6a8; border-radius: 0 20px 20px 0;">
-          <span class="fw-bold text-uppercase small d-block mb-2" style="color: #0ed8c7; letter-spacing: 0.2rem;">Innovación en Montaje Industrial</span>
-          <h1 class="display-2 fw-bolder mb-4 lh-1">
-            INGENIERÍA Y <span style="-webkit-text-stroke: 1px rgba(255,255,255,0.8); color: transparent;">CONSTRUCCIÓN</span><br>
-            <span class="text-success">VC LIMITADA</span>
-          </h1>
-          <p class="lead mb-5 opacity-75" style="max-width: 600px;">
-            Soluciones de infraestructura de alta complejidad con precisión técnica y compromiso sostenible en todo Chile.
-          </p>
-          <div class="d-flex gap-3 flex-wrap">
-            <a href="{% url 'proyectos' %}" class="btn btn-success btn-lg px-5 py-3 fw-bold shadow">EXPLORAR PROYECTOS</a>
-            <a href="{% url 'contacto' %}" class="btn btn-outline-light btn-lg px-5 py-3 fw-bold border-2">CONTÁCTANOS</a>
-          </div>
+<!-- 01 · HERO ROTATIVO -->
+<section class="vc-hero" id="vcHero" data-interval="6500">
+  {% if slides %}
+    {% for sl in slides %}
+    <div class="vc-hero__slide{% if forloop.first %} is-active{% endif %}"{% if not forloop.first %} aria-hidden="true"{% endif %}>
+      <img src="{{ sl.imagen.url }}" alt="{{ sl.alt }}" {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}>
+    </div>
+    {% endfor %}
+  {% else %}
+  <div class="vc-hero__slide is-active">
+    <img src="{% static 'core/img/banner_vc.png' %}" alt="Supervisor frente a obra en construcción" data-i18n-alt="slide1Alt" fetchpriority="high">
+  </div>
+  <div class="vc-hero__slide" aria-hidden="true">
+    <img src="{% static 'core/img/planta.png' %}" alt="Planta industrial con correas transportadoras" data-i18n-alt="slide2Alt" loading="lazy">
+  </div>
+  <div class="vc-hero__slide" aria-hidden="true">
+    <img src="{% static 'core/img/puente.png' %}" alt="Puente de hormigón sobre río" data-i18n-alt="slide3Alt" loading="lazy">
+  </div>
+  {% endif %}
+  <div class="vc-hero__scrim" aria-hidden="true"></div>
+
+  <div class="vc-wrap vc-hero__inner">
+    <div class="vc-hero__copy">
+      <p class="vc-hero__eyebrow">Ingeniería y Construcción VC Limitada</p>
+      <h1 data-i18n="heroTitle">Construimos y montamos la infraestructura que sostiene a la industria.</h1>
+      <p class="vc-hero__sub" data-i18n="heroSub">Soluciones de infraestructura de alta complejidad con precisión técnica y compromiso sostenible en todo Chile.</p>
+      <div class="vc-hero__ctas">
+        <a href="#proyectos" class="vc-btn vc-btn--accent" data-i18n="heroCta1">Explorar proyectos</a>
+        <a href="{% url 'contacto' %}" class="vc-btn vc-btn--glass" data-i18n="heroCta2">Contáctanos</a>
+      </div>
+    </div>
+    <div class="vc-hero__tabs">
+      {% if slides %}
+        {% for sl in slides %}
+        <button type="button" class="vc-hero__tab{% if forloop.first %} is-active{% endif %}" data-slide="{{ forloop.counter0 }}"><span class="vc-hero__bar"><span></span></span><span{% if sl.etiqueta_en %} data-en="{{ sl.etiqueta_en }}"{% endif %}>{{ sl.etiqueta }}</span></button>
+        {% endfor %}
+      {% else %}
+      <button type="button" class="vc-hero__tab is-active" data-slide="0"><span class="vc-hero__bar"><span></span></span><span data-i18n="slide1">Obras civiles</span></button>
+      <button type="button" class="vc-hero__tab" data-slide="1"><span class="vc-hero__bar"><span></span></span><span data-i18n="slide2">Montaje industrial</span></button>
+      <button type="button" class="vc-hero__tab" data-slide="2"><span class="vc-hero__bar"><span></span></span><span data-i18n="slide3">Infraestructura</span></button>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- 02 · DECLARACIÓN + CIFRAS -->
+<section class="vc-about" id="nosotros">
+  <div class="vc-wrap">
+    <div class="vc-about__grid">
+      <p class="vc-about__statement" data-i18n-html="statement">Impulsamos la transformación industrial mediante la <em>excelencia en montaje</em>. No solo construimos infraestructuras: forjamos relaciones de confianza.</p>
+      <div class="vc-about__side">
+        <p data-i18n="about">Desde Puchuncaví, Región de Valparaíso, ejecutamos montaje industrial, obras civiles y mantención para los sectores de energía y minería.</p>
+        <a href="{% url 'nosotros' %}" class="vc-link"><span data-i18n="history">Conoce nuestra historia</span> <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <div class="vc-stats">
+      <div class="vc-stat"><span class="vc-stat__value">0</span><span class="vc-stat__rule"></span><span class="vc-stat__label" data-i18n="stat1">Accidentes FAT / LTI en 2025</span></div>
+      <div class="vc-stat"><span class="vc-stat__value">60%</span><span class="vc-stat__rule"></span><span class="vc-stat__label" data-i18n="stat2">Proveedores locales</span></div>
+      <div class="vc-stat"><span class="vc-stat__value">24/7</span><span class="vc-stat__rule"></span><span class="vc-stat__label" data-i18n="stat3">Respuesta operativa</span></div>
+      <div class="vc-stat"><span class="vc-stat__value">ISO</span><span class="vc-stat__rule"></span><span class="vc-stat__label" data-i18n="stat4">9001 · 14001 · 45001 en calidad, ambiente y seguridad</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · ESPECIALIDADES (PANELES EXPANDIBLES) -->
+<section class="vc-areas" id="especialidades">
+  <div class="vc-wrap">
+    <div class="vc-areas__head">
+      <h2 class="vc-h2" data-i18n="areasTitle">Áreas de especialización</h2>
+      <p data-i18n="areasHint">Pasa el cursor o toca cada área para ver su alcance.</p>
+    </div>
+    <div class="vc-panels" id="vcPanels">
+      <div class="vc-panel is-active" tabindex="0" role="button" aria-expanded="true">
+        <img src="{% img_sitio 'area_montaje' 'core/img/servicio1.png' %}" alt="" loading="lazy">
+        <div class="vc-panel__scrim" aria-hidden="true"></div>
+        <div class="vc-panel__closed" aria-hidden="true"><span class="vc-panel__num">01</span><strong data-i18n="area1">Montaje Industrial</strong></div>
+        <div class="vc-panel__open">
+          <span class="vc-panel__num">01</span>
+          <h3 data-i18n="area1">Montaje Industrial</h3>
+          <p data-i18n="area1Text">Soluciones integrales en plantas industriales y faenas productivas con alta exigencia mecánica y estructural.</p>
+          <a href="{% url 'contacto' %}" class="vc-panel__more" data-i18n="verServicio">Consultar servicio →</a>
+        </div>
+      </div>
+      <div class="vc-panel" tabindex="0" role="button" aria-expanded="false">
+        <img src="{% img_sitio 'area_obras' 'core/img/servicio2.png' %}" alt="" loading="lazy">
+        <div class="vc-panel__scrim" aria-hidden="true"></div>
+        <div class="vc-panel__closed" aria-hidden="true"><span class="vc-panel__num">02</span><strong data-i18n="area2">Obras Civiles</strong></div>
+        <div class="vc-panel__open">
+          <span class="vc-panel__num">02</span>
+          <h3 data-i18n="area2">Obras Civiles</h3>
+          <p data-i18n="area2Text">Ejecución de edificaciones, estructuras complejas y obras viales bajo las más estrictas normativas nacionales.</p>
+          <a href="{% url 'contacto' %}" class="vc-panel__more" data-i18n="verServicio">Consultar servicio →</a>
+        </div>
+      </div>
+      <div class="vc-panel" tabindex="0" role="button" aria-expanded="false">
+        <img src="{% img_sitio 'area_mantencion' 'core/img/servicio3.png' %}" alt="" loading="lazy">
+        <div class="vc-panel__scrim" aria-hidden="true"></div>
+        <div class="vc-panel__closed" aria-hidden="true"><span class="vc-panel__num">03</span><strong data-i18n="area3">Mantención Programada</strong></div>
+        <div class="vc-panel__open">
+          <span class="vc-panel__num">03</span>
+          <h3 data-i18n="area3">Mantención Programada</h3>
+          <p data-i18n="area3Text">Prevención integral de fallas y aseguramiento de la continuidad operacional para equipos críticos e infraestructura.</p>
+          <a href="{% url 'contacto' %}" class="vc-panel__more" data-i18n="verServicio">Consultar servicio →</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="py-5 bg-white">
-  <div class="container py-lg-5">
-    <div class="text-center mb-5">
-      <span class="text-success fw-bold text-uppercase small d-block mb-2" style="letter-spacing: 0.15rem;">Trayectoria</span>
-      <h2 class="fw-bold display-6 mb-3">Confía en nuestra experiencia</h2>
-      <div class="mx-auto" style="width: 60px; height: 4px; background: #11b6a8; border-radius: 2px;"></div>
-    </div>
-    
-    <div class="row g-4 text-center mt-2">
-      <div class="col-6 col-lg-3">
-        <div class="card border-0 shadow-sm h-100 p-4" style="border-radius: 16px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
-          <div class="text-success mb-3 fs-1"><i class="bi bi-building-check"></i></div>
-          <h3 class="fw-bolder text-dark display-6 mb-1">+5</h3>
-          <p class="text-muted small fw-bold text-uppercase mb-0">Proyectos Ejecutados</p>
-        </div>
-      </div>
-      <div class="col-6 col-lg-3">
-        <div class="card border-0 shadow-sm h-100 p-4" style="border-radius: 16px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
-          <div class="text-success mb-3 fs-1"><i class="bi bi-calendar-check"></i></div>
-          <h3 class="fw-bolder text-dark display-6 mb-1">+1</h3>
-          <p class="text-muted small fw-bold text-uppercase mb-0">Años de Excelencia</p>
-        </div>
-      </div>
-      <div class="col-6 col-lg-3">
-        <div class="card border-0 shadow-sm h-100 p-4" style="border-radius: 16px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
-          <div class="text-success mb-3 fs-1"><i class="bi bi-gear-wide-connected"></i></div>
-          <h3 class="fw-bolder text-dark display-6 mb-1">24/7</h3>
-          <p class="text-muted small fw-bold text-uppercase mb-0">Respuesta Operativa</p>
-        </div>
-      </div>
-      <div class="col-6 col-lg-3">
-        <div class="card border-0 shadow-sm h-100 p-4" style="border-radius: 16px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
-          <div class="text-success mb-3 fs-1"><i class="bi bi-shield-check"></i></div>
-          <h3 class="fw-bolder text-dark display-6 mb-1">100%</h3>
-          <p class="text-muted small fw-bold text-uppercase mb-0">Compromiso en Seguridad</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="py-5 bg-light border-top border-bottom">
-  <div class="container py-lg-5">
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-5">
+<!-- 04 · PROYECTOS (CARRUSEL) -->
+<section class="vc-projects" id="proyectos">
+  <div class="vc-wrap">
+    <div class="vc-projects__head">
       <div>
-        <span class="text-success fw-bold text-uppercase small d-block mb-2" style="letter-spacing: 0.15rem;">Capacidades Técnicas</span>
-        <h2 class="fw-bold display-6 mb-0">Áreas de Especialización</h2>
+        <p class="vc-eyebrow" data-i18n="projEyebrow">Experiencia en terreno</p>
+        <h2 class="vc-h2" data-i18n="projTitle">Proyectos ejecutados</h2>
       </div>
-      <div class="mt-3 mt-md-0">
-        <a href="#" class="btn btn-outline-success fw-bold rounded-pill px-4">Ver todos los servicios</a>
+      <div class="vc-projects__ctrl">
+        <span class="vc-projects__count"><b id="vcProjNum">01</b> / {{ destacados|length|stringformat:"02d" }}</span>
+        <button type="button" class="vc-arrow" id="vcPrev" aria-label="Proyecto anterior" data-i18n-aria="prev">←</button>
+        <button type="button" class="vc-arrow vc-arrow--fill" id="vcNext" aria-label="Proyecto siguiente" data-i18n-aria="next">→</button>
       </div>
     </div>
 
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="card border-0 shadow-sm h-100 overflow-hidden" style="border-radius: 16px; transition: box-shadow 0.3s ease;" onmouseover="this.style.boxShadow='0 15px 35px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='0 4px 6px rgba(0,0,0,0.05)'">
-          <div class="position-relative overflow-hidden" style="height: 240px;">
-            <img src="{% static 'core/img/servicio1.png' %}" alt="Montaje Industrial" class="w-100 h-100 object-fit-cover" style="transition: transform 0.6s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-          </div>
-          <div class="card-body p-4 bg-white position-relative z-2">
-            <h5 class="fw-bold mb-2">Montaje Industrial</h5>
-            <p class="text-muted small mb-0">Soluciones integrales en plantas industriales y faenas productivas con alta exigencia mecánica y estructural.</p>
-          </div>
-        </div>
+    {% if destacados %}
+    <div class="vc-projects__grid" id="vcProjects">
+      <div class="vc-projects__media">
+        <span class="vc-projects__tag" id="vcProjTag" data-es="{{ destacados.0.etiqueta_es }}" data-en="{{ destacados.0.etiqueta_en_final }}">{{ destacados.0.etiqueta_es }}</span>
+        {% for p in destacados %}
+        <img{% if forloop.first %} class="is-active"{% endif %} src="{{ p.imagen.url }}" alt="{{ p.imagen_alt|default:p.titulo }}" loading="lazy">
+        {% endfor %}
       </div>
-      <div class="col-md-4">
-        <div class="card border-0 shadow-sm h-100 overflow-hidden" style="border-radius: 16px; transition: box-shadow 0.3s ease;" onmouseover="this.style.boxShadow='0 15px 35px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='0 4px 6px rgba(0,0,0,0.05)'">
-          <div class="position-relative overflow-hidden" style="height: 240px;">
-            <img src="{% static 'core/img/servicio2.png' %}" alt="Obras Civiles" class="w-100 h-100 object-fit-cover" style="transition: transform 0.6s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-          </div>
-          <div class="card-body p-4 bg-white position-relative z-2">
-            <h5 class="fw-bold mb-2">Obras Civiles</h5>
-            <p class="text-muted small mb-0">Ejecución de edificaciones, estructuras complejas y obras viales bajo las más estrictas normativas nacionales.</p>
-          </div>
+      <div>
+        {% for p in destacados %}
+        <article class="vc-project{% if forloop.first %} is-active{% endif %}" data-tag-es="{{ p.etiqueta_es }}" data-tag-en="{{ p.etiqueta_en_final }}">
+          <h3>{{ p.titulo }}</h3>
+          <p{% if p.resumen_en %} data-en="{{ p.resumen_en }}"{% endif %}>{{ p.resumen }}</p>
+          <dl>
+            {% if p.ubicacion %}<div><dt data-i18n="ubic">Ubicación</dt><dd{% if p.ubicacion_en %} data-en="{{ p.ubicacion_en }}"{% endif %}>{{ p.ubicacion }}</dd></div>{% endif %}
+            {% if p.especialidad %}<div><dt data-i18n="esp">Especialidad</dt><dd{% if p.especialidad_en %} data-en="{{ p.especialidad_en }}"{% endif %}>{{ p.especialidad }}{% if p.anio %} · {{ p.anio }}{% endif %}</dd></div>{% endif %}
+          </dl>
+          <a href="{{ p.get_absolute_url }}" class="vc-link" data-i18n="ficha">Ver ficha del proyecto →</a>
+        </article>
+        {% endfor %}
+        {% if destacados|length > 1 %}
+        <div class="vc-thumbs">
+          {% for p in destacados %}
+          <button type="button" class="vc-thumb{% if forloop.first %} is-active{% endif %}" data-proj="{{ forloop.counter0 }}" aria-label="{{ p.titulo }}"><span><img src="{{ p.imagen.url }}" alt="" loading="lazy"></span><span></span></button>
+          {% endfor %}
         </div>
+        {% endif %}
       </div>
-      <div class="col-md-4">
-        <div class="card border-0 shadow-sm h-100 overflow-hidden" style="border-radius: 16px; transition: box-shadow 0.3s ease;" onmouseover="this.style.boxShadow='0 15px 35px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='0 4px 6px rgba(0,0,0,0.05)'">
-          <div class="position-relative overflow-hidden" style="height: 240px;">
-            <img src="{% static 'core/img/servicio3.png' %}" alt="Mantención Programada" class="w-100 h-100 object-fit-cover" style="transition: transform 0.6s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-          </div>
-          <div class="card-body p-4 bg-white position-relative z-2">
-            <h5 class="fw-bold mb-2">Mantención Programada</h5>
-            <p class="text-muted small mb-0">Prevención integral de fallas y aseguramiento de la continuidad operacional para equipos críticos e infraestructura.</p>
-          </div>
-        </div>
+    </div>
+    {% else %}
+    <p class="vc-lead" data-i18n="noProjects">Pronto publicaremos nuestros proyectos.</p>
+    {% endif %}
+  </div>
+</section>
+
+<!-- 05 · SOSTENIBILIDAD -->
+<section class="vc-esg" id="sostenibilidad">
+  <img class="vc-esg__bg" src="{% img_sitio 'inicio_esg' 'core/img/sostenibilidad.png' %}" alt="" aria-hidden="true" loading="lazy">
+  <div class="vc-esg__scrim" aria-hidden="true"></div>
+  <div class="vc-wrap">
+    <div class="vc-esg__head">
+      <div>
+        <p class="vc-eyebrow" data-i18n="esgEyebrow">Sostenibilidad ESG</p>
+        <h2 data-i18n="esgTitle">Cero accidentes con tiempo perdido en 2025.</h2>
       </div>
+      <p data-i18n="esgSub">Compromiso ambiental, social y de gobernanza para construir un futuro industrial responsable y seguro en Chile.</p>
+    </div>
+    <div class="vc-pillars">
+      <div class="vc-pillar">
+        <h3 data-i18n="pil1">Ambiente</h3>
+        <p data-i18n="pil1Text">Gestión de residuos, eficiencia energética y control de emisiones en obra.</p>
+        <span class="vc-pillar__value">-18%</span><span class="vc-pillar__label" data-i18n="pil1Dato">Emisiones CO₂e por HH</span>
+      </div>
+      <div class="vc-pillar">
+        <h3>Social</h3>
+        <p data-i18n="pil2Text">Cero daño a las personas, capacitación continua, empleabilidad local y relacionamiento comunitario transparente.</p>
+        <span class="vc-pillar__value">60%</span><span class="vc-pillar__label" data-i18n="pil2Dato">Proveedores locales</span>
+      </div>
+      <div class="vc-pillar">
+        <h3 data-i18n="pil3">Gobernanza</h3>
+        <p data-i18n="pil3Text">Cumplimiento normativo estricto, ética, integridad corporativa y cadena de suministro responsable con criterios ESG.</p>
+        <span class="vc-pillar__value">60%</span><span class="vc-pillar__label" data-i18n="pil3Dato">Reciclaje de residuos</span>
+      </div>
+    </div>
+    <div class="vc-esg__foot">
+      <div class="vc-ods">
+        <span data-i18n="ods">Contribuimos a los ODS</span>
+        <img src="{% static 'core/img/ods6.png' %}" alt="ODS 6" loading="lazy">
+        <img src="{% static 'core/img/ods8.png' %}" alt="ODS 8" loading="lazy">
+        <img src="{% static 'core/img/ods9.png' %}" alt="ODS 9" loading="lazy">
+        <img src="{% static 'core/img/ods12.png' %}" alt="ODS 12" loading="lazy">
+        <img src="{% static 'core/img/ods13.png' %}" alt="ODS 13" loading="lazy">
+      </div>
+      <a href="{% url 'sostenibilidad' %}" class="vc-btn vc-btn--accent" data-i18n="esgCta">Ver compromiso ESG</a>
     </div>
   </div>
 </section>
 
-<section class="py-5 bg-white">
-  <div class="container py-lg-4">
-    <div class="p-5 text-center text-white rounded-4 shadow-lg overflow-hidden position-relative" style="background: linear-gradient(135deg, #0d484a 0%, #11b6a8 100%);">
-      <div class="position-relative z-3">
-        <h2 class="fw-bold display-6 mb-3">Estemos en contacto</h2>
-        <p class="lead opacity-90 mb-4 mx-auto" style="max-width: 700px;">
-          Cuéntanos sobre tu próximo desafío de infraestructura industrial y trabajemos juntos para ejecutarlo con precisión.
-        </p>
-        <a href="{% url 'contacto' %}" class="btn btn-light btn-lg px-5 fw-bold text-success shadow-sm" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-          SOLICITAR PROPUESTA
-        </a>
+<!-- 06 · CONTACTO -->
+<section class="vc-contact" id="contacto">
+  <div class="vc-contact__grid">
+    <div class="vc-contact__media">
+      <img src="{% img_sitio 'inicio_contacto' 'core/img/contacto.png' %}" alt="Equipo VC en reunión técnica" data-i18n-alt="contactAlt" loading="lazy">
+      <div class="vc-contact__info">
+        <div><small data-i18n="lines">Líneas directas</small><p><a href="tel:+56993824279">+56 9 9382 4279</a><br><a href="tel:+56981854335">+56 9 8185 4335</a></p></div>
+        <div><small data-i18n="office">Oficina</small><p>Teniente Merino #1, Las Ventanas, Puchuncaví</p></div>
       </div>
-      
-      <div style="position: absolute; top: -50px; left: -50px; width: 250px; height: 250px; background: rgba(255,255,255,0.05); border-radius: 50%; z-index: 1;"></div>
-      <div style="position: absolute; bottom: -20px; right: 5%; width: 100px; height: 100px; background: rgba(255,255,255,0.08); border-radius: 50%; z-index: 1;"></div>
+    </div>
+    <div class="vc-contact__form">
+      <p class="vc-eyebrow" data-i18n="nav5">Contacto</p>
+      <h2 class="vc-h2" data-i18n="contactTitle">Hablemos de tu proyecto</h2>
+      <p data-i18n="contactSub">Completa el formulario y un especialista de VC Limitada se pondrá en contacto contigo a la brevedad.</p>
+      <form class="vc-form" method="post" action="{% url 'contacto' %}">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{% url 'home' %}#contacto">
+        <label><span data-i18n="fName">Nombre completo</span><input required name="nombre" autocomplete="name" placeholder="Juan Pérez" data-i18n-ph="fNamePh"></label>
+        <label><span data-i18n="fCompany">Empresa</span><input name="empresa" autocomplete="organization" placeholder="Razón social" data-i18n-ph="fCompanyPh"></label>
+        <label><span data-i18n="fEmail">Correo electrónico</span><input required type="email" name="email" autocomplete="email" placeholder="ejemplo@empresa.com" data-i18n-ph="fEmailPh"></label>
+        <label><span data-i18n="fService">Servicio</span>
+          <select name="servicio">
+            <option value="Montaje industrial" data-i18n="o1">Montaje industrial</option>
+            <option value="Obras civiles" data-i18n="o2">Obras civiles</option>
+            <option value="Mantención programada" data-i18n="o3">Mantención programada</option>
+            <option value="Otro" data-i18n="o4">Otro</option>
+          </select>
+        </label>
+        <label class="vc-form__full"><span data-i18n="fMsg">Tu mensaje</span><textarea required name="mensaje" rows="4" placeholder="Cuéntanos sobre tu proyecto o requerimiento..." data-i18n-ph="fMsgPh"></textarea></label>
+        <button type="submit" class="vc-btn vc-btn--primary" data-i18n="send">Enviar mensaje →</button>
+      </form>
     </div>
   </div>
 </section>

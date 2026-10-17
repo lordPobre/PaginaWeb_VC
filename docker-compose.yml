@@ -1,0 +1,16 @@
+# Postgres local para desarrollo:  docker compose up -d
+# Luego en .env:  DATABASE_URL=postgres://vc:vc@localhost:5432/vc
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: vc
+      POSTGRES_USER: vc
+      POSTGRES_PASSWORD: vc
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:

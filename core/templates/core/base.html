@@ -4,186 +4,128 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ingeniería y Construcción VC Limitada</title>
-  <link rel="icon" type="image/jpg" href="{% static 'img/favicon.jpg' %}">
-  <link rel="icon" type="image/jpg" sizes="32x32" href="favicon-32x32.jpg">
-  <link rel="icon" type="image/jpg" sizes="16x16" href="favicon-16x16.jpg">
+  <title>{% block title %}Ingeniería y Construcción VC Limitada{% endblock %}</title>
+  <meta name="description" content="Montaje industrial, obras civiles y mantención programada para los sectores de energía y minería en Chile.">
+  <link rel="icon" type="image/jpeg" href="{% static 'core/img/favicon.jpg' %}">
+  <link rel="apple-touch-icon" href="{% static 'core/img/favicon.jpg' %}">
 
-  <!-- Google/Android -->
-  <link rel="icon" type="image/jpg" sizes="192x192" href="favicon-192x192.jpg">
-  <link rel="icon" type="image/jpg" sizes="512x512" href="favicon-512x512.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Dispositivos Apple (iOS) -->
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.jpg">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'core/css/vc.css' %}">
+  {% block extra_css %}{% endblock %}
 </head>
 <body>
 
-  <!-- Navbar -->
-{% load static %}
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-  <div class="container">
-
-    <!-- Logo -->
-    <a class="navbar-brand" href="{% url 'home' %}">
-    <img src="{% static 'core/img/logo-vc-of.jpg' %}" alt="VC Ingeniería y Construcción" height="100">
-    </a>
-
-    <!-- Botón móvil -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Enlaces -->
-    <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
-      <ul class="navbar-nav mb-2 mb-lg-0 position-relative nav-underline">
-        <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Inicio</a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'nosotros' %}active{% endif %}" href="{% url 'nosotros' %}">Nosotros</a>
-        </li>
-        {% comment %}<li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'organismo_corporativo' %}active{% endif %}" href="{% url 'organismo_corporativo' %}">Organismo Corporativo</a>
-        </li>{%endcomment%}
-        <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'proyectos' %}active{% endif %}" href="{% url 'proyectos' %}">Proyectos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'sostenibilidad' %}active{% endif %}" href="{% url 'sostenibilidad' %}">Sostenibilidad</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'contacto' %}active{% endif %}" href="{% url 'contacto' %}">Contacto</a>
-        </li>
-        
-      </ul>
-    </div>
-
-    <div id="preloader">
-      <div class="loader-content text-center">
-          <div class="spinner-border text-success mb-4" style="width: 3rem; height: 3rem; border-width: 0.3em;" role="status">
-              <span class="visually-hidden">Cargando...</span>
-          </div>
-          
-          <div class="loader-logo">
-              <img src="{% static 'core/img/favicon.jpg' %}" alt="VC Chile Logo" class="img-fluid mb-2">
-          </div>
-          
-          <p class="text-muted small text-uppercase mb-0" style="letter-spacing: 0.1rem; opacity: 0.6;">Cargando experiencia...</p>
+  <!-- Barra superior -->
+  <div class="vc-topbar">
+    <div class="vc-wrap">
+      <div class="vc-topbar__group vc-topbar__contact">
+        <a href="tel:+56993824279">+56 9 9382 4279</a>
+        <a href="mailto:svega@vcchile.cl">svega@vcchile.cl</a>
       </div>
+      <div class="vc-topbar__group">
+        <a href="#" class="vc-hide-sm" data-i18n="trabaja">Trabaja con nosotros</a>
+        <a href="{% url 'denuncias' %}" data-i18n="denuncias">Canal de denuncias</a>
+        <div class="vc-lang" role="group" aria-label="Idioma" data-i18n-aria="langAria">
+          <button type="button" lang="es" data-lang="es" aria-pressed="true">ES</button>
+          <button type="button" lang="en" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </div>
   </div>
 
-    <!-- Iconos Sociales -->
-    <div class="d-none d-lg-flex align-items-center gap-3">
-      <a href="#" class="text-dark"><i class="bi bi-facebook"></i></a>
-      <a href="#" class="text-dark"><i class="bi bi-google"></i></a>
-      <a href="#" class="text-dark"><i class="bi bi-linkedin"></i></a>
+  <!-- Header -->
+  {% with url_name=request.resolver_match.url_name %}
+  <header class="vc-header" id="vcHeader">
+    <div class="vc-wrap">
+      <a class="vc-header__logo" href="{% url 'home' %}" aria-label="VC Ingeniería y Construcción, inicio" data-i18n-aria="homeAria">
+        <img src="{% static 'core/img/logo-vc-of.jpg' %}" alt="VC Ingeniería y Construcción" data-i18n-alt="logoAlt">
+      </a>
+      <ul class="vc-nav">
+        <li><a href="{% url 'nosotros' %}" class="{% if url_name == 'nosotros' %}active{% endif %}" data-i18n="nav1">Nosotros</a></li>
+        <li><a href="{% url 'home' %}#especialidades" data-i18n="nav2">Especialidades</a></li>
+        <li><a href="{% url 'proyectos' %}" class="{% if url_name == 'proyectos' %}active{% endif %}" data-i18n="nav3">Proyectos</a></li>
+        <li><a href="{% url 'sostenibilidad' %}" class="{% if url_name == 'sostenibilidad' %}active{% endif %}" data-i18n="nav4">Sostenibilidad</a></li>
+        <li><a href="{% url 'contacto' %}" class="{% if url_name == 'contacto' %}active{% endif %}" data-i18n="nav5">Contacto</a></li>
+      </ul>
+      <div class="vc-header__actions">
+        <a href="{% url 'contacto' %}" class="vc-btn vc-btn--primary vc-btn--sm vc-header__cta" data-i18n="cta">Cotizar proyecto</a>
+        <button type="button" class="vc-burger" id="vcBurger" aria-label="Abrir menú" aria-expanded="false" aria-controls="vcMobileNav" data-i18n-aria="menuAria">☰</button>
+      </div>
     </div>
+    <nav class="vc-mobile-nav" id="vcMobileNav">
+      <a href="{% url 'nosotros' %}" data-i18n="nav1">Nosotros</a>
+      <a href="{% url 'home' %}#especialidades" data-i18n="nav2">Especialidades</a>
+      <a href="{% url 'proyectos' %}" data-i18n="nav3">Proyectos</a>
+      <a href="{% url 'sostenibilidad' %}" data-i18n="nav4">Sostenibilidad</a>
+      <a href="{% url 'contacto' %}" data-i18n="nav5">Contacto</a>
+      <a href="tel:+56993824279" class="vc-mobile-nav__tel">+56 9 9382 4279</a>
+      <a href="{% url 'contacto' %}" class="vc-btn vc-btn--primary vc-mobile-nav__cta" data-i18n="cta">Cotizar proyecto</a>
+    </nav>
+  </header>
+  {% endwith %}
 
-  </div>
-</nav>
+  {% if messages %}
+    {% for message in messages %}
+      <div class="vc-toast" role="status">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
 
-  <main class="py-4">
-    <div class="container">
-      {% block content %}{% endblock %}
-    </div>
+  <main>
+    {% block content %}{% endblock %}
   </main>
 
   <!-- Footer -->
-<footer class="footer-vc text-white pt-5 pb-3">
-  <div class="container">
-    <div class="row g-4 align-items-start">
-
-      <!-- Col: Logo + contacto -->
-      <div class="col-12 col-lg-5">
-        <div class="d-flex align-items-center mb-4">
-          <img src="{% static 'core/img/logo-footer.png' %}" alt="VC Ingeniería y Construcción"
-               height="64" class="me-3">
-          <div class="fw-semibold fs-5">INGENIERÍA Y CONSTRUCCIÓN<br> VC LIMITADA</div>
-        </div>
-
-        <ul class="list-unstyled small footer-contact">
-          <li><a href="mailto:contacto@vcchile.com" class="text-white text-decoration-none">svega@vcchile.cl - mcampos@vcchile.cl</a></li>
-          <li>(+56) 9 9382 4279 — (+56) 9 8185 4335</li>
-          <li>Código Postal: 2480000</li>
-          <li>Teniente Merino 1, Puchuncaví, Valparaíso, Chile</li>
-        </ul>
-
-        <hr class="border-secondary my-4">
-
-        <div class="d-flex align-items-center gap-3">
-          <span class="me-2 small">Síguenos</span>
-          <a class="text-white-50 hover-white" href="#" aria-label="LinkedIn"><i class="bi bi-linkedin fs-5"></i></a>
-          <a class="text-white-50 hover-white" href="#" aria-label="Facebook"><i class="bi bi-facebook fs-5"></i></a>
-          <a class="text-white-50 hover-white" href="#" aria-label="Instagram"><i class="bi bi-instagram fs-5"></i></a>
-          <a class="text-white-50 hover-white" href="#" aria-label="YouTube"><i class="bi bi-youtube fs-5"></i></a>
-        </div>
+  <footer class="vc-footer">
+    <div class="vc-wrap vc-footer__grid">
+      <div class="vc-footer__brand">
+        <img src="{% static 'core/img/logo-vc-of.jpg' %}" alt="VC Ingeniería y Construcción" data-i18n-alt="logoAlt">
+        <p>Teniente Merino 1, Puchuncaví<br>Valparaíso, Chile · CP 2480000</p>
+        <p style="margin-top:10px;">
+          <a href="tel:+56993824279" style="color:inherit;text-decoration:none;">+56 9 9382 4279</a> ·
+          <a href="tel:+56981854335" style="color:inherit;text-decoration:none;">+56 9 8185 4335</a>
+        </p>
       </div>
-
-      <!-- Col: enlaces 1 -->
-      <div class="col-6 col-lg-3">
-        <ul class="list-unstyled footer-links">
-          <li><a href="{% url 'nosotros' %}">Nosotros</a></li>
-          <li><a href="{% url 'proyectos' %}">Proyectos</a></li>
-          <li><a href="{% url 'sostenibilidad' %}">Sostenibilidad</a></li>
+      <div>
+        <h4 data-i18n="footCompany">Empresa</h4>
+        <ul>
+          <li><a href="{% url 'nosotros' %}" data-i18n="nav1">Nosotros</a></li>
+          <li><a href="{% url 'home' %}#especialidades" data-i18n="nav2">Especialidades</a></li>
+          <li><a href="{% url 'proyectos' %}" data-i18n="nav3">Proyectos</a></li>
+          <li><a href="{% url 'sostenibilidad' %}" data-i18n="nav4">Sostenibilidad</a></li>
         </ul>
       </div>
-
-      <!-- Col: enlaces 2 -->
-      <div class="col-6 col-lg-2">
-        <ul class="list-unstyled footer-links">
-          <li><a href="{% url 'denuncias' %}">Denuncias</a></li>
-          <li><a href="#">Trabaja con nosotros</a></li>
-          <li><a href="#">Política de calidad</a></li>
+      <div>
+        <h4 data-i18n="footCorp">Corporativo</h4>
+        <ul>
+          <li><a href="{% url 'nosotros' %}#equipo" data-i18n="footOrg">Equipo directivo</a></li>
+          <li><a href="{% url 'nosotros' %}#certificaciones" data-i18n="footQuality">Certificaciones ISO</a></li>
+          <li><a href="{% url 'denuncias' %}" data-i18n="denuncias">Canal de denuncias</a></li>
           <li><a href="{% url 'blog' %}">Blog</a></li>
         </ul>
       </div>
-
-      <!-- Col: certificaciones -->
-      <div class="col-12 col-lg-2">
-        <div class="d-flex flex-wrap align-items-center gap-3 justify-content-lg-end">
-          <img src="{% static 'core/img/iso9001.png' %}" alt="ISO 9001" height="34">
-          <img src="{% static 'core/img/iso14001.png' %}" alt="ISO 14001" height="34">
-          <img src="{% static 'core/img/iso45001.png' %}" alt="ISO 45001" height="34">
+      <div>
+        <h4 data-i18n="footCert">Certificaciones</h4>
+        <div class="vc-footer__iso">
+          <img src="{% static 'core/img/iso9001.png' %}" alt="ISO 9001">
+          <img src="{% static 'core/img/iso14001.png' %}" alt="ISO 14001">
+          <img src="{% static 'core/img/iso45001.png' %}" alt="ISO 45001">
         </div>
       </div>
     </div>
-
-    <!-- Divider -->
-    <hr class="border-secondary mt-4 mb-3">
-
-    <!-- Bottom bar -->
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center small text-white-50">
-      <div>© Ingenieria y Construccion VC Limitada {{ now|date:"Y" }} · Aviso Legal · Políticas de Privacidad</div>
-      <div>
-        Desarrollado por 
-        <a href="https://www.perseustechnology.dev" target="_blank" rel="noopener noreferrer" class="text-white text-decoration-none fw-bold" style="transition: color 0.3s;" onmouseover="this.classList.replace('text-white', 'text-success')" onmouseout="this.classList.replace('text-success', 'text-white')">
-          Perseus Technology
-        </a>
+    <div class="vc-footer__bottom">
+      <div class="vc-wrap">
+        <span>© {% now "Y" %} Ingeniería y Construcción VC Limitada · <span data-i18n="legal">Aviso legal · Políticas de privacidad</span></span>
+        <span><span data-i18n="dev">Desarrollado por</span> <a href="https://www.perseustechnology.dev" target="_blank" rel="noopener noreferrer">Perseus Technology</a></span>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-        // Este script espera a que TODAS las imágenes y recursos estén cargados
-        window.addEventListener('load', function() {
-            const preloader = document.getElementById('preloader');
-            
-            // Le damos un retraso de 400ms para asegurar una transición elegante
-            setTimeout(() => {
-                preloader.classList.add('preloader-hidden');
-            }, 400);
-            
-            // Opcional: Eliminar el elemento del DOM después de que se oculte para que no estorbe
-            setTimeout(() => {
-                preloader.style.display = 'none';
-            }, 1000); // 1000ms da tiempo a que termine la animación de opacidad
-        });
-    </script>
+  <script src="{% static 'core/js/vc-i18n.js' %}"></script>
+  <script src="{% static 'core/js/vc-i18n-pages.js' %}"></script>
+  <script src="{% static 'core/js/vc.js' %}"></script>
+  {% block extra_js %}{% endblock %}
 </body>
 </html>

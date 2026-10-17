@@ -1,0 +1,75 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}{{ p.titulo }} · Proyectos VC{% endblock %}
+
+{% block content %}
+
+<section class="vc-page-hero">
+  <img src="{{ p.imagen.url }}" alt="" aria-hidden="true">
+  <div class="vc-wrap">
+    <ol class="vc-crumbs"><li><a href="{% url 'home' %}" data-i18n="crumbHome">Inicio</a></li><li><a href="{% url 'proyectos' %}" data-i18n="nav3">Proyectos</a></li><li>{{ p.titulo }}</li></ol>
+    <h1>{{ p.titulo }}</h1>
+    <p data-en="{{ p.etiqueta_en_final }}">{{ p.etiqueta_es }}</p>
+  </div>
+</section>
+
+<section class="vc-block">
+  <div class="vc-wrap vc-split" style="align-items:start;">
+    <div class="vc-split__body">
+      <p class="vc-lead" style="font-size:21px;color:var(--vc-ink);"{% if p.resumen_en %} data-en="{{ p.resumen_en }}"{% endif %}>{{ p.resumen }}</p>
+      {% if p.descripcion %}
+      <div class="vc-prose" style="font-size:17.5px;"{% if p.descripcion_en %} data-lang-only="es"{% endif %}>{{ p.descripcion|linebreaks }}</div>
+      {% if p.descripcion_en %}<div class="vc-prose" style="font-size:17.5px;" data-lang-only="en" hidden>{{ p.descripcion_en|linebreaks }}</div>{% endif %}
+      {% endif %}
+    </div>
+    <div class="vc-card" style="box-shadow:none;background:var(--vc-soft);">
+      <h2 class="vc-h2" style="font-size:22px;margin-bottom:8px;" data-i18n="techSheet">Ficha técnica</h2>
+      <dl class="vc-specs" style="grid-template-columns:1fr;border-top:0;">
+        <div><dt data-i18n="esp">Especialidad</dt><dd data-en="{{ p.etiqueta_en_final }}">{{ p.etiqueta_es }}</dd></div>
+        {% if p.ubicacion %}<div><dt data-i18n="ubic">Ubicación</dt><dd{% if p.ubicacion_en %} data-en="{{ p.ubicacion_en }}"{% endif %}>{{ p.ubicacion }}</dd></div>{% endif %}
+        {% if p.anio %}<div><dt data-i18n="year">Año</dt><dd>{{ p.anio }}</dd></div>{% endif %}
+        {% if p.especialidad %}<div><dt data-i18n="discipline">Disciplina</dt><dd{% if p.especialidad_en %} data-en="{{ p.especialidad_en }}"{% endif %}>{{ p.especialidad }}</dd></div>{% endif %}
+        {% if p.alcance %}<div><dt data-i18n="scope">Alcance</dt><dd{% if p.alcance_en %} data-en="{{ p.alcance_en }}"{% endif %}>{{ p.alcance }}</dd></div>{% endif %}
+      </dl>
+      <a href="{% url 'contacto' %}" class="vc-btn vc-btn--primary" style="margin-top:28px;" data-i18n="ctaPr">¿Tienes un proyecto similar? Conversemos.</a>
+    </div>
+  </div>
+</section>
+
+{% if p.galeria.all %}
+<section class="vc-block vc-block--soft" style="padding-top:0;background:#fff;">
+  <div class="vc-wrap">
+    <h2 class="vc-h2" style="font-size:clamp(26px,2.4vw,34px);margin-bottom:28px;" data-i18n="gallery">Galería</h2>
+    <div class="vc-gallery">
+      {% for g in p.galeria.all %}
+      <figure>
+        <a href="{{ g.imagen.url }}" target="_blank" rel="noopener"><img src="{{ g.imagen.url }}" alt="{{ g.pie|default:p.titulo }}" loading="lazy"></a>
+        {% if g.pie %}<figcaption{% if g.pie_en %} data-en="{{ g.pie_en }}"{% endif %}>{{ g.pie }}</figcaption>{% endif %}
+      </figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if otros %}
+<section class="vc-block vc-block--soft">
+  <div class="vc-wrap">
+    <div class="vc-block__head">
+      <h2 class="vc-h2" style="font-size:clamp(26px,2.4vw,34px);" data-i18n="otherProjects">Otros proyectos</h2>
+      <a href="{% url 'proyectos' %}" class="vc-link" data-i18n="allProjects">Ver todos →</a>
+    </div>
+    <div class="vc-posts">
+      {% for o in otros %}
+      <a class="vc-post" href="{{ o.get_absolute_url }}">
+        <div class="vc-post__media"><img src="{{ o.imagen.url }}" alt="" loading="lazy"></div>
+        <div class="vc-post__meta"><b data-en="{{ o.etiqueta_en_final }}">{{ o.etiqueta_es }}</b>{% if o.ubicacion %}<span>{{ o.ubicacion }}</span>{% endif %}</div>
+        <h3>{{ o.titulo }}</h3>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}

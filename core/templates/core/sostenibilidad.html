@@ -1,171 +1,78 @@
 {% extends 'core/base.html' %}
-{% load static %}
+{% load static vc_tags %}
+{% block title %}Sostenibilidad · VC Ingeniería y Construcción{% endblock %}
 
 {% block content %}
 
-<section class="position-relative d-flex align-items-center overflow-hidden" 
-         style="background-image: url('{% static "core/img/sostenibilidad.png" %}'); background-size: cover; background-position: center; min-height: 55vh;">
-  
-  <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%); z-index: 1;"></div>
-  
-  <div class="container position-relative z-3">
-    <div class="row align-items-center">
-      <div class="col-lg-8 text-white py-5">
-        <div class="p-4 p-md-5" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-left: 4px solid #11b6a8; border-radius: 0 20px 20px 0;">
-          <span class="fw-bold text-uppercase small d-block mb-2" style="color: #1ac4a8; letter-spacing: 0.2rem;">Nuestro Compromiso</span>
-          <h1 class="display-3 fw-bold mb-3">
-            Sostenibilidad <span style="-webkit-text-stroke: 1px rgba(255,255,255,0.8); color: transparent;">ESG</span>
-          </h1>
-          <p class="lead opacity-90 mb-0" style="max-width: 650px;">
-            Compromiso ambiental, social y de gobernanza para construir un futuro industrial responsable y seguro en Chile.
-          </p>
-        </div>
+<section class="vc-page-hero">
+  <img src="{% img_sitio 'hero_sostenibilidad' 'core/img/sostenibilidad.png' %}" alt="" aria-hidden="true">
+  <div class="vc-wrap">
+    <ol class="vc-crumbs"><li><a href="{% url 'home' %}" data-i18n="crumbHome">Inicio</a></li><li data-i18n="nav4">Sostenibilidad</li></ol>
+    <h1 data-i18n="esgEyebrow">Sostenibilidad ESG</h1>
+    <p data-i18n="esgSub">Compromiso ambiental, social y de gobernanza para construir un futuro industrial responsable y seguro en Chile.</p>
+  </div>
+</section>
+
+<section class="vc-block">
+  <div class="vc-wrap">
+    <div class="vc-block__head">
+      <div>
+        <p class="vc-eyebrow" data-i18n="pilEyebrow">Nuestros pilares</p>
+        <h2 class="vc-h2" data-i18n="pilTitle">Integramos la sostenibilidad en cada proyecto</h2>
       </div>
+    </div>
+    <div class="vc-grid3">
+      <div class="vc-item"><span class="vc-item__num">E</span><h3 data-i18n="pil1">Ambiente</h3><p data-i18n="pil1Text">Gestión de residuos, eficiencia energética y control de emisiones en obra.</p><p><b data-i18n="goal">Meta 2026:</b> <span data-i18n="goalText">-15% huella de carbono por HH.</span></p></div>
+      <div class="vc-item"><span class="vc-item__num">S</span><h3>Social</h3><p data-i18n="pil2Text">Cero daño a las personas, capacitación continua, empleabilidad local y relacionamiento comunitario transparente.</p></div>
+      <div class="vc-item"><span class="vc-item__num">G</span><h3 data-i18n="pil3">Gobernanza</h3><p data-i18n="pil3Text">Cumplimiento normativo estricto, ética, integridad corporativa y cadena de suministro responsable con criterios ESG.</p></div>
     </div>
   </div>
 </section>
 
-<section class="py-5 bg-white border-bottom">
-  <div class="container py-lg-4">
-    <div class="text-center mb-5">
-      <h2 class="fw-bold h1">Nuestros Pilares</h2>
-      <div class="mx-auto mt-3" style="width: 60px; height: 4px; background: #11b6a8; border-radius: 2px;"></div>
-      <p class="text-muted mt-3">Integramos la sostenibilidad en cada proyecto y operación de VC Chile.</p>
+<section class="vc-block vc-block--dark">
+  <div class="vc-wrap">
+    <div class="vc-block__head">
+      <h2 class="vc-h2" data-i18n="kpiTitle">Indicadores 2025</h2>
     </div>
-    
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="card h-100 border-0 shadow-sm" style="border-radius: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.05)'">
-          <div class="card-body p-4 p-lg-5">
-            <div class="mb-4 d-inline-block p-3 rounded-circle" style="background: rgba(17, 182, 168, 0.1);">
-              <img src="{% static 'core/img/icon-ambiente.png' %}" alt="Ambiente" height="40">
-            </div>
-            <h4 class="fw-bold mb-3">Ambiente</h4>
-            <p class="text-secondary mb-4">Gestión de residuos, eficiencia energética y control de emisiones en obra.</p>
-            <div class="p-3 rounded-3" style="background-color: #f8f9fa; border-left: 3px solid #11b6a8;">
-              <span class="small fw-bold text-dark d-block">Meta 2026:</span>
-              <span class="small text-success fw-bold">-15% huella de carbono por HH.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card h-100 border-0 shadow-sm" style="border-radius: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.05)'">
-          <div class="card-body p-4 p-lg-5">
-            <div class="mb-4 d-inline-block p-3 rounded-circle" style="background: rgba(17, 182, 168, 0.1);">
-              <img src="{% static 'core/img/icon-social.png' %}" alt="Social" height="40">
-            </div>
-            <h4 class="fw-bold mb-3">Social</h4>
-            <p class="text-secondary mb-0">Cero daño a las personas, capacitación continua, empleabilidad local y relacionamiento comunitario transparente.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card h-100 border-0 shadow-sm" style="border-radius: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.05)'">
-          <div class="card-body p-4 p-lg-5">
-            <div class="mb-4 d-inline-block p-3 rounded-circle" style="background: rgba(17, 182, 168, 0.1);">
-              <img src="{% static 'core/img/icon-gobierno.png' %}" alt="Gobernanza" height="40">
-            </div>
-            <h4 class="fw-bold mb-3">Gobernanza</h4>
-            <p class="text-secondary mb-0">Cumplimiento normativo estricto, ética, integridad corporativa y cadena de suministro responsable con criterios ESG.</p>
-          </div>
-        </div>
-      </div>
+    <div class="vc-kpis">
+      <div class="vc-kpi"><strong>-18%</strong><span data-i18n="pil1Dato">Emisiones CO₂e por HH</span></div>
+      <div class="vc-kpi"><strong>60%</strong><span data-i18n="pil3Dato">Reciclaje de residuos</span></div>
+      <div class="vc-kpi"><strong>0</strong><span data-i18n="kpiLti">Accidentes FAT / LTI</span></div>
+      <div class="vc-kpi"><strong>60%</strong><span data-i18n="pil2Dato">Proveedores locales</span></div>
     </div>
   </div>
 </section>
 
-<section class="py-5" style="background-color: #f4f7f6;">
-  <div class="container py-lg-4">
-    <h2 class="fw-bold text-center mb-5">Indicadores 2025</h2>
-    <div class="row text-center g-4">
-      
-      <div class="col-6 col-md-3">
-        <div class="p-4 bg-white rounded-4 shadow-sm h-100 d-flex flex-column justify-content-center" style="border-bottom: 4px solid #11b6a8;">
-          <h2 class="fw-bolder text-success display-5 mb-2">-18%</h2>
-          <div class="text-secondary small fw-bold text-uppercase" style="letter-spacing: 0.05rem;">Emisiones CO₂e por HH</div>
-        </div>
-      </div>
-      
-      <div class="col-6 col-md-3">
-        <div class="p-4 bg-white rounded-4 shadow-sm h-100 d-flex flex-column justify-content-center" style="border-bottom: 4px solid #11b6a8;">
-          <h2 class="fw-bolder text-success display-5 mb-2">60%</h2>
-          <div class="text-secondary small fw-bold text-uppercase" style="letter-spacing: 0.05rem;">Reciclaje de residuos</div>
-        </div>
-      </div>
-      
-      <div class="col-6 col-md-3">
-        <div class="p-4 bg-white rounded-4 shadow-sm h-100 d-flex flex-column justify-content-center" style="border-bottom: 4px solid #11b6a8;">
-          <h2 class="fw-bolder text-success display-5 mb-2">0</h2>
-          <div class="text-secondary small fw-bold text-uppercase" style="letter-spacing: 0.05rem;">Accidentes FAT / LTI</div>
-        </div>
-      </div>
-      
-      <div class="col-6 col-md-3">
-        <div class="p-4 bg-white rounded-4 shadow-sm h-100 d-flex flex-column justify-content-center" style="border-bottom: 4px solid #11b6a8;">
-          <h2 class="fw-bolder text-success display-5 mb-2">60%</h2>
-          <div class="text-secondary small fw-bold text-uppercase" style="letter-spacing: 0.05rem;">Proveedores locales</div>
-        </div>
-      </div>
+<section class="vc-block">
+  <div class="vc-wrap">
+    <div class="vc-block__head">
+      <h2 class="vc-h2" data-i18n="roadTitle">Hoja de ruta estratégica</h2>
+    </div>
+    <ol class="vc-roadmap">
+      <li><time>2025</time><h3 data-i18n="r1">Política ESG</h3><p data-i18n="r1Text">Publicación de nuestra política ESG corporativa y mapeo exhaustivo de riesgos ambientales y sociales en todas las operaciones.</p></li>
+      <li><time>2025</time><h3 data-i18n="r2">Huella de carbono</h3><p data-i18n="r2Text">Levantamiento del inventario corporativo y ejecución del plan de reducción con foco principal en optimización de combustibles.</p></li>
+      <li><time>2025</time><h3 data-i18n="r3">Gestión de residuos 4.0</h3><p data-i18n="r3Text">Implementación de trazabilidad digital en obra y aumento en la valorización de residuos de construcción y demolición.</p></li>
+    </ol>
+  </div>
+</section>
 
+<section class="vc-block vc-block--soft">
+  <div class="vc-wrap vc-block__head" style="margin-bottom:0;">
+    <h2 class="vc-h2" data-i18n="ods">Contribuimos a los ODS</h2>
+    <div class="vc-ods">
+      <img src="{% static 'core/img/ods6.png' %}" alt="ODS 6" loading="lazy">
+      <img src="{% static 'core/img/ods8.png' %}" alt="ODS 8" loading="lazy">
+      <img src="{% static 'core/img/ods9.png' %}" alt="ODS 9" loading="lazy">
+      <img src="{% static 'core/img/ods12.png' %}" alt="ODS 12" loading="lazy">
+      <img src="{% static 'core/img/ods13.png' %}" alt="ODS 13" loading="lazy">
     </div>
   </div>
 </section>
 
-<section class="py-5 bg-white">
-  <div class="container py-lg-4">
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <h2 class="fw-bold text-center mb-5">Hoja de ruta Estratégica</h2>
-        
-        <div style="position: relative; border-left: 3px solid #e9ecef; margin-left: 20px; padding-left: 30px;">
-          
-          <div class="pb-5 position-relative">
-            <div style="position: absolute; left: -41px; top: 0; width: 20px; height: 20px; border-radius: 50%; border: 4px solid #fff; background-color: #11b6a8; box-shadow: 0 0 0 3px rgba(17, 182, 168, 0.2);"></div>
-            <div class="bg-light p-4 rounded-3 shadow-sm">
-              <h5 class="fw-bold mb-2 text-dark">2025 — Política ESG</h5>
-              <p class="mb-0 text-secondary">Publicación de nuestra política ESG corporativa y mapeo exhaustivo de riesgos ambientales y sociales en todas las operaciones.</p>
-            </div>
-          </div>
-          
-          <div class="pb-5 position-relative">
-            <div style="position: absolute; left: -41px; top: 0; width: 20px; height: 20px; border-radius: 50%; border: 4px solid #fff; background-color: #11b6a8; box-shadow: 0 0 0 3px rgba(17, 182, 168, 0.2);"></div>
-            <div class="bg-light p-4 rounded-3 shadow-sm">
-              <h5 class="fw-bold mb-2 text-dark">2025 — Huella de Carbono</h5>
-              <p class="mb-0 text-secondary">Levantamiento del inventario corporativo y ejecución del plan de reducción con foco principal en optimización de combustibles.</p>
-            </div>
-          </div>
-          
-          <div class="position-relative">
-            <div style="position: absolute; left: -41px; top: 0; width: 20px; height: 20px; border-radius: 50%; border: 4px solid #fff; background-color: #11b6a8; box-shadow: 0 0 0 3px rgba(17, 182, 168, 0.2);"></div>
-            <div class="bg-light p-4 rounded-3 shadow-sm">
-              <h5 class="fw-bold mb-2 text-dark">2025 — Gestión de Residuos 4.0</h5>
-              <p class="mb-0 text-secondary">Implementación de trazabilidad digital en obra y aumento en la valorización de residuos de construcción y demolición.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="py-5 bg-white border-top">
-  <div class="container">
-    <div class="p-5 text-center text-white rounded-4 shadow-lg position-relative overflow-hidden" style="background: linear-gradient(135deg, #0d484a 0%, #11b6a8 100%);">
-      <div class="position-relative z-3">
-        <h2 class="fw-bold display-6 mb-3">Construyamos de forma responsable</h2>
-        <p class="lead opacity-90 mb-4 mx-auto" style="max-width: 700px;">
-          Nuestros proyectos integran las mejores prácticas ambientales y sociales desde la fase de diseño hasta la entrega final.
-        </p>
-        <a href="{% url 'contacto' %}" class="btn btn-light btn-lg px-5 fw-bold text-success shadow-sm" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-          HABLEMOS DE TU PROYECTO
-        </a>
-      </div>
-      <div style="position: absolute; top: -50px; left: -50px; width: 250px; height: 250px; background: rgba(255,255,255,0.05); border-radius: 50%; z-index: 1;"></div>
-    </div>
+<section class="vc-cta">
+  <div class="vc-wrap">
+    <h2 data-i18n="ctaEsg">Construyamos de forma responsable</h2>
+    <a href="{% url 'contacto' %}" class="vc-btn vc-btn--accent" data-i18n="ctaEsgBtn">Hablemos de tu proyecto</a>
   </div>
 </section>
 

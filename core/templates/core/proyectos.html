@@ -1,200 +1,61 @@
 {% extends 'core/base.html' %}
-{% load static %}
+{% load static vc_tags %}
+{% block title %}Proyectos · VC Ingeniería y Construcción{% endblock %}
 
 {% block content %}
 
-<section class="position-relative d-flex align-items-center overflow-hidden" 
-         style="background-image: url('{% static "core/img/banner_pro.jpg" %}'); background-size: cover; background-position: center; min-height: 50vh;">
-  
-  <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 100%); z-index: 1;"></div>
-  
-  <div class="container position-relative z-3">
-    <div class="row">
-      <div class="col-lg-7 text-white">
-        <div class="p-4 p-md-5" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-left: 4px solid #11b6a8; border-radius: 0 20px 20px 0;">
-          <span class="fw-bold text-uppercase small d-block mb-2" style="color: #1ac4b6; letter-spacing: 0.2rem;">Experiencia en Terreno</span>
-          <h1 class="display-3 fw-bold mb-3">Nuestros <span style="-webkit-text-stroke: 1px rgba(255,255,255,0.8); color: transparent;">Proyectos</span></h1>
-          <p class="lead opacity-75 mb-0">Selección de obras, montajes y soluciones de ingeniería ejecutadas por VC Chile con los más altos estándares de seguridad.</p>
-        </div>
+<section class="vc-page-hero">
+  <img src="{% img_sitio 'hero_proyectos' 'core/img/banner_pro.jpg' %}" alt="" aria-hidden="true">
+  <div class="vc-wrap">
+    <ol class="vc-crumbs"><li><a href="{% url 'home' %}" data-i18n="crumbHome">Inicio</a></li><li data-i18n="nav3">Proyectos</li></ol>
+    <h1 data-i18n="prTitle">Nuestros proyectos</h1>
+    <p data-i18n="prSub">Selección de obras, montajes y soluciones de ingeniería ejecutadas por VC Chile con los más altos estándares de seguridad.</p>
+  </div>
+</section>
+
+<section class="vc-block">
+  <div class="vc-wrap">
+    <div class="vc-block__head">
+      <h2 class="vc-h2" data-i18n="projTitle">Proyectos ejecutados</h2>
+      {% if categorias|length > 1 %}
+      <div class="vc-chips" role="group" aria-label="Filtrar por sector" data-filter-group="proyectos" data-i18n-aria="filterAria">
+        <button type="button" class="vc-chip" data-filter="all" aria-pressed="true" data-i18n="fAll">Todos</button>
+        {% for c in categorias %}
+        <button type="button" class="vc-chip" data-filter="{{ c.valor }}" aria-pressed="false" data-en="{{ c.en }}">{{ c.es }}</button>
+        {% endfor %}
       </div>
+      {% endif %}
+    </div>
+
+    <div class="vc-plist" data-filter-items="proyectos">
+      {% for p in proyectos %}
+      <article class="vc-prow" data-cat="{{ p.categoria }}" id="{{ p.slug }}">
+        <a class="vc-prow__media" href="{{ p.get_absolute_url }}"><img src="{{ p.imagen.url }}" alt="{{ p.imagen_alt|default:p.titulo }}" loading="lazy"></a>
+        <div class="vc-prow__body">
+          <span class="vc-prow__tag" data-en="{{ p.etiqueta_en_final }}">{{ p.etiqueta_es }}</span>
+          <h2><a href="{{ p.get_absolute_url }}" style="color:inherit;text-decoration:none;">{{ p.titulo }}</a></h2>
+          <p{% if p.resumen_en %} data-en="{{ p.resumen_en }}"{% endif %}>{{ p.resumen }}</p>
+          <dl class="vc-specs">
+            {% if p.ubicacion %}<div><dt data-i18n="ubic">Ubicación</dt><dd{% if p.ubicacion_en %} data-en="{{ p.ubicacion_en }}"{% endif %}>{{ p.ubicacion }}</dd></div>{% endif %}
+            {% if p.anio %}<div><dt data-i18n="year">Año</dt><dd>{{ p.anio }}</dd></div>{% endif %}
+            {% if p.especialidad %}<div><dt data-i18n="esp">Especialidad</dt><dd{% if p.especialidad_en %} data-en="{{ p.especialidad_en }}"{% endif %}>{{ p.especialidad }}</dd></div>{% endif %}
+            {% if p.alcance %}<div><dt data-i18n="scope">Alcance</dt><dd{% if p.alcance_en %} data-en="{{ p.alcance_en }}"{% endif %}>{{ p.alcance }}</dd></div>{% endif %}
+          </dl>
+          <a href="{{ p.get_absolute_url }}" class="vc-link" data-i18n="ficha">Ver ficha del proyecto →</a>
+        </div>
+      </article>
+      {% empty %}
+      <p class="vc-lead" data-i18n="noProjects">Pronto publicaremos nuestros proyectos.</p>
+      {% endfor %}
     </div>
   </div>
 </section>
 
-<section class="py-5 bg-white">
-  <div class="container">
-    
-    <div class="d-flex justify-content-center mb-5" id="filtros">
-      <div class="d-flex gap-2 filter-scroll p-2 bg-light rounded-pill shadow-sm">
-        <button type="button" class="btn btn-success text-white rounded-pill px-4" data-filter="all">Todos</button>
-        <button type="button" class="btn btn-outline-success rounded-pill px-4" data-filter="mineria">Minería</button>
-        <button type="button" class="btn btn-outline-success rounded-pill px-4" data-filter="energia">Energía</button>
-        <button type="button" class="btn btn-outline-success rounded-pill px-4" data-filter="vialidad">Vialidad</button>
-        <button type="button" class="btn btn-outline-success rounded-pill px-4" data-filter="obras">Obras Civiles</button>
-      </div>
-    </div>
-
-    <div class="row g-4" id="grid-proyectos">
-
-      <div class="col-md-6 col-lg-4 proyecto-item" data-cat="energia">
-        <div class="card proyecto-card border-0 shadow-hover h-100 overflow-hidden cursor-pointer" data-bs-toggle="modal" data-bs-target="#proy1">
-          <div class="position-relative overflow-hidden">
-            <div class="badge bg-success position-absolute top-0 end-0 m-3 z-3">Energía</div>
-            <img src="{% static 'core/img/quintero-energia.jpg' %}" class="card-img-top hover-zoom" alt="Central Quintero">
-          </div>
-          <div class="card-body p-4">
-            <h5 class="card-title fw-bold mb-2">Central Quintero Energía</h5>
-            <p class="card-text text-secondary small">Mejoramiento de inmobiliario en sala de control U-3. Optimización de espacios técnicos.</p>
-            <div class="text-success fw-bold small mt-3">VER DETALLES <i class="bi bi-plus-lg"></i></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 proyecto-item" data-cat="mineria">
-        <div class="card proyecto-card border-0 shadow-hover h-100 overflow-hidden cursor-pointer" data-bs-toggle="modal" data-bs-target="#proy2">
-          <div class="position-relative overflow-hidden">
-            <div class="badge bg-success position-absolute top-0 end-0 m-3 z-3">Montaje</div>
-            <img src="{% static 'core/img/alfalfal2.png' %}" class="card-img-top hover-zoom" alt="Alfalfal II">
-          </div>
-          <div class="card-body p-4">
-            <h5 class="card-title fw-bold mb-2">Alfalfal II</h5>
-            <p class="card-text text-secondary small">Fabricación y montaje de línea de succión de bomba dragadora en Foreway.</p>
-            <div class="text-success fw-bold small mt-3">VER DETALLES <i class="bi bi-plus-lg"></i></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 proyecto-item" data-cat="mineria">
-        <div class="card proyecto-card border-0 shadow-hover h-100 overflow-hidden cursor-pointer" data-bs-toggle="modal" data-bs-target="#proy3">
-          <div class="position-relative overflow-hidden">
-            <div class="badge bg-success position-absolute top-0 end-0 m-3 z-3">Hidráulica</div>
-            <img src="{% static 'core/img/Laja.jpg' %}" class="card-img-top hover-zoom" alt="Las Lajas">
-          </div>
-          <div class="card-body p-4">
-            <h5 class="card-title fw-bold mb-2">Central Las Lajas</h5>
-            <p class="card-text text-secondary small">Reparación de filtros de retrolavado y montaje de líneas de acero inoxidable.</p>
-            <div class="text-success fw-bold small mt-3">VER DETALLES <i class="bi bi-plus-lg"></i></div>
-          </div>
-        </div>
-      </div>
-
-    </div>
+<section class="vc-cta">
+  <div class="vc-wrap">
+    <h2 data-i18n="ctaPr">¿Tienes un proyecto similar? Conversemos.</h2>
+    <a href="{% url 'contacto' %}" class="vc-btn vc-btn--accent" data-i18n="cta">Cotizar proyecto</a>
   </div>
 </section>
-
-<div class="modal fade" id="proy1" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
-      <div class="row g-0">
-        <div class="col-lg-6">
-          <img src="{% static 'core/img/quintero-energia.jpg' %}" class="h-100 w-100 object-fit-cover" style="min-height: 300px;" alt="Quintero">
-        </div>
-        <div class="col-lg-6">
-          <div class="modal-body p-5">
-            <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
-            <span class="text-success fw-bold small mb-2 d-block">PROYECTO ENERGÍA</span>
-            <h3 class="fw-bold mb-3">Central Quintero Energía</h3>
-            <hr class="mb-4" style="width: 50px; height: 3px; background: #11b6a8; opacity: 1;">
-            <p class="text-secondary mb-4">Mejoramiento de mobiliario en sala de control U-3. Ejecución bajo estrictos protocolos de continuidad operacional y seguridad eléctrica.</p>
-            <ul class="list-unstyled small text-muted">
-              <li class="mb-2"><i class="bi bi-geo-alt me-2 text-success"></i> Quintero, V Región</li>
-              <li class="mb-2"><i class="bi bi-calendar-check me-2 text-success"></i> Año: 2023</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="proy2" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
-      <div class="row g-0">
-        <div class="col-lg-6">
-          <img src="{% static 'core/img/alfalfal2.png' %}" class="h-100 w-100 object-fit-cover" style="min-height: 300px;" alt="Alfalfal II">
-        </div>
-        <div class="col-lg-6">
-          <div class="modal-body p-5">
-            <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
-            <span class="text-success fw-bold small mb-2 d-block">MONTAJE INDUSTRIAL</span>
-            <h3 class="fw-bold mb-3">Alfalfal II</h3>
-            <hr class="mb-4" style="width: 50px; height: 3px; background: #11b6a8; opacity: 1;">
-            <p class="text-secondary mb-4">Fabricación y montaje especializado de línea de succión para bomba dragadora en proyecto Foreway. Alta precisión en soldadura y ajuste mecánico.</p>
-            <ul class="list-unstyled small text-muted">
-              <li class="mb-2"><i class="bi bi-geo-alt me-2 text-success"></i> Cajón del Maipo, RM</li>
-              <li class="mb-2"><i class="bi bi-calendar-check me-2 text-success"></i> Tipo: Montaje Mecánico</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="proy3" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
-      <div class="row g-0">
-        <div class="col-lg-6">
-          <img src="{% static 'core/img/Laja.jpg' %}" class="h-100 w-100 object-fit-cover" style="min-height: 300px;" alt="Central Las Lajas">
-        </div>
-        <div class="col-lg-6">
-          <div class="modal-body p-5">
-            <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
-            <span class="text-success fw-bold small mb-2 d-block">MANTENIMIENTO E HIDRÁULICA</span>
-            <h3 class="fw-bold mb-3">Central Las Lajas</h3>
-            <hr class="mb-4" style="width: 50px; height: 3px; background: #11b6a8; opacity: 1;">
-            <p class="text-secondary mb-4">Reparación de filtros de retrolavado y fabricación de líneas de acero inoxidable para circuitos abiertos y cerrados de las unidades 1 y 2.</p>
-            <ul class="list-unstyled small text-muted">
-              <li class="mb-2"><i class="bi bi-geo-alt me-2 text-success"></i> Central Las Lajas / Alfalfal II</li>
-              <li class="mb-2"><i class="bi bi-tools me-2 text-success"></i> Fabricación en Acero Inoxidable</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const botones = document.querySelectorAll('#filtros button');
-    const proyectos = document.querySelectorAll('.proyecto-item');
-
-    botones.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // 1. Reiniciar los colores de todos los botones
-        botones.forEach(b => {
-          b.classList.remove('btn-success', 'text-white');
-          b.classList.add('btn-outline-success');
-        });
-        
-        // 2. Pintar solo el botón seleccionado
-        btn.classList.remove('btn-outline-success');
-        btn.classList.add('btn-success', 'text-white');
-        
-        // 3. Lógica de filtrado con transición suave
-        const filterValue = btn.getAttribute('data-filter');
-        
-        proyectos.forEach(item => {
-          if (filterValue === 'all' || item.getAttribute('data-cat') === filterValue) {
-            item.style.display = 'block';
-            setTimeout(() => {
-              item.style.opacity = '1';
-              item.style.transform = 'scale(1)';
-            }, 50);
-          } else {
-            item.style.opacity = '0';
-            item.style.transform = 'scale(0.8)';
-            setTimeout(() => {
-              item.style.display = 'none';
-            }, 400); 
-          }
-        });
-      });
-    });
-  });
-</script>
 
 {% endblock %}

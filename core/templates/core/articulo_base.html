@@ -1,0 +1,37 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}{% block art_title_tag %}Blog{% endblock %} · VC Ingeniería y Construcción{% endblock %}
+
+{% block content %}
+<section class="vc-page-hero">
+  <img src="{% static '' %}{% block art_img %}{% endblock %}" alt="" aria-hidden="true">
+  <div class="vc-wrap">
+    <ol class="vc-crumbs"><li><a href="{% url 'home' %}" data-i18n="crumbHome">Inicio</a></li><li><a href="{% url 'blog' %}">Blog</a></li><li>{% block art_tag %}{% endblock %}</li></ol>
+    <h1 style="max-width:24ch;">{% block art_title %}{% endblock %}</h1>
+    <p style="font-size:15px;">{% block art_meta %}{% endblock %}</p>
+  </div>
+</section>
+
+<section class="vc-block">
+  <div class="vc-wrap">
+    <div class="vc-article">
+      <a href="{% url 'blog' %}" class="vc-article__back"><span aria-hidden="true">←</span> <span data-i18n="blBack">Volver al blog</span></a>
+      <div class="vc-prose">
+        {% block art_body %}{% endblock %}
+      </div>
+      <div class="vc-share">
+        <span data-i18n="blShare">Compartir:</span>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri|urlencode }}" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://wa.me/?text={{ request.build_absolute_uri|urlencode }}" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="vc-cta">
+  <div class="vc-wrap">
+    <h2 data-i18n="ctaBlog">¿Necesitas apoyo en tu próximo desafío técnico?</h2>
+    <a href="{% url 'contacto' %}" class="vc-btn vc-btn--accent" data-i18n="ctaEsgBtn">Hablemos de tu proyecto</a>
+  </div>
+</section>
+{% endblock %}
