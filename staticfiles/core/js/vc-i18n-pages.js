@@ -48,7 +48,8 @@
     blTitle: 'Blog técnico', blSub: 'Tips de mantenimiento, mejores prácticas en montaje industrial y análisis de nuestros casos de éxito en terreno.',
     blLatest: 'Últimos artículos', blTips: 'Tips de mantenimiento', blHseq: 'Seguridad HSEQ', blCases: 'Casos de éxito',
     read3: '3 min de lectura', read4: '4 min de lectura', read5: '5 min de lectura',
-    ctaBlog: '¿Necesitas apoyo en tu próximo desafío técnico?', blBack: 'Volver al blog', blShare: 'Compartir:'
+    ctaBlog: '¿Necesitas apoyo en tu próximo desafío técnico?', blBack: 'Volver al blog', blShare: 'Compartir:',
+    noProjects: 'Pronto publicaremos nuestros proyectos.', techSheet: 'Ficha técnica', discipline: 'Disciplina', gallery: 'Galería', otherProjects: 'Otros proyectos', allProjects: 'Ver todos →'
   });
   window.VCi18n.extend('en', {
     crumbHome: 'Home',
@@ -96,6 +97,7 @@
     blTitle: 'Technical blog', blSub: 'Maintenance tips, best practices in industrial installation and analysis of our field success stories.',
     blLatest: 'Latest articles', blTips: 'Maintenance tips', blHseq: 'HSEQ safety', blCases: 'Case studies',
     read3: '3 min read', read4: '4 min read', read5: '5 min read',
-    ctaBlog: 'Need support on your next technical challenge?', blBack: 'Back to blog', blShare: 'Share:'
+    ctaBlog: 'Need support on your next technical challenge?', blBack: 'Back to blog', blShare: 'Share:',
+    noProjects: 'Our projects will be published soon.', techSheet: 'Technical sheet', discipline: 'Discipline', gallery: 'Gallery', otherProjects: 'Other projects', allProjects: 'View all →'
   });
 })();

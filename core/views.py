@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.http import url_has_allowed_host_and_scheme
 from .models import Proyecto, Contacto, Denuncia, SlideInicio
 from django.contrib import messages
+from .correo import enviar_aviso_contacto
 
 def index(request):
     return render(request, 'core/index.html', {
@@ -43,6 +44,7 @@ def contacto(request):
             mensaje = ' | '.join(extras) + '\n\n' + mensaje
 
         Contacto.objects.create(nombre=nombre, email=email, mensaje=mensaje)
+        enviar_aviso_contacto(nombre, email, mensaje)
         messages.success(request, 'Tu mensaje ha sido enviado correctamente. Te contactaremos a la brevedad.')
 
         destino = request.POST.get('next', '')

@@ -73,7 +73,12 @@
         items.forEach(function (it, k) { it.classList.toggle('is-active', k === cur); });
         thumbs.forEach(function (th, k) { th.classList.toggle('is-active', k === cur); th.setAttribute('aria-pressed', String(k === cur)); });
         if (num) num.textContent = '0' + (cur + 1);
-        if (tag) { tag.setAttribute('data-i18n', items[cur].getAttribute('data-tag')); if (window.VCi18n) window.VCi18n.apply(); }
+        if (tag) {
+          var es = items[cur].getAttribute('data-tag-es') || '', en = items[cur].getAttribute('data-tag-en') || es;
+          tag.setAttribute('data-es', es); tag.setAttribute('data-en', en);
+          var isEn = window.VCi18n && window.VCi18n.current() === 'en';
+          tag.textContent = isEn ? en : es;
+        }
       };
       var prev = document.getElementById('vcPrev'), next = document.getElementById('vcNext');
       if (prev) prev.addEventListener('click', function () { go(cur - 1); });

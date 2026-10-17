@@ -169,6 +169,41 @@ CACHES = {'default': {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# ---------------------------------------------------------------------------
+# Correo (Outlook / Microsoft 365) para avisos del formulario de contacto.
+# Ver CORREO_OUTLOOK.md. CORREO_MODO: "smtp", "graph" o vacío (no envía).
+# ---------------------------------------------------------------------------
+CORREO_MODO = os.environ.get('CORREO_MODO', '').strip().lower()
+CORREO_REMITENTE = os.environ.get('CORREO_REMITENTE', '').strip()
+CORREO_DESTINO = [d.strip() for d in os.environ.get('CORREO_DESTINO', CORREO_REMITENTE).split(',') if d.strip()]
+
+# Modo smtp
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.office365.com')
+EMAIL_PORT = int(os.environ.get('EMAIL_PORT', '587'))
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = CORREO_REMITENTE
+EMAIL_HOST_PASSWORD = os.environ.get('CORREO_CLAVE', '')
+EMAIL_TIMEOUT = 10
+DEFAULT_FROM_EMAIL = CORREO_REMITENTE or 'webmaster@localhost'
+
+# Modo graph (app registrada en Entra ID con permiso Mail.Send de aplicación)
+MS_TENANT_ID = os.environ.get('MS_TENANT_ID', '')
+MS_CLIENT_ID = os.environ.get('MS_CLIENT_ID', '')
+MS_CLIENT_SECRET = os.environ.get('MS_CLIENT_SECRET', '')
+
+# Imprime el traceback de cualquier error 500 en la terminal (local) y en los logs de Vercel,
+# aunque DEBUG esté en False.
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {'console': {'class': 'logging.StreamHandler'}},
+    'loggers': {
+        'django.request': {'handlers': ['console'], 'level': 'ERROR', 'propagate': False},
+        'core': {'handlers': ['console'], 'level': 'WARNING', 'propagate': False},
+    },
+}
+
 if not DEBUG:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SESSION_COOKIE_SECURE = True

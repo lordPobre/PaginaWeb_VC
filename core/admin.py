@@ -9,10 +9,14 @@ admin.site.index_title = 'Contenido del sitio'
 
 
 def miniatura(obj, campo='imagen', alto=56):
-    f = getattr(obj, campo, None)
-    if f:
-        return format_html('<img src="{}" style="height:{}px;width:auto;border-radius:3px;object-fit:cover;">', f.url, alto)
-    return '—'
+    f = getattr(obj, campo, None) if obj else None
+    if not f:
+        return '—'
+    try:
+        url = f.url
+    except Exception:
+        return '—'
+    return format_html('<img src="{}" style="height:{}px;width:auto;object-fit:cover;">', url, alto)
 
 
 class ProyectoImagenInline(admin.TabularInline):

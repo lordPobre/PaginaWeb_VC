@@ -89,6 +89,14 @@
     each('data-i18n-ph', function (el, v) { el.setAttribute('placeholder', v); });
     each('data-i18n-alt', function (el, v) { el.setAttribute('alt', v); });
     each('data-i18n-aria', function (el, v) { el.setAttribute('aria-label', v); });
+    // Contenido del admin: elementos con data-en="..." (el español queda en data-es)
+    document.querySelectorAll('[data-en]').forEach(function (el) {
+      var en = el.getAttribute('data-en');
+      if (!en) return;
+      if (!el.hasAttribute('data-es')) el.setAttribute('data-es', el.textContent.trim());
+      el.textContent = lang === 'en' ? en : el.getAttribute('data-es');
+    });
+    document.querySelectorAll('[data-lang-only]').forEach(function (el) { el.hidden = el.getAttribute('data-lang-only') !== lang; });
     document.documentElement.lang = lang;
     document.querySelectorAll('[data-lang]').forEach(function (b) {
       b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang));
