@@ -29,7 +29,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; }
-img { max-width: 100%; }
+img { max-width: 100%; height: auto; }
 [hidden] { display: none !important; }
 h1, h2, h3, h4 { margin-top: 0; }
 button, input, select, textarea { font: inherit; }
@@ -101,7 +101,7 @@ body { font-family: var(--vc-font-body); color: var(--vc-ink); -webkit-font-smoo
 @media (max-width: 479px) {
   .vc-header__cta { display: none; }
   .vc-mobile-nav .vc-mobile-nav__cta { display: flex; }
-  .vc-header__logo img { width: 190px; }
+  .vc-header__logo img { width: 160px; }
 }
 
 /* ---------- Mensajes Django ---------- */
@@ -121,8 +121,9 @@ body { font-family: var(--vc-font-body); color: var(--vc-ink); -webkit-font-smoo
 .vc-hero__sub { font-size: clamp(17px, 1.4vw, 20px); line-height: 1.6; max-width: 56ch; margin: 24px 0 0; color: #e2eeec; }
 .vc-hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 @media (max-width: 759px) {
-  .vc-hero { min-height: 0; }
-  .vc-hero__inner { padding-top: 34vh; }
+  .vc-hero { min-height: min(86svh, 720px); }
+  .vc-hero__inner { padding-top: 96px; }
+  .vc-hero__slide.is-active img { transform: scale(1.03); }
   .vc-hero__eyebrow { display: none; }
   .vc-hero h1 { font-size: clamp(30px, 8.4vw, 40px); }
   .vc-hero__sub { font-size: 16.5px; }
@@ -178,9 +179,11 @@ body { font-family: var(--vc-font-body); color: var(--vc-ink); -webkit-font-smoo
 .vc-panel.is-active .vc-panel__open { opacity: 1; transform: translateY(0); }
 @media (max-width: 759px) {
   .vc-panels { flex-direction: column; height: auto; }
-  .vc-panel, .vc-panel.is-active { flex: none; height: 96px; }
-  .vc-panel.is-active { height: 440px; }
-  .vc-panel__closed strong { writing-mode: horizontal-tb; transform: none; }
+  .vc-panel, .vc-panel.is-active { flex: none; height: 112px; }
+  .vc-panel.is-active { height: clamp(380px, 110vw, 480px); }
+  .vc-panel > img, .vc-panel.is-active > img { transform: none; }
+  .vc-panel__closed strong { writing-mode: horizontal-tb; transform: none; font-size: 19px; }
+  .vc-panel__open p { font-size: 15.5px; }
 }
 
 /* ---------- Proyectos (carrusel) ---------- */
@@ -464,3 +467,37 @@ a.vc-prow__media { display: block; }
 .vc-gallery img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s ease; }
 .vc-gallery a:hover img { transform: scale(1.04); }
 .vc-gallery figcaption { font-size: 14px; color: var(--vc-muted); margin-top: 8px; }
+
+/* ---------- Móvil: proporciones de imágenes ---------- */
+@media (max-width: 759px) {
+  .vc-projects__media { aspect-ratio: 4 / 3; }
+  .vc-projects__tag { left: 12px; top: 12px; }
+  .vc-thumbs { gap: 8px; }
+  .vc-contact__media { min-height: 0; aspect-ratio: 4 / 5; max-height: 560px; }
+  .vc-contact__info { grid-template-columns: 1fr; gap: 14px; }
+  .vc-ods img { width: 44px; height: 44px; }
+  .vc-page-hero { min-height: clamp(300px, 62vw, 420px); }
+  .vc-page-hero .vc-wrap { padding-top: 88px; padding-bottom: 32px; }
+  .vc-page-hero h1 { font-size: clamp(32px, 9vw, 44px); }
+  .vc-split__media, .vc-prow__media, .vc-gallery a { aspect-ratio: 4 / 3; }
+  .vc-post__media { aspect-ratio: 16 / 10; }
+  .vc-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .vc-gallery figcaption { font-size: 13px; }
+  .vc-cert img { height: 52px; }
+  .vc-footer__brand img { width: 240px; }
+  .vc-footer__datos { max-width: 240px; }
+  .vc-footer__iso img { height: 42px; }
+}
+
+/* Inicio en móvil */
+.vc-hero__tabs:has(> .vc-hero__tab:only-child) { display: none; }
+@media (max-width: 759px) {
+  .vc-about { padding-top: 56px; }
+  .vc-about__statement { font-size: 22px; line-height: 1.32; }
+  .vc-about__side p { font-size: 16px; }
+  .vc-stats { gap: 32px 24px; margin-top: 48px; }
+  .vc-stat__value { font-size: 44px; }
+  .vc-stat__label { font-size: 15px; }
+  .vc-areas__head { margin-bottom: 24px; }
+  .vc-panel__num { font-size: 13px; }
+}

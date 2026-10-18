@@ -1,8 +1,13 @@
+import mimetypes
 import os
 from pathlib import Path
 
 import dj_database_url
 from dotenv import load_dotenv
+
+# Windows a veces registra .css/.js como text/plain y el navegador los rechaza (nosniff).
+mimetypes.add_type('text/css', '.css', True)
+mimetypes.add_type('text/javascript', '.js', True)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / '.env')
@@ -19,6 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',   # WhiteNoise sirve los estáticos también con runserver
     'django.contrib.staticfiles',
     'storages',
     'core',
